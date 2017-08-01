@@ -74,3 +74,6 @@ $route['home'] = "frontend";
 
 /* End of file routes.php */
 /* Location: ./application/config/routes.php */
+
+
+$route['sample-sets']='samplesets/index';

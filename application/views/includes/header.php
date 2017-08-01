@@ -96,35 +96,12 @@
               </a>
             </li>
             <li class="treeview">
-              <a href="#" >
+              <a href="<?=base_url()?>sample-sets" >
                 <i class="fa fa-plane"></i>
-                <span>ROOMS</span>
-              </a>
-            </li>
-            <li class="treeview">
-              <a href="#" >
-                <i class="fa fa-ticket"></i>
-                <span>THEME</span>
+                <span>SAMPLE SETS</span>
               </a>
             </li>
             <?php
-            if($role == ROLE_ADMIN || $role == ROLE_MANAGER)
-            {
-            ?>
-            <li class="treeview">
-              <a href="#" >
-                <i class="fa fa-thumb-tack"></i>
-                <span>GROUPS</span>
-              </a>
-            </li>
-            <li class="treeview">
-              <a href="#" >
-                <i class="fa fa-upload"></i>
-                <span>SETTINGS</span>
-              </a>
-            </li>
-            <?php
-            }
             if($role == ROLE_ADMIN)
             {
             ?>
@@ -134,15 +111,9 @@
                 <span>USERS</span>
               </a>
             </li>
-            <li class="treeview">
-              <a href="#" >
-                <i class="fa fa-files-o"></i>
-                <span>LAGNUEAGE</span>
-              </a>
-            </li>
             <?php
             }
-            ?>
+            ?>            
           </ul>
         </section>
         <!-- /.sidebar -->
