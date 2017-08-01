@@ -24,7 +24,7 @@ class Sample_model extends CI_Model
 		$this->db->where('id',$sample_id);
 		$query =  $this->db->get($this->table_name);
 		$result = $query->result_array();
-		return $result[0];
+		return $result;
 	}
 
 	public function getAllSample()
@@ -40,6 +40,26 @@ class Sample_model extends CI_Model
 		$this->db->where('id',$id);
 		$this->db->set('key_'.$key_no,$item_id);
 		$this->db->update($this->table_name);
+	}
+
+	public function updateSample($data){
+		$this->db->where('id',$data['id']);
+		$this->db->update($this->table_name,$data);
+	}
+
+	public function deleteSample($id)
+	{
+		$this->db->where('id',$id);
+		$this->db->delete($this->table_name);
+	}
+
+	public function searcSample($search)
+	{
+		$this->db->like('name',$search);
+		$this->db->order_by('id','asc');
+		$query = $this->db->get($this->table_name);
+		$result = $query->result_array();
+		return  $result;
 	}
 
 }

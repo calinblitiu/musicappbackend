@@ -140,6 +140,31 @@
   </div>
 </div>
 
+<div id="deletemodal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <form action="<?=base_url()?>deletemusicfile" method="post" enctype='multipart/form-data'>
+        <!-- Modal content-->
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <h4 class="modal-title">Delete Music File</h4>
+          </div>
+          <div class="modal-body">
+            <input type="hidden" name="sample-no" value="<?=$sample['id']?>">
+            <input type="hidden" name="item-no" id='del-music-item-no'>
+            <input type="hidden" name="field-name" id="del-music-field-name">           
+            <h2>Confirm Delete</h2>
+          </div>
+          <div class="modal-footer">
+            <button type="submit" class="btn btn-danger" >Delete</button>
+            <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+          </div>
+        </div>
+    </form>
+  </div>
+</div>
+
+
 <script type="text/javascript">
 var baseURL = '<?=base_url()?>';
 </script>

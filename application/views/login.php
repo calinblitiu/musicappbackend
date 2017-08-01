@@ -15,7 +15,7 @@
         <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
   </head>
-  <body class="login-page">
+  <body class="login-page" background="<?=base_url()?>assets/images/login.jpg">
     <div class="login-box">
       <div class="login-logo">
         <a href="#"><b>CodeInsect</b><br>Admin System</a>

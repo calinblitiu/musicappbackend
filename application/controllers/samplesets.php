@@ -27,6 +27,7 @@ class SampleSets extends BaseController
     {
         $this->global['pageTitle'] = 'Sample Sets List';
         $this->global['samples'] = $this->sample_model->getAllSample();
+        $this->global['search']='';
         $this->loadViews("samplesetslist", $this->global, NULL , NULL);
     }
 
@@ -36,44 +37,27 @@ class SampleSets extends BaseController
         $this->loadViews("addnewsampleset", $this->global, NULL , NULL);
     }
 
+    public function editSampleSet($sample_id){
+    	$sample = $this->sample_model->getSample($sample_id);
+    	//var_dump($sample);
+		$this->global['sample'] = $sample;    	
+    	$this->global['pageTitle'] = 'Edit Sample Set';
+        $this->loadViews("sampleset", $this->global, NULL , NULL);
+    }
+
     public function editSampleSets($sample_id){
     	$sample = $this->sample_model->getSample($sample_id);
 		
 		for ($i=1; $i <= 18; $i++) { 
-			$sample['key_item_'.$i] = $this->sample_item_model->getSampleItem($sample['key_'.$i]);
+			$sample[0]['key_item_'.$i] = $this->sample_item_model->getSampleItem($sample[0]['key_'.$i]);
 		}
 
-		$this->global['sample'] = $sample;    	
+		$this->global['sample'] = $sample[0];    	
     	$this->global['pageTitle'] = 'Edit Sample Sets';
         $this->loadViews("samplesets", $this->global, NULL , NULL);
     }
     
     public function editMusicFile(){
-
-		// $config['upload_path']          = './assets/music-sample';
-		// $config['encrypt_name']			=	true;
-		// $config['max-size']				=	30000;
-		// $config['allowed_types'] 		= 	'mp3|wav';
-
-  //       $this->load->library('upload', $config);
-
-  //       if ( ! $this->upload->do_upload('musicfile'))
-  //       {
-  //               $error = array('error' => $this->upload->display_errors());
-  //               var_dump($error);
-  //       }
-  //       else
-  //       {
-  //           $data =$this->upload->data();
-  //           $filename = $data['file_name'];
-  //           $item_no = $this->input->post('item-no');
-  //           $field = $this->input->post('field-name');
-  //           $this->sample_item_model->editItemField($item_no,$field,$filename);
-  //       }
-
-  //       $sample_no = $this->input->post('sample-no');
-       // redirect('editsamplesets/'.$sample_no);
-
 
  		$item_no = $this->input->post('item-no');
         $field = $this->input->post('field-name');
@@ -90,6 +74,32 @@ class SampleSets extends BaseController
 		redirect('editsamplesets/'.$sample_no);
 
     }
+
+
+    public function deleteMusicFile(){
+    	$item_no = $this->input->post('item-no');
+        $field = $this->input->post('field-name');
+        $sample_no = $this->input->post('sample-no');
+        $this->sample_item_model->editItemField($item_no,$field,"");
+        redirect('editsamplesets/'.$sample_no);
+    }
+
+    public function deleteSampleSet(){
+
+    	$sample_no = $this->input->post('sample-no');
+    	$this->sample_model->deleteSample($sample_no);
+    	redirect('sample-sets-list');
+    }
+
+
+    public function searchSample(){
+    	$this->global['pageTitle'] = 'Search Sample';
+    	$search = $this->input->post('searchText');
+        $this->global['samples'] = $this->sample_model->searcSample($search);
+        $this->global['search']=$search;
+        $this->loadViews("samplesetslist", $this->global, NULL , NULL);
+    }
+    
 
 
 
@@ -126,6 +136,24 @@ class SampleSets extends BaseController
 
     		redirect('editsamplesets/'.$last_row[0]['id']);
     	}
+    }
+
+    public function updateSampleSet_B(){
+    	$data['id'] = $this->input->post('sid');
+    	$data['name'] = $this->input->post('sname');
+    	$data['description'] = $this->input->post('sdescription');
+    	$data['price']	= $this->input->post('sprice');
+    	if($this->input->post('sfree'))
+    	{
+    		$data['is_free'] = 'yes';
+    	}
+    	else{
+    		$data['is_free'] = 'no';
+    	}
+
+    	$this->sample_model->updateSample($data);
+
+    	redirect('editsampleset/'.$data['id']);
     }
 
 }

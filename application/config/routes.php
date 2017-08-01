@@ -79,6 +79,11 @@ $route['home'] = "frontend";
 $route['sample-sets-list'] = 'samplesets/index';
 $route['addnewsampleset'] = 'samplesets/addNewSampleSet';
 $route['editsamplesets/(:num)'] = 'samplesets/editSampleSets/$1';
+$route['editsampleset/(:num)'] = 'samplesets/editSampleSet/$1';
 $route['editmusicfile'] = 'samplesets/editMusicFile';
+$route['deletemusicfile'] = 'samplesets/deleteMusicFile';
+$route['deletesampleset'] = 'samplesets/deleteSampleSet';
+$route['searchsample'] = 'samplesets/searchSample';
 
 $route['addnewsampleset_b'] = 'samplesets/addNewSampleSet_B';
+$route['updatesampleset_b'] = 'samplesets/updateSampleSet_B';

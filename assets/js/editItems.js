@@ -10,6 +10,17 @@ $(document).ready(function(){
 		$('#editmodal').modal('show');
 	});
 
+	$('.remove-music-btn').click(function(){
+		var me = $(this);
+		var p_th = me.parent();
+		var pp_tr = me.parent().parent();
+		var item_no = pp_tr.attr('data-item-id');
+		var field_name = p_th.attr('data-key');
+		$('#del-music-item-no').val(item_no);
+		$('#del-music-field-name').val(field_name);
+		$('#deletemodal').modal('show');
+	});
+
 	$('.listen-music-btn').click(function(){
 		var music_url = $(this).data('music-url');
 		$('#music-player-div').html('<audio src="" preload="auto" id="music-player" >');
