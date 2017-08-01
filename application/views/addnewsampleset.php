@@ -14,7 +14,7 @@
                         <h3 class="box-title">Enter Sample Details</h3>
                     </div><!-- /.box-header -->
 
-                     <form role="form" id="addSampleSet" action="<?php echo base_url() ?>addNewSampleSet" method="post" role="form">
+                     <form role="form" id="addSampleSet" action="<?php echo base_url() ?>addnewsampleset_b" method="post" role="form">
 
                      	 <div class="box-body">
                      	  <div class="row">
@@ -46,7 +46,6 @@
 	                                    <input type="Number" class="form-control required" id="sprice" name="sprice">
 	                                </div>
 	                            </div>
-                            	
                      	 </div>
                      	 <div class="box-footer">
                             <input type="submit" class="btn btn-primary" value="Next" />
@@ -60,3 +59,5 @@
         </div>
 	</section>
 </div>
+
+<script src="<?php echo base_url(); ?>assets/js/addSample.js" type="text/javascript"></script>

@@ -43,17 +43,18 @@
                       <th>Free</th>
                       <th class="text-center">Actions</th>
                     </tr>
-                    <?php for($i = 1; $i<=18; $i++)
+                    <?php for($i = 1; $i<=count($samples); $i++)
                     {
+                        $sample = $samples[$i-1];
                       ?>
                       <tr>
                       <th><?=$i?></th>
-                      <th></th>
-                      <th></th>
-                      <th></th>
-                      <th></th>
+                      <th><?=$sample['name']?></th>
+                      <th><?=$sample['description']?></th>
+                      <th><?=$sample['price']?></th>
+                      <th><?=$sample['is_free']?></th>
                       <th class="text-center">
-                        <a class="btn btn-sm btn-info" href=""><i class="fa fa-pencil"></i></a>
+                        <a class="btn btn-sm btn-info" href="<?=base_url()?>editsamplesets/<?=$sample['id']?>"><i class="fa fa-pencil"></i></a>
                         <a class="btn btn-sm btn-danger deleteUser" href="#" data-userid=""><i class="fa fa-trash"></i></a>
                       </th>
                     </tr>
