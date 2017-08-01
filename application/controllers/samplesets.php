@@ -23,8 +23,16 @@ class SampleSets extends BaseController
 
     public function index()
     {
-        $this->global['pageTitle'] = 'CodeInsect : Sample Sets';
+        $this->global['pageTitle'] = 'Sample Sets List';
         
-        $this->loadViews("samplesets", $this->global, NULL , NULL);
+        $this->loadViews("samplesetslist", $this->global, NULL , NULL);
     }
+
+    public function addNewSampleSet()
+    {
+    	$this->global['pageTitle'] = 'Add New Sample Set';
+        
+        $this->loadViews("addnewsampleset", $this->global, NULL , NULL);
+    }
+    
 }

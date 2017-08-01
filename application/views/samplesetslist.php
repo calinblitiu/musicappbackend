@@ -8,12 +8,20 @@
     </section>
     
     <section class="content">
+        <div class="row">
+            <div class="col-xs-12 text-right">
+                <div class="form-group">
+                    <a class="btn btn-primary" href="<?php echo base_url(); ?>addnewsampleset"><i class="fa fa-plus"></i> Add New Sample Set</a>  
+                </div>
+            </div>
+        </div>
+
 
         <div class="row">
             <div class="col-xs-12">
               <div class="box">
                 <div class="box-header">
-                    <h3 class="box-title">Simple Sets</h3>
+                    <h3 class="box-title">Simple Sets List</h3>
                     <div class="box-tools">
                         <form action="<?php echo base_url() ?>userListing" method="POST" id="searchList">
                             <div class="input-group">
@@ -29,18 +37,10 @@
                   <table class="table table-hover">
                     <tr>
                       <th>Id</th>
-                      <th>C</th>
-                      <th>Db</th>
-                      <th>D</th>
-                      <th>Eb</th>
-                      <th>E</th>
-                      <th>F</th>
-                      <th>Gb</th>
-                      <th>G</th>
-                      <th>Ab</th>
-                      <th>A</th>
-                      <th>Bb</th>
-                      <th>B</th>
+                      <th>Name</th>
+                      <th>Description</th>
+                      <th>Price</th>
+                      <th>Free</th>
                       <th class="text-center">Actions</th>
                     </tr>
                     <?php for($i = 1; $i<=18; $i++)
@@ -48,14 +48,6 @@
                       ?>
                       <tr>
                       <th><?=$i?></th>
-                      <th></th>
-                      <th></th>
-                      <th></th>
-                      <th></th>
-                      <th></th>
-                      <th></th>
-                      <th></th>
-                      <th></th>
                       <th></th>
                       <th></th>
                       <th></th>
@@ -74,6 +66,5 @@
               </div>
             </div>
         </div>
-
     </section>
 </div>

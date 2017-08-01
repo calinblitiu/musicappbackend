@@ -96,7 +96,7 @@
               </a>
             </li>
             <li class="treeview">
-              <a href="<?=base_url()?>sample-sets" >
+              <a href="<?=base_url()?>sample-sets-list" >
                 <i class="fa fa-plane"></i>
                 <span>SAMPLE SETS</span>
               </a>

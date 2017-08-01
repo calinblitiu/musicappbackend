@@ -76,4 +76,5 @@ $route['home'] = "frontend";
 /* Location: ./application/config/routes.php */
 
 
-$route['sample-sets']='samplesets/index';
+$route['sample-sets-list'] = 'samplesets/index';
+$route['addnewsampleset'] = 'samplesets/addNewSampleSet';
