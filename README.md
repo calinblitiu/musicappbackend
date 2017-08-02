@@ -84,20 +84,32 @@ success = 1 error
 
     url : http://your-domain/getmusicfile/14/C/1
     result : 
-    success
-    {
-    "success":0,
-    "url":"http:\/\/localhost\/assets\/music-sample\/14_1_C_aaa.mp3"
-    }
-    error
-    -sample is empty
-    {
-        "success":0,
-        "message":"There is no any sample"
-    }
-    -Item is empty
-    {
-        "success":0,
-        "message":"This item is empty!"
-    }
+        #### success
 
+        {
+        "success":0,
+        "url":"http:\/\/localhost\/assets\/music-sample\/14_1_C_aaa.mp3"
+        }
+
+        #### error
+        
+        -sample is empty
+        {
+            "success":0,
+            "message":"There is no any sample"
+        }
+        -Item is empty
+        {
+            "success":0,
+            "message":"This item is empty!"
+        }
+
+
+
+### getOrder(sample_id,type)
+
+    type : order_short,order_long
+
+    url : http://your-domain/getorder/14/order_short
+
+    result

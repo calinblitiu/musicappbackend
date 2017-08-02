@@ -161,7 +161,7 @@ class SampleSets extends BaseController
     	$result = $this->sample_model->getAllSample();
     	
     	$data = array();
-    	if(count($result)>=0)
+    	if(count($result)>0)
     	{
     		$data['success'] = 0;
     		$data['count']  =	count($result);
@@ -191,7 +191,7 @@ class SampleSets extends BaseController
     	$sample = $this->sample_model->getSample($sample_id);
 		$data = array();
 
-		if (count($sample)>=0)
+		if (count($sample)>0)
 		{
 			$data['success'] = 0;
 			$data['id'] = $sample[0]['id'];
@@ -264,6 +264,24 @@ class SampleSets extends BaseController
     		'message' => 'update successed'
     	);
     	echo json_encode($data);
+    }
+
+    public function getOrder($sample_id,$type)
+    {
+    	$sample = $this->sample_model->getSample($sample_id);
+    	if(count($sample)>0)
+    	{
+			$data['success'] = 0;
+			$data['type'] = $type;
+			$data['order'] = $sample[0][$type];
+			echo json_encode($data);
+    	}
+    	else{
+    		$data['success'] = 1;
+    		$data['message'] = 'There is no any sample';
+    		echo json_encode($data);
+    		exit();
+    	}
     }
 
 
