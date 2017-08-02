@@ -85,14 +85,14 @@ success = 1 error
     url : http://your-domain/getmusicfile/14/C/1
     result : 
     
-        * success
+        #### `success`
 
         {
         "success":0,
         "url":"http:\/\/localhost\/assets\/music-sample\/14_1_C_aaa.mp3"
         }
 
-        * error
+        #### `error`
 
         -sample is empty
         {
