@@ -156,4 +156,103 @@ class SampleSets extends BaseController
     	redirect('editsampleset/'.$data['id']);
     }
 
+
+    public function getSetList()
+    {
+    	$result = $this->sample_model->getAllSample();
+    	
+    	$data = array();
+    	if(count($result)>=0)
+    	{
+    		$data['success'] = 0;
+    		$data['count']  =	count($result);
+    		//$data['items'] = $result;
+    		$items = array();
+    		for ($i=0; $i < count($result) ; $i++) { 
+    			$temp['id'] = $result[$i]['id'];
+    			$temp['name'] = $result[$i]['name'];
+    			$temp['description'] = $result[$i]['description'];
+    			$temp['is_free'] = $result[$i]['is_free'];
+    			$temp['price'] = $result[$i]['price'];
+    			$items[] = $temp;
+    		}
+    		$data['items'] = $items;
+    		echo json_encode($data);
+    		exit();
+    	}
+    	else{
+    		$data['success'] = 1;
+    		$data['message'] = 'There is no any sample';
+    		echo json_encode($data);
+    		exit();
+    	}
+    }
+
+    public function getSet($sample_id,$key){
+    	$sample = $this->sample_model->getSample($sample_id);
+		$data = array();
+
+		if (count($sample)>=0)
+		{
+			$data['success'] = 0;
+			$data['id'] = $sample[0]['id'];
+			$data['name'] = $sample[0]['name'];
+			$data['description'] = $sample[0]['description'];
+			$data['is_free'] = $sample[0]['is_free'];
+			$data['key'] = $key;
+			$items = array();
+			for ($i=1; $i <= 18; $i++) { 
+				$temp = $this->sample_item_model->getSampleItem($sample[0]['key_'.$i]);
+				$items['key_'.$i] = $temp[0][$key];
+				if($items['key_'.$i] != null){
+					$items['key_'.$i] = base_url().'assets/music-sample/'.$items['key_'.$i];
+				}
+				else{
+					$items['key_'.$i] = '';
+				}
+
+			}
+			$data['items'] = $items;
+			echo json_encode($data);
+			exit();
+		}
+		else{
+			$data['success'] = 1;
+    		$data['message'] = 'There is no any sample';
+    		echo json_encode($data);
+    		exit();
+		}
+		
+    }
+
+    public function getMusicFile($sample_id,$key,$num){
+    	$sample = $this->sample_model->getSample($sample_id);
+    	if(count($sample)>0)
+    	{
+    		$item_id = $sample[0]['key_'.$num];
+    		$item = $this->sample_item_model->getSampleItem($item_id);
+    		$url = $item[0][$key];
+    		if($url == NULL)
+    		{
+    			$data['success'] = 1;
+    			$data['message'] = 'This item is empty!';
+    			echo json_encode($data);
+    			exit();
+    		}
+    		else{
+    			$data['success'] = 0;
+    			$data['url'] = base_url().'assets/music-sample/'.$url;
+    			echo json_encode($data);
+    			exit();
+    		}
+    	}
+    	else{
+    		$data['success'] = 1;
+    		$data['message'] = 'There is no any sample';
+    		echo json_encode($data);
+    		exit();
+    	}
+    }
+
+
 }

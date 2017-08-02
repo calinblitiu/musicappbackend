@@ -87,3 +87,11 @@ $route['searchsample'] = 'samplesets/searchSample';
 
 $route['addnewsampleset_b'] = 'samplesets/addNewSampleSet_B';
 $route['updatesampleset_b'] = 'samplesets/updateSampleSet_B';
+
+/**
+*Backend
+*/
+
+$route['getsetlist'] = 'samplesets/getSetList';
+$route['getset/(:num)/(:any)'] = 'samplesets/getSet/$1/$2';
+$route['getmusicfile/(:num)/(:any)/(:num)'] = 'samplesets/getMusicFile/$1/$2/$3';
