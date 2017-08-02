@@ -54,9 +54,9 @@
                       <th><?=$sample['price']?></th>
                       <th><?=$sample['is_free']?></th>
                       <th class="text-center">
-                        <a class="btn btn-sm btn-success" href="<?=base_url()?>editsampleset/<?=$sample['id']?>"><i class="fa fa-pencil"></i></a>
-                        <a class="btn btn-sm btn-info" href="<?=base_url()?>editsamplesets/<?=$sample['id']?>"><i class="fa fa-table"></i></a>
-                        <span class="btn btn-sm btn-danger remove-sample-btn" data-sample-id="<?=$sample['id']?>"><i class="fa fa-trash"></i></a>
+                        <a class="btn btn-sm btn-success" href="<?=base_url()?>editsampleset/<?=$sample['id']?>" alt="edit sample"><i class="fa fa-pencil"></i></a>
+                        <a class="btn btn-sm btn-info" href="<?=base_url()?>editsamplesets/<?=$sample['id']?>" alt="view sample set"><i class="fa fa-table"></i></a>
+                        <span class="btn btn-sm btn-danger remove-sample-btn" data-sample-id="<?=$sample['id']?>" alt="delete sample"><i class="fa fa-trash"></i></a>
                       </th>
                     </tr>
                       <?php

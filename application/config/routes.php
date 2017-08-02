@@ -87,6 +87,7 @@ $route['searchsample'] = 'samplesets/searchSample';
 
 $route['addnewsampleset_b'] = 'samplesets/addNewSampleSet_B';
 $route['updatesampleset_b'] = 'samplesets/updateSampleSet_B';
+$route['update_order'] = 'samplesets/updateOrder';
 
 /**
 *Backend

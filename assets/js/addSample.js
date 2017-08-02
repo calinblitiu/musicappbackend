@@ -14,4 +14,63 @@ $(document).ready(function(){
 		}
 	});
 
+	$( "#short-seq" ).sortable();
+    $( "#short-seq" ).disableSelection();
+    $( "#long-seq" ).sortable();
+    $( "#long-seq" ).disableSelection();
+
+	$(".sort-seq-undo").click(function() {
+	  location.reload();
+	});
+
+	$(".short-change-btn").click(function(){
+		var data = $('#short-seq').sortable('toArray', { attribute: 'predmet-id' });	
+		var post_data = {
+			order : data.toString(),
+			sample_id : $("#sid").val(),
+			type:'order_short'
+		};
+
+		$.ajax({
+			url : baseURL+"update_order",
+			type: 'POST',
+			data: post_data,
+			dataType: 'json',
+			success: function(data){
+				alert('change successed!');
+				location.reload();
+			},
+			fail: function(err){
+				alert(err);
+				location.reload();
+			}
+		});
+	});
+
+	$(".long-change-btn").click(function(){
+		var data = $('#long-seq').sortable('toArray', { attribute: 'predmet-id' });	
+		var post_data = {
+			order : data.toString(),
+			sample_id : $("#sid").val(),
+			type:'order_long'
+		};
+
+		$.ajax({
+			url : baseURL+"update_order",
+			type: 'POST',
+			data: post_data,
+			dataType: 'json',
+			success: function(data){
+				alert('change successed!');
+				location.reload();
+			},
+			fail: function(err){
+				alert(err);
+				location.reload();
+			}
+		});
+	});
+	
 });
+
+

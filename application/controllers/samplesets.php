@@ -99,7 +99,6 @@ class SampleSets extends BaseController
         $this->global['search']=$search;
         $this->loadViews("samplesetslist", $this->global, NULL , NULL);
     }
-    
 
 
 
@@ -252,6 +251,19 @@ class SampleSets extends BaseController
     		echo json_encode($data);
     		exit();
     	}
+    }
+
+    public function updateOrder()
+    {
+    	$sample_id = $this->input->post('sample_id');
+    	$order = $this->input->post('order');
+    	$type = $this->input->post('type');
+    	$this->sample_model->updateOrder($sample_id,$order,$type);
+    	$data = array(
+    		'success' => 0,
+    		'message' => 'update successed'
+    	);
+    	echo json_encode($data);
     }
 
 

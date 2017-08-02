@@ -62,4 +62,11 @@ class Sample_model extends CI_Model
 		return  $result;
 	}
 
+	public function updateOrder($sample_id,$order,$type)
+	{
+		$this->db->where('id',$sample_id);
+		$this->db->set($type,$order);
+		$this->db->update($this->table_name);
+	}
+
 }
