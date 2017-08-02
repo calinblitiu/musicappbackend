@@ -84,16 +84,13 @@ success = 1 error
 
     url : http://your-domain/getmusicfile/14/C/1
     result : 
-    
-        #### `success`
-
+        success
         {
         "success":0,
         "url":"http:\/\/localhost\/assets\/music-sample\/14_1_C_aaa.mp3"
         }
 
-        #### `error`
-
+        error
         -sample is empty
         {
             "success":0,
@@ -113,4 +110,24 @@ success = 1 error
 
     url : http://your-domain/getorder/14/order_short
 
-    result
+    result : 
+
+        success
+        - short music
+        {
+            "success":0,
+            "type":"order_short",
+            "order":"9,3,4,5,6,7,2,8,1"
+        }
+        - long music
+        {
+            "success":0,
+            "type":"order_long",
+            "order":"11,18,12,13,14,15,16,17,10"
+        }
+        error
+
+        {
+            "success":1,
+            "message":"There is no any sample"
+        }
