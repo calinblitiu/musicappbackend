@@ -37,7 +37,7 @@ success = 1 error
         "message":"There is no any sample"
     }
 
-### getSet(sample_id,key) id, name, description,is_free,price.{18개 array(url)}
+### getSet(sample_id,key) id, name, description,is_free,price.{18 array(url)}
 
     url: http://your-domain/getset/14/C
     result:
