@@ -43,35 +43,35 @@ success = 1 error
     result:
     success
     {
-    "success":0,
-    "id":"14",
-    "name":"test",
-    "description":"test1 sample1",
-    "is_free":"no",
-    "key":"C",
-    "items":{
-    "key_1":
-    {
-        "http:\/\/localhost\/assets\/music-sample\/14_1_C_aaa.mp3",
-    }
-    "key_2":"",
-    "key_3":"",
-    "key_4":"",
-    "key_5":"",
-    "key_6":"",
-    "key_7":"",
-    "key_8":"",
-    "key_9":"",
-    "key_10":"",
-    "key_11":"",
-    "key_12":"",
-    "key_13":"",
-    "key_14":"",
-    "key_15":"",
-    "key_16":"",
-    "key_17":"",
-    "key_18":""
-    }
+        "success":0,
+        "id":"14",
+        "name":"test",
+        "description":"test1 sample1",
+        "is_free":"no",
+        "key":"C",
+        "items":{
+            "key_1":
+            {
+                "http:\/\/localhost\/assets\/music-sample\/14_1_C_aaa.mp3",
+            }
+            "key_2":"",
+            "key_3":"",
+            "key_4":"",
+            "key_5":"",
+            "key_6":"",
+            "key_7":"",
+            "key_8":"",
+            "key_9":"",
+            "key_10":"",
+            "key_11":"",
+            "key_12":"",
+            "key_13":"",
+            "key_14":"",
+            "key_15":"",
+            "key_16":"",
+            "key_17":"",
+            "key_18":""
+        }
     }
 
     error
