@@ -245,7 +245,31 @@ class SampleSets extends BaseController
 				$temp = $this->sample_item_model->getSampleItem($sample[0]['key_'.$i]);
 				$items['key_'.$i] = $temp[0][$key];
 				if($items['key_'.$i] != null){
-					$items['key_'.$i] = base_url().'assets/music-sample/'.$items['key_'.$i];
+					//$items['key_'.$i] = base_url().'assets/music-sample/'.$items['key_'.$i];
+					$cell = $this->music_cell_model->getCell($items['key_'.$i]);
+					if (count($cell)>0) {
+						
+						$temp = array();
+						for($j = 1;$j<=7;$j++)
+						{
+
+							if($cell[0]['player_'.$j] == NULL)
+							{
+								//$items['key_'.$i]['player_'.$j] = '';
+								$temp['player_'.$j] = '';
+							}
+							else{
+								//$items['key_'.$i]['player_'.$j] = base_url().'assets/music-sample/'.$cell[0]["player_".$j];
+								$temp['player_'.$j] = base_url().'assets/music-sample/'.$cell[0]["player_".$j];
+							}
+						}
+						$items['key_'.$i] = $temp;
+
+					}
+					else{
+						$items['key_'.$i] = '';
+					}
+
 				}
 				else{
 					$items['key_'.$i] = '';
