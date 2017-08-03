@@ -305,7 +305,20 @@ class SampleSets extends BaseController
     		}
     		else{
     			$data['success'] = 0;
-    			$data['url'] = base_url().'assets/music-sample/'.$url;
+    			//$data['url'] = base_url().'assets/music-sample/'.$url;
+    			$cell = $this->music_cell_model->getCell($url);
+    			if(count($cell)>0)
+    			{
+    				$data['id'] = $url;
+    				$temp = array();
+    				for ($i=1; $i <= 7; $i++) { 
+    					$temp['player_'.$i] = base_url().'assets/music-sample/'.$cell[0]['player_'.$i];
+    				}
+    				$data['items'] = $temp;
+    			}
+    			else{
+    				$data['items'] = '';
+    			}
     			echo json_encode($data);
     			exit();
     		}
