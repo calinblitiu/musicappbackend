@@ -336,6 +336,10 @@ class SampleSets extends BaseController
     		for($i=1;$i<=7;$i++)
     		{
     			$data['player_'.$i] = base_url().'assets/music-sample/'.$cell[0]['player_'.$i];
+    			if($cell[0]['player_'.$i] == NULL)
+    			{
+    				$data['player_'.$i] = "";
+    			}
     		}
     		echo json_encode($data);
     		exit();
