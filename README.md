@@ -1,7 +1,8 @@
 # musicappbackend
 
-success =  0 success
-success = 1 error
+success =  0 : success
+
+success = 1  : error
 
 ### getSetList()      id, name, description,is_free,price.
 
