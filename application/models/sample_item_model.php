@@ -32,4 +32,10 @@ class Sample_item_model extends CI_Model
 		$this->db->set($field,$filename);
 		$this->db->update($this->table_name);
 	}
+
+	public function updateItem($item_id, $data)
+	{
+		$this->db->where('id',$item_id);
+		$this->db->update($this->table_name,$data);
+	}
 }

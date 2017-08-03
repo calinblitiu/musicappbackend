@@ -14,12 +14,16 @@ class SampleSets extends BaseController
     /**
      * This is default constructor of the class
      */
+
+    public $key_array = array('C','Db','D','Eb','E','F','Gb','G','Ab','A','Bb','B');
+
     public function __construct()
     {
         parent::__construct();
         $this->load->model('user_model');
         $this->load->model('sample_model');
         $this->load->model('sample_item_model');
+        $this->load->model('music_cell_model');
         $this->isLoggedIn();   
     }
 
@@ -62,15 +66,45 @@ class SampleSets extends BaseController
  		$item_no = $this->input->post('item-no');
         $field = $this->input->post('field-name');
         $sample_no = $this->input->post('sample-no');
+        $sample_item = $this->sample_item_model->getSampleItem($item_no);
+        $cur_cell=array();
+        if($sample_item[0][$field] == NULL)
+        {
+        	$this->music_cell_model->addEmptyCell();
+        	$cur_cell = $this->music_cell_model->getLastRow();
+        	$this->sample_item_model->editItemField($item_no,$field,$cur_cell[0]['id']);
+        			
+        }
+        else{
+        	$cur_cell = $this->music_cell_model->getCell($sample_item[0][$field]);
+        		
+        }
 
+
+		
      	$uploaddir = './assets/music-sample/';
-		$uploadfile = $uploaddir .$sample_no.'_'.$item_no.'_'.$field.'_'. basename($_FILES['musicfile']['name']);
-		$file_name = $sample_no.'_'.$item_no.'_'.$field.'_'. basename($_FILES['musicfile']['name']);
-		if (move_uploaded_file($_FILES['musicfile']['tmp_name'], $uploadfile)) {
-		    $this->sample_item_model->editItemField($item_no,$field,$file_name);
-		} else {
-		   // echo "Possible file upload attack!\n";
-		}
+     	$cell_data = array();
+     	for($i = 1;$i <= 7; $i++)
+     	{
+     		$uploadfile = $uploaddir .$sample_no.'_'.$item_no.'_'.$field.'_'.$cur_cell[0]['id'].'_'.$i.'_'. basename($_FILES['player_'.$i]['name']);
+     		$file_name = $sample_no.'_'.$item_no.'_'.$field.'_'.$cur_cell[0]['id'].'_'.$i.'_'. basename($_FILES['player_'.$i]['name']);
+     		if (move_uploaded_file($_FILES['player_'.$i]['tmp_name'], $uploadfile)) {
+		    	//$this->sample_item_model->editItemField($item_no,$field,$file_name);
+		    	$cell_data['player_'.$i] = $file_name;
+			} else {
+			   // echo "Possible file upload attack!\n";
+			}
+     	}
+
+     	$this->music_cell_model->updateCell($cur_cell[0]['id'],$cell_data);
+
+		//$uploadfile = $uploaddir .$sample_no.'_'.$item_no.'_'.$field.'_'. basename($_FILES['musicfile']['name']);
+		// $file_name = $sample_no.'_'.$item_no.'_'.$field.'_'. basename($_FILES['musicfile']['name']);
+		// if (move_uploaded_file($_FILES['musicfile']['tmp_name'], $uploadfile)) {
+		//     $this->sample_item_model->editItemField($item_no,$field,$file_name);
+		// } else {
+		//    // echo "Possible file upload attack!\n";
+		// }
 		redirect('editsamplesets/'.$sample_no);
 
     }
@@ -129,6 +163,13 @@ class SampleSets extends BaseController
     			$this->sample_item_model->addEmptyItem();
     			$last_item_row = $this->sample_item_model->getLastRow();
     			$this->sample_model->addKeyItem($last_row[0]['id'],$i,$last_item_row[0]['id']);
+    			//$item_upadate_data = array();
+    			// foreach($this->key_array as $key_item) { 
+    			// 	$this->music_cell_model->addEmptyCell();
+    			// 	$last_cell = $this->music_cell_model->getLastRow();
+    			// 	$item_upadate_data[$key_item] = $last_cell[0]['id'];
+    			// }
+    			// $this->sample_item_model->updateItem($last_item_row[0]['id'],$item_upadate_data);
     		}
 
     		//$last_item_row = $this->sample_item_model->getLastRow();
@@ -284,5 +325,27 @@ class SampleSets extends BaseController
     	}
     }
 
+    public function getMusicFiles($cell_id)
+    {
+    	$cell = $this->music_cell_model->getCell($cell_id);
+    	if(count($cell)>0){
+    		
+    		$data = $cell[0];
+    		$data['success'] = 0;
+    		//var_dump($cell);
+    		for($i=1;$i<=7;$i++)
+    		{
+    			$data['player_'.$i] = base_url().'assets/music-sample/'.$cell[0]['player_'.$i];
+    		}
+    		echo json_encode($data);
+    		exit();
+    	}
+    	else{
+			$data['success'] = 1;
+    		$data['message'] = 'There is no any sample';
+    		echo json_encode($data);
+    		exit();
+    	}
+    }
 
 }

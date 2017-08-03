@@ -117,7 +117,7 @@
 
 <div id="editmodal" class="modal fade" role="dialog">
   <div class="modal-dialog">
-    <form action="<?=base_url()?>editmusicfile" method="post" enctype='multipart/form-data'>
+    <form action="<?=base_url()?>editmusicfile" method="post" enctype='multipart/form-data' class="form-inline">
         <!-- Modal content-->
         <div class="modal-content">
           <div class="modal-header">
@@ -128,7 +128,36 @@
             <input type="hidden" name="sample-no" value="<?=$sample['id']?>">
             <input type="hidden" name="item-no" id='music-item-no'>
             <input type="hidden" name="field-name" id="music-field-name">
-            <input type="file" name="musicfile" required accept="audio/*">
+            <div class="form-group">
+              <label class="" >Player 1:</label>
+             <input type="file" name="player_1" class="form-control" required accept="audio/*">
+            </div>
+            
+            <div class="form-group">
+              <label class="" >Player 2:</label>
+             <input type="file" name="player_2" class="form-control" required accept="audio/*">
+            </div>
+            <div class="form-group">
+              <label class="" >Player 3:</label>
+             <input type="file" name="player_3" class="form-control" required accept="audio/*">
+            </div>
+            <div class="form-group">
+              <label class="" >Player 4:</label>
+             <input type="file" name="player_4" class="form-control" required accept="audio/*">
+            </div>
+            <div class="form-group">
+              <label class="" >Player 5:</label>
+             <input type="file" name="player_5" class="form-control" required accept="audio/*">
+            </div>
+            <div class="form-group">
+              <label class="" >Player 6:</label>
+             <input type="file" name="player_6" class="form-control" required accept="audio/*">
+            </div>
+            <div class="form-group">
+              <label class="" >Player 7:</label>
+             <input type="file" name="player_7" class="form-control" required accept="audio/*">
+            </div>
+
            
           </div>
           <div class="modal-footer">
@@ -158,6 +187,28 @@
           <div class="modal-footer">
             <button type="submit" class="btn btn-danger" >Delete</button>
             <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+          </div>
+        </div>
+    </form>
+  </div>
+</div>
+
+<div id="listen-modal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+   
+        <!-- Modal content-->
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <h4 class="modal-title">Delete Music File</h4>
+          </div>
+          <div class="modal-body listen-modal-body">
+            <img src="<?=base_url()?>assets/images/loading.gif" style="width: 100%">
+          
+          </div>
+          <div class="modal-footer">
+            
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
           </div>
         </div>
     </form>
