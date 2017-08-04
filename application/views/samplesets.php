@@ -200,7 +200,7 @@
         <div class="modal-content">
           <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal">&times;</button>
-            <h4 class="modal-title">Delete Music File</h4>
+            <h4 class="modal-title">Listen Music</h4>
           </div>
           <div class="modal-body listen-modal-body">
             <img src="<?=base_url()?>assets/images/loading.gif" style="width: 100%">

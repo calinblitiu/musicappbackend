@@ -98,3 +98,4 @@ $route['getset/(:num)/(:any)'] = 'samplesets/getSet/$1/$2';
 $route['getmusicfile/(:num)/(:any)/(:num)'] = 'samplesets/getMusicFile/$1/$2/$3';
 $route['getorder/(:num)/(:any)'] = 'samplesets/getOrder/$1/$2';
 $route['getmusicfiles/(:num)'] = 'samplesets/getMusicFiles/$1';
+$route['sendnotification'] = 'samplesets/sendNotification';
