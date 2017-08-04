@@ -19,6 +19,7 @@ class User extends BaseController
         parent::__construct();
         $this->load->model('user_model');
         $this->isLoggedIn();   
+        date_default_timezone_set('Africa/Lagos');
     }
     
     /**
