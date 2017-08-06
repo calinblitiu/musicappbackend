@@ -45,7 +45,7 @@
 	                            <div class="col-md-12">                                
 	                                <div class="form-group">
 	                                    <label for="fname">Price</label>
-	                                    <input type="Number" class="form-control required" id="sprice" name="sprice">
+	                                    <input type="Number" class="form-control" id="sprice" name="sprice" value="0">
 	                                </div>
 	                            </div>
                      	 </div>

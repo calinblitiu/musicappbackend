@@ -51,7 +51,7 @@
                       <th><?=$i?></th>
                       <th><?=$sample['name']?></th>
                       <th><?=$sample['description']?></th>
-                      <th><?=$sample['price']?></th>
+                      <th><?php echo $sample['is_free'] == "yes"?"-":$sample['price']?></th>
                       <th><?=$sample['is_free']?></th>
                       <th class="text-center">
                         <a class="btn btn-sm btn-success" href="<?=base_url()?>editsampleset/<?=$sample['id']?>" alt="edit sample"><i class="fa fa-pencil"></i></a>

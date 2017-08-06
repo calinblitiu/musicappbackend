@@ -70,6 +70,24 @@ $(document).ready(function(){
 			}
 		});
 	});
+
+	 $('#sfree').change(function() {
+	 	if($(this).is(':checked')){
+	 		$('#sprice').prop('disabled',true);
+	 		$('#sprice').val(0);
+	 	}
+	 	else{
+	 		$('#sprice').prop('disabled',false);
+
+	 	}
+	 });
+
+	 $('#sprice').change(function(){
+	 	if($(this).val() == "")
+	 	{
+	 		$(this).val(0);
+	 	}
+	 });
 	
 });
 

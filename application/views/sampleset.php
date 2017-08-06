@@ -43,7 +43,7 @@
 	                            <div class="col-md-12">                                
 	                                <div class="form-group">
 	                                    <label for="fname">Price</label>
-	                                    <input type="Number" class="form-control required" id="sprice" name="sprice" value="<?=$sample[0]['price']?>">
+	                                    <input type="Number" class="form-control required" id="sprice" name="sprice" value="<?=$sample[0]['price']?>" <?php echo $sample[0]['is_free']=='yes'?'disabled':'';?>>
 	                                </div>
 	                            </div>
                      	 </div>
