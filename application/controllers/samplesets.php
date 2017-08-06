@@ -68,18 +68,16 @@ class SampleSets extends BaseController
         $sample_no = $this->input->post('sample-no');
         $sample_item = $this->sample_item_model->getSampleItem($item_no);
         $cur_cell=array();
-        if($sample_item[0][$field] == NULL)
+        if($sample_item[0][$field] == NULL || $sample_item[0][$field] =="" || $sample_item[0][$field] =="0")
         {
         	$this->music_cell_model->addEmptyCell();
         	$cur_cell = $this->music_cell_model->getLastRow();
         	$this->sample_item_model->editItemField($item_no,$field,$cur_cell[0]['id']);
-        			
         }
         else{
         	$cur_cell = $this->music_cell_model->getCell($sample_item[0][$field]);
         		
         }
-
 
 		
      	$uploaddir = './assets/music-sample/';
@@ -116,6 +114,22 @@ class SampleSets extends BaseController
         $sample_no = $this->input->post('sample-no');
         $this->sample_item_model->editItemField($item_no,$field,"");
         redirect('editsamplesets/'.$sample_no);
+    }
+
+    public function deletMusicOneFile()
+    {
+    	$item_no = $this->input->post('item_no');
+        $field = $this->input->post('field_name');
+        $sample_no = $this->input->post('sample_no');
+        $player_no = $this->input->post('player_no');
+        $sample_item = $this->sample_item_model->getSampleItem($item_no);
+        $music_cell = $this->music_cell_model->getCell($sample_item[0][$field]);
+        $data['player_'.$player_no] = '';
+        $this->music_cell_model->updateCell($music_cell[0]['id'],$data);
+		$data['success'] = 0;
+    	
+        echo json_encode($data);
+
     }
 
     public function deleteSampleSet(){

@@ -35,11 +35,13 @@
 
 	                            <div class="col-md-12">                                
 	                                <div class="form-group">
-	                                    <label for="fname">Free</label>
-	                                    <input type="checkbox" class="" id="sfree" name="sfree">
+	                                    <label for="sfree" style="float: left;"><span>Free</span></label>
+                                        <div style="float: left;padding-left: 10px;padding-top: 0px;">
+	                                       <input type="checkbox" class="" id="sfree" name="sfree">
+                                        </div>
 	                                </div>
 	                            </div>
-
+                                <br>
 	                            <div class="col-md-12">                                
 	                                <div class="form-group">
 	                                    <label for="fname">Price</label>
