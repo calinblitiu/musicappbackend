@@ -25,11 +25,12 @@ class SampleSets extends BaseController
         $this->load->model('sample_model');
         $this->load->model('sample_item_model');
         $this->load->model('music_cell_model');
-        $this->isLoggedIn();   
+         
     }
 
     public function index()
     {
+    	$this->isLoggedIn();  
         $this->global['pageTitle'] = 'Sample Sets List';
         $this->global['samples'] = $this->sample_model->getAllSample();
         $this->global['search']='';
@@ -38,11 +39,13 @@ class SampleSets extends BaseController
 
     public function addNewSampleSet()
     {
+    	$this->isLoggedIn();  
     	$this->global['pageTitle'] = 'Add New Sample Set';
         $this->loadViews("addnewsampleset", $this->global, NULL , NULL);
     }
 
     public function editSampleSet($sample_id){
+    	$this->isLoggedIn();  
     	$sample = $this->sample_model->getSample($sample_id);
     	//var_dump($sample);
 		$this->global['sample'] = $sample;    	
@@ -51,6 +54,7 @@ class SampleSets extends BaseController
     }
 
     public function editSampleSets($sample_id){
+    	$this->isLoggedIn();  
     	$sample = $this->sample_model->getSample($sample_id);
 		
 		for ($i=1; $i <= 18; $i++) { 
@@ -64,6 +68,7 @@ class SampleSets extends BaseController
     
     public function editMusicFile(){
 
+    	$this->isLoggedIn();  
  		$item_no = $this->input->post('item-no');
         $field = $this->input->post('field-name');
         $sample_no = $this->input->post('sample-no');
@@ -110,6 +115,7 @@ class SampleSets extends BaseController
 
 
     public function deleteMusicFile(){
+    	$this->isLoggedIn();  
     	$item_no = $this->input->post('item-no');
         $field = $this->input->post('field-name');
         $sample_no = $this->input->post('sample-no');
@@ -119,6 +125,7 @@ class SampleSets extends BaseController
 
     public function deletMusicOneFile()
     {
+
     	$item_no = $this->input->post('item_no');
         $field = $this->input->post('field_name');
         $sample_no = $this->input->post('sample_no');
@@ -134,7 +141,7 @@ class SampleSets extends BaseController
     }
 
     public function deleteSampleSet(){
-
+    	$this->isLoggedIn();  
     	$sample_no = $this->input->post('sample-no');
     	$this->sample_model->deleteSample($sample_no);
     	redirect('sample-sets-list');
@@ -142,6 +149,7 @@ class SampleSets extends BaseController
 
 
     public function searchSample(){
+    	$this->isLoggedIn();  
     	$this->global['pageTitle'] = 'Search Sample';
     	$search = $this->input->post('searchText');
         $this->global['samples'] = $this->sample_model->searcSample($search);
