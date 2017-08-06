@@ -16,6 +16,7 @@ class SampleSets extends BaseController
      */
 
     public $key_array = array('C','Db','D','Eb','E','F','Gb','G','Ab','A','Bb','B');
+    public $player_kinds_array = array('drum','bass','piano','rhodes','organ','synth','guitar');
 
     public function __construct()
     {
@@ -270,11 +271,11 @@ class SampleSets extends BaseController
 							if($cell[0]['player_'.$j] == NULL)
 							{
 								//$items['key_'.$i]['player_'.$j] = '';
-								$temp['player_'.$j] = '';
+								$temp[$this->player_kinds_array[$j-1]] = '';
 							}
 							else{
 								//$items['key_'.$i]['player_'.$j] = base_url().'assets/music-sample/'.$cell[0]["player_".$j];
-								$temp['player_'.$j] = base_url().'assets/music-sample/'.$cell[0]["player_".$j];
+								$temp[$this->player_kinds_array[$j-1]] = base_url().'assets/music-sample/'.$cell[0]["player_".$j];
 							}
 						}
 						$items['key_'.$i] = $temp;
@@ -326,7 +327,7 @@ class SampleSets extends BaseController
     				$data['id'] = $url;
     				$temp = array();
     				for ($i=1; $i <= 7; $i++) { 
-    					$temp['player_'.$i] = base_url().'assets/music-sample/'.$cell[0]['player_'.$i];
+    					$temp[$this->player_kinds_array[$i-1]] = base_url().'assets/music-sample/'.$cell[0]['player_'.$i];
     				}
     				$data['items'] = $temp;
     			}

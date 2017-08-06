@@ -13,7 +13,10 @@ $(document).ready(function(){
 		$('#music-field-name').val(field_name);
 		if(is_disabled =='disabled')
 		{
-			$('#editmodal').modal('show');
+			$('#editmodal').modal({
+				backdrop:'static',
+				keyboar:false
+			});
 			for (var i = 1; i <= 7; i++) {
 				$('.uploaded-'+i).addClass('hide');
 			}
@@ -35,10 +38,16 @@ $(document).ready(function(){
 							data.player_5=="" ? $('.uploaded-5').addClass('hide') : $('.uploaded-5').removeClass('hide');
 							data.player_6=="" ? $('.uploaded-6').addClass('hide') : $('.uploaded-6').removeClass('hide');
 							data.player_7=="" ? $('.uploaded-7').addClass('hide') : $('.uploaded-7').removeClass('hide');
-							$('#editmodal').modal('show');
+							$('#editmodal').modal({
+								backdrop:'static',
+								keyboar:false
+							});
 						}
 						else{
-								$('#editmodal').modal('show');
+								$('#editmodal').modal({
+									backdrop:'static',
+									keyboar:false
+								});
 						}
 					},
 					fail: function(err){
@@ -57,7 +66,10 @@ $(document).ready(function(){
 		var field_name = p_th.attr('data-key');
 		$('#del-music-item-no').val(item_no);
 		$('#del-music-field-name').val(field_name);
-		$('#deletemodal').modal('show');
+		$('#deletemodal').modal({
+				backdrop:'static',
+				keyboar:false
+			});
 
 		$('.del-items-loading').removeClass('hide');
 		$('.del-items-div').addClass('hide');
@@ -142,7 +154,10 @@ $(document).ready(function(){
 			}
 		});
 		
-		$("#listen-modal").modal('show');
+		$("#listen-modal").modal({
+				backdrop:'static',
+				keyboar:false
+			});
 		
 	});
 
