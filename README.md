@@ -52,13 +52,13 @@ success = 1  : error
         "items":
         {
             "key_1":{
-                "player_1":"http:\/\/localhost\/assets\/music-sample\/24_130_C_221_1_aaa.mp3",
-                "player_2":"http:\/\/localhost\/assets\/music-sample\/24_130_C_221_2_aaa.mp3",
-                "player_3":"http:\/\/localhost\/assets\/music-sample\/24_130_C_221_3_aaa.mp3",
-                "player_4":"http:\/\/localhost\/assets\/music-sample\/24_130_C_221_4_aaa.mp3",
-                "player_5":"http:\/\/localhost\/assets\/music-sample\/24_130_C_221_5_aaa.mp3",
-                "player_6":"http:\/\/localhost\/assets\/music-sample\/24_130_C_221_6_aaa.mp3",
-                "player_7":"http:\/\/localhost\/assets\/music-sample\/24_130_C_221_7_aaa.mp3"
+                "drum":"http:\/\/localhost\/assets\/music-sample\/24_130_C_221_1_aaa.mp3",
+                "bass":"http:\/\/localhost\/assets\/music-sample\/24_130_C_221_2_aaa.mp3",
+                "piano":"http:\/\/localhost\/assets\/music-sample\/24_130_C_221_3_aaa.mp3",
+                "rhodes":"http:\/\/localhost\/assets\/music-sample\/24_130_C_221_4_aaa.mp3",
+                "organ":"http:\/\/localhost\/assets\/music-sample\/24_130_C_221_5_aaa.mp3",
+                "synth":"http:\/\/localhost\/assets\/music-sample\/24_130_C_221_6_aaa.mp3",
+                "guitar":"http:\/\/localhost\/assets\/music-sample\/24_130_C_221_7_aaa.mp3"
                 },
             "key_2":"",
             "key_3":"",
@@ -96,13 +96,13 @@ success = 1  : error
             "success":0,
             "id":"221",
             "items":{
-                "player_1":"http:\/\/localhost\/assets\/music-sample\/24_130_C_221_1_aaa.mp3",
-                "player_2":"http:\/\/localhost\/assets\/music-sample\/24_130_C_221_2_aaa.mp3",
-                "player_3":"http:\/\/localhost\/assets\/music-sample\/24_130_C_221_3_aaa.mp3",
-                "player_4":"http:\/\/localhost\/assets\/music-sample\/24_130_C_221_4_aaa.mp3",
-                "player_5":"http:\/\/localhost\/assets\/music-sample\/24_130_C_221_5_aaa.mp3",
-                "player_6":"http:\/\/localhost\/assets\/music-sample\/24_130_C_221_6_aaa.mp3",
-                "player_7":"http:\/\/localhost\/assets\/music-sample\/24_130_C_221_7_aaa.mp3"
+                "drum":"http:\/\/localhost\/assets\/music-sample\/24_130_C_221_1_aaa.mp3",
+                "bass":"http:\/\/localhost\/assets\/music-sample\/24_130_C_221_2_aaa.mp3",
+                "piano":"http:\/\/localhost\/assets\/music-sample\/24_130_C_221_3_aaa.mp3",
+                "rhodes":"http:\/\/localhost\/assets\/music-sample\/24_130_C_221_4_aaa.mp3",
+                "organ":"http:\/\/localhost\/assets\/music-sample\/24_130_C_221_5_aaa.mp3",
+                "synth":"http:\/\/localhost\/assets\/music-sample\/24_130_C_221_6_aaa.mp3",
+                "guitar":"http:\/\/localhost\/assets\/music-sample\/24_130_C_221_7_aaa.mp3"
             }
         }
 
