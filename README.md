@@ -6,7 +6,7 @@ success = 1  : error
 
 ### getSetList()      id, name, description,is_free,price.
 
-    url    : http://your-domain/getsetlist
+    url    : http://churchflo.net/getsetlist
     result :
  
     success
@@ -40,7 +40,7 @@ success = 1  : error
 
 ### getSet(sample_id,key) id, name, description,is_free,price.{18 array(url)}
 
-    url: http://your-domain/getset/14/C
+    url: http://churchflo.net/getset/14/C
     result:
     {
         "success":0,
@@ -52,13 +52,13 @@ success = 1  : error
         "items":
         {
             "key_1":{
-                "drum":"http:\/\/localhost\/assets\/music-sample\/24_130_C_221_1_aaa.mp3",
-                "bass":"http:\/\/localhost\/assets\/music-sample\/24_130_C_221_2_aaa.mp3",
-                "piano":"http:\/\/localhost\/assets\/music-sample\/24_130_C_221_3_aaa.mp3",
-                "rhodes":"http:\/\/localhost\/assets\/music-sample\/24_130_C_221_4_aaa.mp3",
-                "organ":"http:\/\/localhost\/assets\/music-sample\/24_130_C_221_5_aaa.mp3",
-                "synth":"http:\/\/localhost\/assets\/music-sample\/24_130_C_221_6_aaa.mp3",
-                "guitar":"http:\/\/localhost\/assets\/music-sample\/24_130_C_221_7_aaa.mp3"
+                "drum":"http:\/\/churchflo.net\/assets\/music-sample\/24_130_C_221_1_aaa.mp3",
+                "bass":"http:\/\/churchflo.net\/assets\/music-sample\/24_130_C_221_2_aaa.mp3",
+                "piano":"http:\/\/churchflo.net\/assets\/music-sample\/24_130_C_221_3_aaa.mp3",
+                "rhodes":"http:\/\/churchflo.net\/assets\/music-sample\/24_130_C_221_4_aaa.mp3",
+                "organ":"http:\/\/churchflo.net\/assets\/music-sample\/24_130_C_221_5_aaa.mp3",
+                "synth":"http:\/\/churchflo.net\/assets\/music-sample\/24_130_C_221_6_aaa.mp3",
+                "guitar":"http:\/\/churchflo.net\/assets\/music-sample\/24_130_C_221_7_aaa.mp3"
                 },
             "key_2":"",
             "key_3":"",
@@ -89,20 +89,20 @@ success = 1  : error
 
 ### getMusicFile(sample_id,key, num) 
 
-    url : http://your-domain/getmusicfile/14/C/1
+    url : http://churchflo.net/getmusicfile/14/C/1
     result : 
         success
         {
             "success":0,
             "id":"221",
             "items":{
-                "drum":"http:\/\/localhost\/assets\/music-sample\/24_130_C_221_1_aaa.mp3",
-                "bass":"http:\/\/localhost\/assets\/music-sample\/24_130_C_221_2_aaa.mp3",
-                "piano":"http:\/\/localhost\/assets\/music-sample\/24_130_C_221_3_aaa.mp3",
-                "rhodes":"http:\/\/localhost\/assets\/music-sample\/24_130_C_221_4_aaa.mp3",
-                "organ":"http:\/\/localhost\/assets\/music-sample\/24_130_C_221_5_aaa.mp3",
-                "synth":"http:\/\/localhost\/assets\/music-sample\/24_130_C_221_6_aaa.mp3",
-                "guitar":"http:\/\/localhost\/assets\/music-sample\/24_130_C_221_7_aaa.mp3"
+                "drum":"http:\/\/churchflo.net\/assets\/music-sample\/24_130_C_221_1_aaa.mp3",
+                "bass":"http:\/\/churchflo.net\/assets\/music-sample\/24_130_C_221_2_aaa.mp3",
+                "piano":"http:\/\/churchflo.net\/assets\/music-sample\/24_130_C_221_3_aaa.mp3",
+                "rhodes":"http:\/\/churchflo.net\/assets\/music-sample\/24_130_C_221_4_aaa.mp3",
+                "organ":"http:\/\/churchflo.net\/assets\/music-sample\/24_130_C_221_5_aaa.mp3",
+                "synth":"http:\/\/churchflo.net\/assets\/music-sample\/24_130_C_221_6_aaa.mp3",
+                "guitar":"http:\/\/churchflo.net\/assets\/music-sample\/24_130_C_221_7_aaa.mp3"
             }
         }
 
@@ -124,7 +124,7 @@ success = 1  : error
 
     type : order_short,order_long
 
-    url : http://your-domain/getorder/14/order_short
+    url :http://churchflo.net/getorder/14/order_short
 
     result : 
 
@@ -150,7 +150,7 @@ success = 1  : error
 
 ### getMusicFiles(cell_id)
 
-    url: http://localhost/getmusicfiles/216
+    url: http://churchflo.net/getmusicfiles/216
 
     result:
     success
@@ -171,3 +171,7 @@ success = 1  : error
         "success":1,
         "message":"There is no any sample"
     }
+
+### registerDeviceToken(token)
+    url    : http://churchflo.net/registerdevicetoken/token
+    result : nothing

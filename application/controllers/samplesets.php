@@ -25,6 +25,7 @@ class SampleSets extends BaseController
         $this->load->model('sample_model');
         $this->load->model('sample_item_model');
         $this->load->model('music_cell_model');
+        $this->load->model('devicetoken_model');
          
     }
 
@@ -414,32 +415,82 @@ class SampleSets extends BaseController
 
     public function sendNotification()
     {
-	    $ch = curl_init("https://fcm.googleapis.com/fcm/send");
-	    //The device token.
-	    $token = ""; //token here
-	    //Title of the Notification.
-	    $title = "Title Notification";
-	    //Body of the Notification.
-	    $body = "This is the body show Notification";
-	    //Creating the notification array.
-	    $notification = array('title' =>$title , 'text' => $body);
-	    //This array contains, the token and the notification. The 'to' attribute stores the token.
-	    $arrayToSend = array('to' => $token, 'notification' => $notification,'priority'=>'high');
-	    //Generating JSON encoded string form the above array.
-	    $json = json_encode($arrayToSend);
-	    //Setup headers:
-	    $headers = array();
-	    $headers[] = 'Content-Type: application/json';
-	    $headers[] = 'Authorization: key= XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX'; // key here
-	    //Setup curl, add headers and post parameters.
-	    curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");                                                                     
-	    curl_setopt($ch, CURLOPT_POSTFIELDS, $json);
-	    curl_setopt($ch, CURLOPT_HTTPHEADER,$headers);       
-	    //Send the request
-	    $response = curl_exec($ch);
-	    //Close request
-	    curl_close($ch);
-	    return $response;
+    	// $tokens = $this->devicetoken_model->getTokens();
+    	// if(count($tokens)!=0){
+		    // $ch = curl_init("https://fcm.googleapis.com/fcm/send");
+		    // //The device token.
+		    // $token = "tt"; //token here
+		    // //Title of the Notification.
+		    // $title = "updated";
+		    // //Body of the Notification.
+		    // $body = "This is the body show Notification";
+		    // //Creating the notification array.
+		    // $notification = array('title' =>$title , 'text' => $body);
+		    // //This array contains, the token and the notification. The 'to' attribute stores the token.
+		    // $arrayToSend = array('to' => $token, 'notification' => $notification,'priority'=>'high');
+		    // //Generating JSON encoded string form the above array.
+		    // $json = json_encode($arrayToSend);
+		    // //Setup headers:
+		    // $headers = array();
+		    // $headers[] = 'Content-Type: application/json';
+		    // $headers[] = 'Authorization: key=AIzaSyDeDiOQh-jd2pH47BrWo4M9xJ-YL_e9JpY'; // key here
+		    // //Setup curl, add headers and post parameters.
+		    // curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");                                                                     
+		    // curl_setopt($ch, CURLOPT_POSTFIELDS, $json);
+		    // curl_setopt($ch, CURLOPT_HTTPHEADER,$headers);       
+		    // //Send the request
+		    // $response = curl_exec($ch);
+		    // //Close request
+		    // curl_close($ch);
+		    // return $response;
+    	//}
+
+		$tokens = $this->devicetoken_model->getTokens();
+    	if(count($tokens)!=0){
+    		foreach ($tokens as $token) {
+		    	$fcmApiKey = 'AIzaSyDeDiOQh-jd2pH47BrWo4M9xJ-YL_e9JpY';//App API Key(This is google cloud messaging api key not web api key)
+		        $url = 'https://fcm.googleapis.com/fcm/send';//Google URL
+		 
+		    	$registrationIds = $token['token'];//$dataArr['device_id'];//Fcm Device ids array
+		 
+		    	$message ='test';// $dataArr['message'];//Message which you want to send
+		        $title = 'test';//$dataArr['message'];
+		 
+		        // prepare the bundle
+		        $msg = array('message' => $message,'title' => $title);
+		        $fields = array('registration_ids' => $registrationIds,'data' => $msg);
+		 
+		        $headers = array(
+		            'Authorization: key=' . $fcmApiKey,
+		            'Content-Type: application/json'
+		        );
+		 
+		        $ch = curl_init();
+		        curl_setopt( $ch,CURLOPT_URL, $url );
+		        curl_setopt( $ch,CURLOPT_POST, true );
+		        curl_setopt( $ch,CURLOPT_HTTPHEADER, $headers );
+		        curl_setopt( $ch,CURLOPT_RETURNTRANSFER, true );
+		        curl_setopt( $ch,CURLOPT_SSL_VERIFYPEER, false );
+		        curl_setopt( $ch,CURLOPT_POSTFIELDS, json_encode( $fields ) );
+		        $result = curl_exec($ch );
+		        // Execute post
+		        $result = curl_exec($ch);
+		        if ($result === FALSE) {
+		            die('Curl failed: ' . curl_error($ch));
+		        }
+		        // Close connection
+		        curl_close($ch);    
+		        return $result;
+    		}
+   	 	}
+    }
+
+    public function registerDeviceToken($token)
+    {
+    	if(!$this->devicetoken_model->is_registered($token))
+    	{
+    		$this->devicetoken_model->addToken($token);
+    	}
     }
 
 }
