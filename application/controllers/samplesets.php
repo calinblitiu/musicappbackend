@@ -453,8 +453,8 @@ class SampleSets extends BaseController
 		 
 		    	$registrationIds = $token['token'];//$dataArr['device_id'];//Fcm Device ids array
 		 
-		    	$message ='test';// $dataArr['message'];//Message which you want to send
-		        $title = 'test';//$dataArr['message'];
+		    	$message ='update';// $dataArr['message'];//Message which you want to send
+		        $title = 'music sample is updated';//$dataArr['message'];
 		 
 		        // prepare the bundle
 		        $msg = array('message' => $message,'title' => $title);
