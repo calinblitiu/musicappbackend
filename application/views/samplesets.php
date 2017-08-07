@@ -21,6 +21,7 @@
                   <table class="table table-hover">
                     <tr>
                       <th>Id</th>
+                      <th>B</th>
                       <th>C</th>
                       <th>Db</th>
                       <th>D</th>
@@ -32,7 +33,7 @@
                       <th>Ab</th>
                       <th>A</th>
                       <th>Bb</th>
-                      <th>B</th>
+                      
                       
                     </tr>
                     <?php for($i = 1; $i<=18; $i++)
@@ -40,6 +41,11 @@
                       ?>
                       <tr data-item-id="<?=$sample['key_item_'.$i][0]['id']?>" data-key-no="<?=$i?>">
                       <th><?=$i?></th>
+                      <th data-key="B">
+                        <span class="btn btn-sm btn-success listen-music-btn" data-music-url="<?=$sample['key_item_'.$i][0]['B']?>"><i class="fa fa-headphones"></i></span>
+                        <span class="btn btn-sm btn-info edit-music-btn"><i class="fa fa-pencil"></i></span>
+                        <span class="btn btn-sm btn-danger remove-music-btn"><i class="fa fa-trash"></i></span>
+                      </th>
                       <th data-key="C">
                         <span class="btn btn-sm btn-success listen-music-btn" data-music-url="<?=$sample['key_item_'.$i][0]['C']?>"><i class="fa fa-headphones"></i></span>
                         <span class="btn btn-sm btn-info edit-music-btn"><i class="fa fa-pencil"></i></span>
@@ -95,11 +101,7 @@
                         <span class="btn btn-sm btn-info edit-music-btn"><i class="fa fa-pencil"></i></span>
                         <span class="btn btn-sm btn-danger remove-music-btn"><i class="fa fa-trash"></i></span>
                       </th>
-                      <th data-key="B">
-                        <span class="btn btn-sm btn-success listen-music-btn" data-music-url="<?=$sample['key_item_'.$i][0]['B']?>"><i class="fa fa-headphones"></i></span>
-                        <span class="btn btn-sm btn-info edit-music-btn"><i class="fa fa-pencil"></i></span>
-                        <span class="btn btn-sm btn-danger remove-music-btn"><i class="fa fa-trash"></i></span>
-                      </th>
+                      
                       
                     </tr>
                       <?php
