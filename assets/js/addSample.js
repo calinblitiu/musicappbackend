@@ -14,10 +14,10 @@ $(document).ready(function(){
 		}
 	});
 
-	$( "#short-seq" ).sortable();
-    $( "#short-seq" ).disableSelection();
-    $( "#long-seq" ).sortable();
-    $( "#long-seq" ).disableSelection();
+	//$( "#short-seq" ).sortable();
+    // $( "#short-seq" ).disableSelection();
+    // $( "#long-seq" ).sortable();
+    // $( "#long-seq" ).disableSelection();
 
 	$(".sort-seq-undo").click(function() {
 	  location.reload();
@@ -88,7 +88,78 @@ $(document).ready(function(){
 	 		$(this).val(0);
 	 	}
 	 });
-	
+
+	 $('.switch-short-btn').click(function(){
+	 	var me = $(this);
+	 	var long_btn = $('.switch-long-btn');
+	 	var short_panel = $('.short-panel');
+	 	var long_panel = $('.long-panel');
+
+	 	short_panel.removeClass('hide');
+	 	long_panel.addClass('hide');
+	 	me.addClass("btn-success");
+	 	me.removeClass("btn-default");
+	 	long_btn.removeClass('btn-success');
+	 	long_btn.addClass('btn-default');
+
+	 });
+	$('.switch-long-btn').click(function(){
+	 	var me = $(this);
+	 	var short_btn = $('.switch-short-btn');
+	 	var short_panel = $('.short-panel');
+	 	var long_panel = $('.long-panel');
+	 	short_panel.addClass('hide');
+	 	long_panel.removeClass('hide');
+
+	 	me.addClass("btn-success");
+	 	me.removeClass("btn-default");
+	 	short_btn.removeClass('btn-success');
+	 	short_btn.addClass('btn-default');
+	 });
+
+	$( ".draggable-short" ).draggable({
+      connectToSortable: "#short-seq",
+      helper: function() {
+        	var helper = $(this).clone(); // Untested - I create my helper using other means...
+        	// jquery.ui.sortable will override width of class unless we set the style explicitly.
+        	helper.css({'width': '100px', 'height': 'auto'});
+        	return helper;
+    	},
+      revert: "invalid",
+      stop: function() {
+        //$(this).css({'width': '100%', 'height': 'auto'});
+        $('#short-seq .draggable-short').removeAttr('style');
+      }
+    });
+    $( "#short-seq" ).sortable({
+      revert: true
+    });
+     $( "#short-seq" ).disableSelection();
+
+
+
+     $( ".draggable-long" ).draggable({
+      connectToSortable: "#long-seq",
+      helper: function() {
+        	var helper = $(this).clone(); // Untested - I create my helper using other means...
+        	// jquery.ui.sortable will override width of class unless we set the style explicitly.
+        	helper.css({'width': '100px', 'height': 'auto'});
+        	return helper;
+    	},
+      revert: "invalid",
+      stop: function() {
+        //$(this).css({'width': '100%', 'height': 'auto'});
+        $('#long-seq .draggable-long').removeAttr('style');
+      }
+    });
+    $( "#long-seq" ).sortable({
+      revert: true
+    });
+     $( "#long-seq" ).disableSelection();
+
+     $('.drag-del').click(function(){
+     	$(this).parent().remove();
+     });
 });
 
 

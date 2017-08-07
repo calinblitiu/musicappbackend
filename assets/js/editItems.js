@@ -6,11 +6,13 @@ $(document).ready(function(){
 		var pp_tr = me.parent().parent();
 		var item_no = pp_tr.attr('data-item-id');
 		var field_name = p_th.attr('data-key');
+		var key_no = pp_tr.attr('data-key-no');
 		
 		var listen_btn = me.prev('.listen-music-btn');
 		var is_disabled = listen_btn.attr('disabled');
 		$('#music-item-no').val(item_no);
 		$('#music-field-name').val(field_name);
+		$('#music-key-no').val(key_no);
 		if(is_disabled =='disabled')
 		{
 			$('#editmodal').modal({

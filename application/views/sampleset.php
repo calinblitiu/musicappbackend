@@ -59,55 +59,89 @@
         </div>
 
 <?php 
-
 $order_short = $sample[0]['order_short'];
 $order_short = explode(",", $order_short);
-
 $order_long = $sample[0]['order_long'];
 $order_long = explode(",", $order_long);
-
 ?>
         <div class="">
-           <div class="col-md-4">
-                <div class="box box-primary">
-                    <div class="box-header">
-                        <h3 class="box-title">Update Sample Sequence(Short)</h3>
-                    </div><!-- /.box-header -->
-                    <div class="box-body">
-                        <ul id="short-seq" class="sortable">
-                          <?php foreach($order_short as $key_no):?>
-                            <li class="ui-state-default" predmet-id="<?=$key_no?>">Item <?=$key_no?></li>
-                          <?php endforeach;?>
-                        </ul>
-                    </div>
-                     <div class="box-footer">
-                        <input type="button" class="btn btn-primary short-change-btn" value="Change" />
-                        <input type="button" class="btn btn-default sort-seq-undo" value="Reset" />
-                    </div>
-                </div>
+            <div class="change-short-long">
+                <button class="btn btn-success switch-short-btn">Short</button>
+                <button class="btn btn-default switch-long-btn">Long</button>
             </div>
-        </div>        
+            <div class="col-md-8 short-panel">
 
-        <div class="">
-           <div class="col-md-4">
-                <div class="box box-primary">
-                    <div class="box-header">
-                        <h3 class="box-title">Update Sample Sequence(Long)</h3>
-                    </div><!-- /.box-header -->
-                    <div class="box-body">
-                        <ul id="long-seq" class="sortable">
-                          <?php foreach($order_long as $key_no):?>
-                            <li class="ui-state-default" predmet-id="<?=$key_no?>">Item <?=$key_no?></li>
-                          <?php endforeach;?>
-                        </ul>
-                    </div>
-                     <div class="box-footer">
-                        <input type="submit" class="btn btn-primary long-change-btn" value="Change" />
-                        <input type="reset" class="btn btn-default sort-seq-undo" value="Reset" />
+                <div class="col-md-6">
+                    <ul class="ul-drag">
+                      <li class="ui-state-highlight draggable-short" predmet-id="1">Item 1<span class="drag-del">Delete</span></li>
+                      <li class="ui-state-highlight draggable-short" predmet-id="2">Item 2<span class="drag-del">Delete</span></li>
+                      <li class="ui-state-highlight draggable-short" predmet-id="3">Item 3<span class="drag-del">Delete</span></li>
+                      <li class="ui-state-highlight draggable-short" predmet-id="4">Item 4<span class="drag-del">Delete</span></li>
+                      <li class="ui-state-highlight draggable-short" predmet-id="5">Item 5<span class="drag-del">Delete</span></li>
+                      <li class="ui-state-highlight draggable-short" predmet-id="6">Item 6<span class="drag-del">Delete</span></li>
+                      <li class="ui-state-highlight draggable-short" predmet-id="7">Item 7<span class="drag-del">Delete</span></li>
+                      <li class="ui-state-highlight draggable-short" predmet-id="8">Item 8<span class="drag-del">Delete</span></li>
+                      <li class="ui-state-highlight draggable-short" predmet-id="9">Item 9<span class="drag-del">Delete</span></li>
+                    </ul>
+                </div>
+
+                <div class="col-md-6">
+                    <div class="box box-primary">
+                        <div class="box-header">
+                            <h3 class="box-title">Update Sample Sequence(Short)</h3>
+                        </div><!-- /.box-header -->
+                        <div class="box-body">
+                            <ul id="short-seq" class="sortable">
+                              <?php foreach($order_short as $key_no):?>
+                                <li class="ui-state-default" predmet-id="<?=$key_no?>">Item <?=$key_no?><span class="drag-del">Delete</span></li>
+                              <?php endforeach;?>
+                            </ul>
+                        </div>
+                         <div class="box-footer">
+                            <input type="button" class="btn btn-primary short-change-btn" value="Change" />
+                            <input type="button" class="btn btn-default sort-seq-undo" value="Reset" />
+                        </div>
                     </div>
                 </div>
-            </div>
-        </div>          
+            </div> 
+            <div class="col-md-8 hide long-panel">
+                <div class="col-md-6">
+                    <ul class="ul-drag">
+                      <li class="ui-state-highlight draggable-long" predmet-id="10">Item 10<span class="drag-del">Delete</span></li>
+                      <li class="ui-state-highlight draggable-long" predmet-id="11">Item 11<span class="drag-del">Delete</span></li>
+                      <li class="ui-state-highlight draggable-long" predmet-id="12">Item 12<span class="drag-del">Delete</span></li>
+                      <li class="ui-state-highlight draggable-long" predmet-id="13">Item 13<span class="drag-del">Delete</span></li>
+                      <li class="ui-state-highlight draggable-long" predmet-id="14">Item 14<span class="drag-del">Delete</span></li>
+                      <li class="ui-state-highlight draggable-long" predmet-id="15">Item 15<span class="drag-del">Delete</span></li>
+                      <li class="ui-state-highlight draggable-long" predmet-id="16">Item 16<span class="drag-del">Delete</span></li>
+                      <li class="ui-state-highlight draggable-long" predmet-id="17">Item 17<span class="drag-del">Delete</span></li>
+                      <li class="ui-state-highlight draggable-long" predmet-id="18">Item 18<span class="drag-del">Delete</span><span class="drag-del">Delete</span></li>
+                    </ul>
+                </div>
+                <div class="col-md-6">
+                    <div class="box box-primary">
+                        <div class="box-header">
+                            <h3 class="box-title">Update Sample Sequence(Long)</h3>
+                        </div><!-- /.box-header -->
+                        <div class="box-body">
+                            <ul id="long-seq" class="sortable">
+                              <?php foreach($order_long as $key_no):?>
+                                <li class="ui-state-default" predmet-id="<?=$key_no?>">Item <?=$key_no?><span class="drag-del">Delete</span></li>
+                              <?php endforeach;?>
+                            </ul>
+                        </div>
+                         <div class="box-footer">
+                            <input type="submit" class="btn btn-primary long-change-btn" value="Change" />
+                            <input type="reset" class="btn btn-default sort-seq-undo" value="Reset" />
+                        </div>
+                    </div>
+                </div>   
+            </div>    
+        </div>
+
+       
+           
+                 
 	</section>
 </div>
 
@@ -119,19 +153,29 @@ $order_long = explode(",", $order_long);
         padding: 0; 
         width: 100%;
      }
-  .sortable li { 
+  .sortable li,.draggable-short, .draggable-long { 
     margin: 0 3px 3px 3px;
-     padding: 0.4em; 
-     padding-left: 1.5em; 
-     font-size: 1.4em; 
-     cursor: pointer;
-     border: 1px solid #c5c5c5;
+    padding: 0.4em; 
+    padding-left: 1.5em; 
+    font-size: 1.4em; 
+    cursor: pointer;
+    border: 1px solid #c5c5c5;
     background: #f6f6f6;
     font-weight: normal;
     color: #454545;
+    list-style: none;
 }
-  .sortable li span { 
-    position: absolute; 
-    margin-left: -1.3em; 
+  
+#long-seq .drag-del, #short-seq .drag-del{
+    float: right;
+    font-size: 15px;
+    color: #3c8dbc;
+    text-transform: uppercase;
+    visibility: visible;
 }
+
+.ul-drag .drag-del{
+    visibility: hidden;
+}
+
 </style>

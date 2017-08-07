@@ -133,13 +133,13 @@ success = 1  : error
         {
             "success":0,
             "type":"order_short",
-            "order":"9,3,4,5,6,7,2,8,1"
+            "order":"9,3,4,5,6,7,2,8,1,3,4,5,7"
         }
         - long music
         {
             "success":0,
             "type":"order_long",
-            "order":"11,18,12,13,14,15,16,17,10"
+            "order":"11,18,12,13,14,15,16,17,10,11,14"
         }
         error
 

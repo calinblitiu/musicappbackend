@@ -38,7 +38,7 @@
                     <?php for($i = 1; $i<=18; $i++)
                     {
                       ?>
-                      <tr data-item-id="<?=$sample['key_item_'.$i][0]['id']?>">
+                      <tr data-item-id="<?=$sample['key_item_'.$i][0]['id']?>" data-key-no="<?=$i?>">
                       <th><?=$i?></th>
                       <th data-key="C">
                         <span class="btn btn-sm btn-success listen-music-btn" data-music-url="<?=$sample['key_item_'.$i][0]['C']?>"><i class="fa fa-headphones"></i></span>
@@ -128,6 +128,7 @@
             <input type="hidden" name="sample-no" value="<?=$sample['id']?>">
             <input type="hidden" name="item-no" id='music-item-no'>
             <input type="hidden" name="field-name" id="music-field-name">
+            <input type="hidden" name="key-no" id="music-key-no">      
             <div class="form-group add-music-form-group">
              <label class="add-music-label" >Drum  : </label>
              <input type="file" name="player_1" class="form-control"  accept="audio/*">
@@ -186,9 +187,10 @@
             <h4 class="modal-title">Delete Music File</h4>
           </div>
           <div class="modal-body">
-            <input type="hidden" name="sample-no" id="sample-no" value="<?=$sample['id']?>">
+            <input type="hidden" name="sample-no" id="del-sample-no" value="<?=$sample['id']?>">
             <input type="hidden" name="item-no" id='del-music-item-no'>
-            <input type="hidden" name="field-name" id="del-music-field-name">           
+            <input type="hidden" name="field-name" id="del-music-field-name">     
+
             <h3>
               <img src="<?=base_url()?>assets/images/loading.gif" style="width: 100%" class="del-items-loading">
               <div class="hide del-items-div">

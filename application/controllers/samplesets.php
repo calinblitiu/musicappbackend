@@ -73,6 +73,7 @@ class SampleSets extends BaseController
  		$item_no = $this->input->post('item-no');
         $field = $this->input->post('field-name');
         $sample_no = $this->input->post('sample-no');
+        $key_no = $this->input->post('key-no');
         $sample_item = $this->sample_item_model->getSampleItem($item_no);
         $cur_cell=array();
         if($sample_item[0][$field] == NULL || $sample_item[0][$field] =="" || $sample_item[0][$field] =="0")
@@ -91,8 +92,14 @@ class SampleSets extends BaseController
      	$cell_data = array();
      	for($i = 1;$i <= 7; $i++)
      	{
-     		$uploadfile = $uploaddir .$sample_no.'_'.$item_no.'_'.$field.'_'.$cur_cell[0]['id'].'_'.$i.'_'. basename($_FILES['player_'.$i]['name']);
-     		$file_name = $sample_no.'_'.$item_no.'_'.$field.'_'.$cur_cell[0]['id'].'_'.$i.'_'. basename($_FILES['player_'.$i]['name']);
+     		$path = $_FILES['player_'.$i]['name'];
+			$ext = pathinfo($path, PATHINFO_EXTENSION);
+
+     		//$uploadfile = $uploaddir .$sample_no.'_'.$item_no.'_'.$field.'_'.$cur_cell[0]['id'].'_'.$i.'_'. basename($_FILES['player_'.$i]['name']);
+     		//$file_name = $sample_no.'_'.$item_no.'_'.$field.'_'.$cur_cell[0]['id'].'_'.$i.'_'. basename($_FILES['player_'.$i]['name']);
+
+     		$uploadfile = $uploaddir .$sample_no.'_'.$field.'_'.$key_no.'_'.$this->player_kinds_array[$i-1].'.'.$ext;
+     		$file_name = $sample_no.'_'.$field.'_'.$key_no.'_'.$this->player_kinds_array[$i-1].'.'.$ext;
      		if (move_uploaded_file($_FILES['player_'.$i]['tmp_name'], $uploadfile)) {
 		    	//$this->sample_item_model->editItemField($item_no,$field,$file_name);
 		    	$cell_data['player_'.$i] = $file_name;
@@ -339,12 +346,16 @@ class SampleSets extends BaseController
     					$temp[$this->player_kinds_array[$i-1]] = base_url().'assets/music-sample/'.$cell[0]['player_'.$i];
     				}
     				$data['items'] = $temp;
+    				echo json_encode($data);
+    				exit();
     			}
     			else{
-    				$data['items'] = '';
+    				$data['success'] = 1;
+    				$data['message'] = 'This item is empty!';
+    				echo json_encode($data);
+    				exit();
     			}
-    			echo json_encode($data);
-    			exit();
+    			
     		}
     	}
     	else{
