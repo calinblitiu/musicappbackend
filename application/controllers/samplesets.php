@@ -26,6 +26,7 @@ class SampleSets extends BaseController
         $this->load->model('sample_item_model');
         $this->load->model('music_cell_model');
         $this->load->model('devicetoken_model');
+        $this->load->model('paidstatus_model');
          
     }
 
@@ -535,6 +536,56 @@ class SampleSets extends BaseController
     	{
     		$this->devicetoken_model->addToken($token);
     	}
+    }
+
+    public function updatePaidState($token,$sample_id,$key_name,$update_state)
+    {
+        $token_id  = $this->devicetoken_model->getTokenID($token);
+        if(!$token_id)
+        {
+           $this->registerDeviceToken($token);
+           $token_id  = $this->devicetoken_model->getTokenID($token);
+        }
+       
+        $paidstatus = $this->paidstatus_model->getPaidStatusItem($sample_id,$token_id);
+        
+        if(!$paidstatus){
+            $this->paidstatus_model->addNewItem($token_id,$sample_id);
+            $paidstatus = $this->paidstatus_model->getPaidStatusItem($sample_id,$token_id);
+        }
+
+        if($key_name == 'All')
+        {
+            $this->paidstatus_model->updateStatusAll($token_id,$sample_id,$update_state);
+        }
+        else{
+            $this->paidstatus_model->updateStatus($token_id,$sample_id,$key_name,$update_state);
+        }
+
+    }
+
+    public function getPaidState($token,$sample_id,$key_name)
+    {
+        $token_id  = $this->devicetoken_model->getTokenID($token);
+         if(!$token_id)
+        {
+           $this->registerDeviceToken($token);
+           $token_id  = $this->devicetoken_model->getTokenID($token);
+
+        }
+
+        $paidstatus = $this->paidstatus_model->getPaidStatusItem($sample_id,$token_id);
+        
+        if(!$paidstatus){
+            $this->paidstatus_model->addNewItem($token_id,$sample_id);
+            $paidstatus = $this->paidstatus_model->getPaidStatusItem($sample_id,$token_id);
+        }
+
+        $data['success'] = 0;
+        $data['status'] =  $paidstatus[$key_name];
+
+        echo json_encode($data);
+
     }
 
 }

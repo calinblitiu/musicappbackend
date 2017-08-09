@@ -173,5 +173,23 @@ success = 1  : error
     }
 
 ### registerDeviceToken(token)
+
     url    : http://churchflo.net/registerdevicetoken/token
     result : nothing
+
+### updatePaidState($token,$sample_id,$key_name,$update_state)
+
+    url     : http://churchflo.net/updatepaidstatus/5BC387969C96A2FB2BEEB21216405/26/C/paid
+            : http://churchflo.net/updatepaidstatus/5BC387969C96A2FB2BEEB21216405/26/All/unpaid
+
+    result  : nothing
+
+###getPaidState($token,$sample_id,$key_name)
+    
+    url     : http://churchflo.net/getpaidstatus/5BC387969C96A2FB2BEEB21216405/26/C
+
+    result  : 
+                {
+                    "success":0,
+                    "status":"paid"
+                }

@@ -28,4 +28,19 @@ class Devicetoken_model extends CI_Model
 		$result = $query->result_array();
 		return $result;
 	}
+
+	public function getTokenID($token)
+	{
+		$this->db->where('token',$token);
+		$query = $this->db->get($this->table_name);
+		$result = $query->result_array();
+
+		if(count($result)>0)
+		{
+			return $result[0]['id'];
+		}
+		else{
+			return false;
+		}
+	}
 }

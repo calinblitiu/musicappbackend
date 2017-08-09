@@ -101,3 +101,6 @@ $route['getorder/(:num)/(:any)'] = 'samplesets/getOrder/$1/$2';
 $route['getmusicfiles/(:num)'] = 'samplesets/getMusicFiles/$1';
 $route['sendnotification'] = 'samplesets/sendNotification';
 $route['registerdevicetoken/(:any)'] = 'samplesets/registerDeviceToken/$1';
+
+$route['updatepaidstatus/(:any)/(:num)/(:any)/(:any)'] = 'samplesets/updatePaidState/$1/$2/$3/$4';
+$route['getpaidstatus/(:any)/(:num)/(:any)'] = 'samplesets/getPaidState/$1/$2/$3';
