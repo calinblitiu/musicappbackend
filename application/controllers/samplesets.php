@@ -343,7 +343,8 @@ class SampleSets extends BaseController
     				$data['id'] = $url;
     				$temp = array();
     				for ($i=1; $i <= 7; $i++) { 
-    					$temp[$this->player_kinds_array[$i-1]] = base_url().'assets/music-sample/'.$cell[0]['player_'.$i];
+                        $temp_url_item = $cell[0]['player_'.$i]=="" ? "" : base_url().'assets/music-sample/'.$cell[0]['player_'.$i];
+    					$temp[$this->player_kinds_array[$i-1]] = $temp_url_item;
     				}
     				$data['items'] = $temp;
     				echo json_encode($data);
@@ -455,45 +456,77 @@ class SampleSets extends BaseController
 		    // curl_close($ch);
 		    // return $response;
     	//}
-
+                $passphrase = 'song'; 
+                $message = 'my push notification';
+                $ctx = stream_context_create();
+                // Change 3 : APNS Cert File name and location.
+                stream_context_set_option($ctx, 'ssl', 'local_cert', dirname(__FILE__) .'/ck.pem'); 
+                stream_context_set_option($ctx, 'ssl', 'passphrase', $passphrase);
+                // Open a connection to the APNS server
+                $fp = stream_socket_client('ssl://gateway.sandbox.push.apple.com:2195', $err,$errstr, 60, STREAM_CLIENT_CONNECT, $ctx);
+                if (!$fp)
+                    exit("Failed to connect: $err $errstr" . PHP_EOL);
+                echo 'Connected to APNS' . PHP_EOL;
+                // Create the payload body
+                $body['aps'] = array(
+                    'alert' => $message,
+                    'sound' => 'default'
+                    );
+                // Encode the payload as JSON
+                $payload = json_encode($body);
 		$tokens = $this->devicetoken_model->getTokens();
     	if(count($tokens)!=0){
     		foreach ($tokens as $token) {
-		    	$fcmApiKey = 'AIzaSyDeDiOQh-jd2pH47BrWo4M9xJ-YL_e9JpY';//App API Key(This is google cloud messaging api key not web api key)
-		        $url = 'https://fcm.googleapis.com/fcm/send';//Google URL
+		    	// $fcmApiKey = 'AIzaSyDeDiOQh-jd2pH47BrWo4M9xJ-YL_e9JpY';//App API Key(This is google cloud messaging api key not web api key)
+		     //    $url = 'https://fcm.googleapis.com/fcm/send';//Google URL
 		 
-		    	$registrationIds = $token['token'];//$dataArr['device_id'];//Fcm Device ids array
+		    	// $registrationIds = $token['token'];//$dataArr['device_id'];//Fcm Device ids array
 		 
-		    	$message ='update';// $dataArr['message'];//Message which you want to send
-		        $title = 'music sample is updated';//$dataArr['message'];
+		    	// $message ='update';// $dataArr['message'];//Message which you want to send
+		     //    $title = 'music sample is updated';//$dataArr['message'];
 		 
-		        // prepare the bundle
-		        $msg = array('message' => $message,'title' => $title);
-		        $fields = array('registration_ids' => $registrationIds,'data' => $msg);
+		     //    // prepare the bundle
+		     //    $msg = array('message' => $message,'title' => $title);
+		     //    $fields = array('registration_ids' => $registrationIds,'data' => $msg);
 		 
-		        $headers = array(
-		            'Authorization: key=' . $fcmApiKey,
-		            'Content-Type: application/json'
-		        );
+		     //    $headers = array(
+		     //        'Authorization: key=' . $fcmApiKey,
+		     //        'Content-Type: application/json'
+		     //    );
 		 
-		        $ch = curl_init();
-		        curl_setopt( $ch,CURLOPT_URL, $url );
-		        curl_setopt( $ch,CURLOPT_POST, true );
-		        curl_setopt( $ch,CURLOPT_HTTPHEADER, $headers );
-		        curl_setopt( $ch,CURLOPT_RETURNTRANSFER, true );
-		        curl_setopt( $ch,CURLOPT_SSL_VERIFYPEER, false );
-		        curl_setopt( $ch,CURLOPT_POSTFIELDS, json_encode( $fields ) );
-		        $result = curl_exec($ch );
-		        // Execute post
-		        $result = curl_exec($ch);
-		        if ($result === FALSE) {
-		            die('Curl failed: ' . curl_error($ch));
-		        }
-		        // Close connection
-		        curl_close($ch);    
-		        return $result;
+		     //    $ch = curl_init();
+		     //    curl_setopt( $ch,CURLOPT_URL, $url );
+		     //    curl_setopt( $ch,CURLOPT_POST, true );
+		     //    curl_setopt( $ch,CURLOPT_HTTPHEADER, $headers );
+		     //    curl_setopt( $ch,CURLOPT_RETURNTRANSFER, true );
+		     //    curl_setopt( $ch,CURLOPT_SSL_VERIFYPEER, false );
+		     //    curl_setopt( $ch,CURLOPT_POSTFIELDS, json_encode( $fields ) );
+		     //    $result = curl_exec($ch );
+		     //    // Execute post
+		     //    $result = curl_exec($ch);
+		     //    if ($result === FALSE) {
+		     //        die('Curl failed: ' . curl_error($ch));
+		     //    }
+		     //    // Close connection
+		     //    curl_close($ch);    
+		     //    return $result;
+
+
+
+                $deviceToken= $token; 
+                // Change 2 : If any
+               
+                // Build the binary notification
+                $msg = chr(0) . pack('n', 32) . pack('H*', $deviceToken) . pack('n', strlen($payload)) . $payload;
+                // Send it to the server
+                 fwrite($fp, $msg, strlen($msg));
+                
+               
+
     		}
+
    	 	}
+         fclose($fp);
     }
 
     public function registerDeviceToken($token)
