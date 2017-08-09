@@ -184,7 +184,7 @@ success = 1  : error
 
     result  : nothing
 
-###getPaidState($token,$sample_id,$key_name)
+### getPaidState($token,$sample_id,$key_name)
     
     url     : http://churchflo.net/getpaidstatus/5BC387969C96A2FB2BEEB21216405/26/C
 
