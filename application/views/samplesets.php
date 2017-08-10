@@ -15,6 +15,10 @@
             <div class="col-xs-12">
               <div class="box">
                 <div class="box-header">
+                <?php 
+                   $thumimage_url = $sample['thumb'] == ""? base_url()."assets/thumbimages/no_img.png":base_url().'assets/thumbimages/'.$sample['thumb'];
+                 ?>
+                 <img src="<?=$thumimage_url?>" style="width: 100px;float: left;margin-right: 10px;">
                     <h3 class="box-title"><?=$sample['name']?></h3><p><?=$sample['description']?></p>
                 </div><!-- /.box-header -->
                 <div class="box-body table-responsive no-padding">

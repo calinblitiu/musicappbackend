@@ -37,6 +37,7 @@
                   <table class="table table-hover">
                     <tr>
                       <th>Id</th>
+                      <th>Thumb</th>
                       <th>Name</th>
                       <th>Description</th>
                       <th>Price</th>
@@ -49,6 +50,10 @@
                       ?>
                       <tr>
                       <th><?=$i?></th>
+                      <?php 
+                       $thumimage_url = $sample['thumb'] == ""? base_url()."assets/thumbimages/no_img.png":base_url().'assets/thumbimages/'.$sample['thumb'];
+                      ?>
+                      <th><img src="<?=$thumimage_url?>" style="width: 100px;"></th>
                       <th><?=$sample['name']?></th>
                       <th><?=$sample['description']?></th>
                       <th><?php echo $sample['is_free'] == "yes"?"-":$sample['price']?></th>

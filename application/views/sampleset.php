@@ -14,7 +14,7 @@
                         <h3 class="box-title">Update Sample Details</h3>
                     </div><!-- /.box-header -->
 
-                     <form role="form" id="addSampleSet" action="<?php echo base_url() ?>updatesampleset_b" method="post" role="form">
+                     <form role="form" id="addSampleSet" action="<?php echo base_url() ?>updatesampleset_b" method="post" role="form" enctype='multipart/form-data'>
                      <input type="hidden" name="sid" value="<?=$sample[0]['id']?>" id="sid">
                      	 <div class="box-body">
                      	  <div class="row">
@@ -46,6 +46,16 @@
 	                                    <input type="Number" class="form-control required" id="sprice" name="sprice" value="<?=$sample[0]['price']?>" <?php echo $sample[0]['is_free']=='yes'?'disabled':'';?>>
 	                                </div>
 	                            </div>
+                              <?php 
+                               $thumimage_url = $sample[0]['thumb'] == ""? base_url()."assets/thumbimages/no_img.png":base_url().'assets/thumbimages/'.$sample[0]['thumb'];
+                              ?>
+                              <div class="col-md-12">                                
+                                    <div class="form-group">
+                                        <label for="thumb">Price</label>
+                                        <input type="file" class="" id="thumb" name="thumbimg" style="display: inline;"  accept="image/*">
+                                        <img src="<?=$thumimage_url?>" id="thubpreview" style="width: 100px;">
+                                    </div>
+                                </div>
                      	 </div>
                      	 <div class="box-footer">
                             <input type="submit" class="btn btn-primary" value="Update" />

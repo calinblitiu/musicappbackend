@@ -20,14 +20,16 @@ success = 1  : error
             "description":
             "test1 sample1",
             "is_free":"no",
-            "price":"2"
+            "price":"2",
+            "thumb":"http:\/\/localhost\/assets\/thumbimages\/33bdc872b0baea295f1eab09183fd946.jpg"
         },
         {
             "id":"16",
             "name":"test1",
             "description":"this is test sample",
             "is_free":"yes",
-            "price":"12"
+            "price":"12",
+            "thumb":"http:\/\/localhost\/assets\/thumbimages\/no_img.png"
         }
         ]
     } 

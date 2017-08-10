@@ -160,6 +160,37 @@ $(document).ready(function(){
      $('.drag-del').click(function(){
      	$(this).parent().remove();
      });
+
+
+
+
+
+// Function to preview image after validation
+
+$("#thumb").change(function()
+ {
+
+	var file = this.files[0];
+	var imagefile = file.type;
+	var match= ["image/jpeg","image/png","image/jpg"];
+	if(!((imagefile==match[0]) || (imagefile==match[1]) || (imagefile==match[2])))
+	{
+		$('#thubpreview').attr('src',baseURL+'assets/thubimages/no_img.png');
+		return false;
+	}
+	else
+	{
+		var reader = new FileReader();
+		reader.onload = imageIsLoaded;
+		reader.readAsDataURL(this.files[0]);
+	}
+});
+
+function imageIsLoaded(e) 
+{
+	$('#thubpreview').attr('src', e.target.result);	
+}
+
 });
 
 

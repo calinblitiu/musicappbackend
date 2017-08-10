@@ -184,6 +184,20 @@ class SampleSets extends BaseController
     	else{
     		$data['is_free'] = 'no';
     	}
+        $data['thumb'] = "";
+        $uploaddir = './assets/thumbimages/';
+        $path = $_FILES['thumbimg']['name'];
+        $ext = pathinfo($path, PATHINFO_EXTENSION);
+        $dest_filename = md5(uniqid(rand(), true)) . '.' . $ext;
+        $uploadfile = $uploaddir .$dest_filename;
+        $file_name = $dest_filename;
+        if (move_uploaded_file($_FILES['thumbimg']['tmp_name'], $uploadfile)) {
+            //$this->sample_item_model->editItemField($item_no,$field,$file_name);
+            $data['thumb'] = $file_name;
+        } else {
+           // echo "Possible file upload attack!\n";
+        }
+
 
     	$result = $this->sample_model->addNewSample($data);
 
@@ -222,6 +236,21 @@ class SampleSets extends BaseController
     	else{
     		$data['is_free'] = 'no';
     	}
+        if($_FILES['thumbimg']['name']){
+            $data['thumb'] = "";
+            $uploaddir = './assets/thumbimages/';
+            $path = $_FILES['thumbimg']['name'];
+            $ext = pathinfo($path, PATHINFO_EXTENSION);
+            $dest_filename = md5(uniqid(rand(), true)) . '.' . $ext;
+            $uploadfile = $uploaddir .$dest_filename;
+            $file_name = $dest_filename;
+            if (move_uploaded_file($_FILES['thumbimg']['tmp_name'], $uploadfile)) {
+                //$this->sample_item_model->editItemField($item_no,$field,$file_name);
+                $data['thumb'] = $file_name;
+            } else {
+               // echo "Possible file upload attack!\n";
+            }
+         }
 
     	$this->sample_model->updateSample($data);
 
@@ -246,6 +275,7 @@ class SampleSets extends BaseController
     			$temp['description'] = $result[$i]['description'];
     			$temp['is_free'] = $result[$i]['is_free'];
     			$temp['price'] = $result[$i]['price'];
+                $temp['thumb'] = $result[$i]['thumb'] == ""? base_url()."assets/thumbimages/no_img.png":base_url().'assets/thumbimages/'.$result[$i]['thumb'];
     			$items[] = $temp;
     		}
     		$data['items'] = $items;
