@@ -49,7 +49,7 @@
             </div>
         <?php } ?>
         
-        <form action="<?php echo base_url(); ?>loginMe" method="post">
+        <form action="<?php echo base_url(); ?>index.php/loginMe" method="post">
           <div class="form-group has-feedback">
             <input type="email" class="form-control" placeholder="Email" name="email" required />
             <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
@@ -72,7 +72,7 @@
           </div>
         </form>
 
-        <a href="<?php echo base_url() ?>forgotPassword">Forgot Password</a><br>
+        <a href="<?php echo base_url() ?>index.php/forgotPassword">Forgot Password</a><br>
         
       </div><!-- /.login-box-body -->
     </div><!-- /.login-box -->
