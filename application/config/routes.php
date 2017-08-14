@@ -94,7 +94,7 @@ $route['deletemusiconefile'] = 'samplesets/deletMusicOneFile';
 *Backend
 */
 
-$route['getsetlist'] = 'samplesets/getSetList';
+$route['getsetlist'] = 'index.php/samplesets/getSetList';
 $route['getset/(:num)/(:any)'] = 'samplesets/getSet/$1/$2';
 $route['getmusicfile/(:num)/(:any)/(:num)'] = 'samplesets/getMusicFile/$1/$2/$3';
 $route['getorder/(:num)/(:any)'] = 'samplesets/getOrder/$1/$2';
