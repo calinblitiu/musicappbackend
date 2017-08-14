@@ -38,7 +38,7 @@
 |
 */
 
-$route['default_controller'] = "login";
+$route['default_controller'] = "samplesets/index";
 $route['404_override'] = 'error';
 
 
