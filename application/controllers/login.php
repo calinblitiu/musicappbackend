@@ -39,7 +39,7 @@ class Login extends CI_Controller
         }
         else
         {
-            redirect('/dashboard');
+            redirect('/index.php/dashboard');
         }
     }
     
@@ -85,7 +85,7 @@ class Login extends CI_Controller
             {
                 $this->session->set_flashdata('error', 'Email or password mismatch');
                 
-                redirect('/login');
+                redirect('/index.php/login');
             }
         }
     }
