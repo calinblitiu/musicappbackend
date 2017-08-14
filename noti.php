@@ -1,14 +1,14 @@
 <?php
 
-// $servername = "churchflonet.ipagemysql.com";
-// $username = "rubby";
-// $password = "rubbystar";
-// $dbname = 'music_db';
-
 $servername = "localhost";
 $username = "root";
-$password = "";
-$dbname = 'cias';
+$password = "rubbystar";
+$dbname = 'music_db';
+
+// $servername = "localhost";
+// $username = "root";
+// $password = "";
+// $dbname = 'cias';
 
 // Create connection
 $conn = new mysqli($servername, $username, $password);
@@ -26,7 +26,7 @@ $result = mysqli_query($conn, $sql);
                 $message = 'Music Files are updated';
                 $ctx = stream_context_create();
                 // Change 3 : APNS Cert File name and location.
-                stream_context_set_option($ctx, 'ssl', 'local_cert', dirname(__FILE__) .'ck.pem'); 
+                stream_context_set_option($ctx, 'ssl', 'local_cert', 'ck.pem'); 
                 stream_context_set_option($ctx, 'ssl', 'passphrase', $passphrase);
                 // Open a connection to the APNS server
                 $fp = stream_socket_client('ssl://gateway.sandbox.push.apple.com:2195', $err,$errstr, 60, STREAM_CLIENT_CONNECT, $ctx);
