@@ -14,7 +14,7 @@
                         <h3 class="box-title">Update Sample Details</h3>
                     </div><!-- /.box-header -->
 
-                     <form role="form" id="addSampleSet" action="<?php echo base_url() ?>updatesampleset_b" method="post" role="form" enctype='multipart/form-data'>
+                     <form role="form" id="addSampleSet" action="<?php echo base_url() ?>index.php/updatesampleset_b" method="post" role="form" enctype='multipart/form-data'>
                      <input type="hidden" name="sid" value="<?=$sample[0]['id']?>" id="sid">
                      	 <div class="box-body">
                      	  <div class="row">
