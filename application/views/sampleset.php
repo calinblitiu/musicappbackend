@@ -51,7 +51,7 @@
                               ?>
                               <div class="col-md-12">                                
                                     <div class="form-group">
-                                        <label for="thumb"></label>
+                                        <label for="thumb">Collection Image</label>
                                         <input type="file" class="" id="thumb" name="thumbimg" style="display: inline;"  accept="image/*">
                                         <img src="<?=$thumimage_url?>" id="thubpreview" style="width: 100px;">
                                     </div>
