@@ -40,7 +40,7 @@
             </div>
         <?php } ?>
         
-        <form action="<?php echo base_url(); ?>createPasswordUser" method="post">
+        <form action="<?php echo base_url(); ?>index.php/createPasswordUser" method="post">
           <div class="form-group has-feedback">
             <input type="email" class="form-control" placeholder="Email" name="email" value="<?php echo $email; ?>" readonly required />
             <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
