@@ -78,14 +78,14 @@ class Login extends CI_Controller
                                     
                     $this->session->set_userdata($sessionArray);
                     
-                    redirect('/dashboard');
+                    redirect('index.php//dashboard');
                 }
             }
             else
             {
                 $this->session->set_flashdata('error', 'Email or password mismatch');
                 
-                redirect('/index.php/login');
+                redirect('index.php/login');
             }
         }
     }
@@ -162,7 +162,7 @@ class Login extends CI_Controller
                 $status = 'invalid';
                 setFlashData($status, "This email is not registered with us.");
             }
-            redirect('/forgotPassword');
+            redirect('index.php//forgotPassword');
         }
     }
 
@@ -184,7 +184,7 @@ class Login extends CI_Controller
         }
         else
         {
-            redirect('/login');
+            redirect('index.php//login');
         }
     }
     
@@ -228,7 +228,7 @@ class Login extends CI_Controller
             
             setFlashData($status, $message);
 
-            redirect("/login");
+            redirect("index.php//login");
         }
     }
 
