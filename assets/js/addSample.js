@@ -32,7 +32,7 @@ $(document).ready(function(){
 		};
 
 		$.ajax({
-			url : baseURL+"update_order",
+			url : baseURL+"index.php/update_order",
 			type: 'POST',
 			data: post_data,
 			dataType: 'json',
@@ -56,7 +56,7 @@ $(document).ready(function(){
 		};
 
 		$.ajax({
-			url : baseURL+"update_order",
+			url : baseURL+"index.php/update_order",
 			type: 'POST',
 			data: post_data,
 			dataType: 'json',
