@@ -20,10 +20,13 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 } 
 
+$name = $_POST['name'];
+$msg = $_POST['msg'];
+
 $sql = "SELECT * FROM devicetoken";
 $result = mysqli_query($conn, $sql);
                 $passphrase = 'song'; 
-                $message = 'Music Files are updated';
+                $message = $msg;
                 $ctx = stream_context_create();
                 // Change 3 : APNS Cert File name and location.
                 stream_context_set_option($ctx, 'ssl', 'local_cert', 'ck.pem'); 

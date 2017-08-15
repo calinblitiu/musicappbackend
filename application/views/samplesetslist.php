@@ -62,6 +62,7 @@
                         <a class="btn btn-sm btn-success" href="<?=base_url()?>index.php/editsampleset/<?=$sample['id']?>" alt="edit sample"><i class="fa fa-pencil"></i></a>
                         <a class="btn btn-sm btn-info" href="<?=base_url()?>index.php/editsamplesets/<?=$sample['id']?>" alt="view sample set"><i class="fa fa-table"></i></a>
                         <span class="btn btn-sm btn-danger remove-sample-btn" data-sample-id="<?=$sample['id']?>" alt="delete sample"><i class="fa fa-trash"></i></a>
+                        <span class="btn btn-sm btn-warnning noti-sample-btn" data-sample-id="<?=$sample['name']?>" alt="notification"><i class="fa fa-bell"></i></a>
                       </th>
                     </tr>
                       <?php
