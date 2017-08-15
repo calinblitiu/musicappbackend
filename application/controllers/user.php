@@ -147,7 +147,7 @@ class User extends BaseController
                     $this->session->set_flashdata('error', 'User creation failed');
                 }
                 
-                redirect('addNew');
+                redirect('index.php/addNew');
             }
         }
     }
@@ -167,7 +167,7 @@ class User extends BaseController
         {
             if($userId == null)
             {
-                redirect('userListing');
+                redirect('index.php/userListing');
             }
             
             $data['roles'] = $this->user_model->getUserRoles();
@@ -239,7 +239,7 @@ class User extends BaseController
                     $this->session->set_flashdata('error', 'User updation failed');
                 }
                 
-                redirect('userListing');
+                redirect('index.php/userListing');
             }
         }
     }
@@ -303,7 +303,7 @@ class User extends BaseController
             if(empty($resultPas))
             {
                 $this->session->set_flashdata('nomatch', 'Your old password not correct');
-                redirect('loadChangePass');
+                redirect('index.php/loadChangePass');
             }
             else
             {
@@ -315,7 +315,7 @@ class User extends BaseController
                 if($result > 0) { $this->session->set_flashdata('success', 'Password updation successful'); }
                 else { $this->session->set_flashdata('error', 'Password updation failed'); }
                 
-                redirect('loadChangePass');
+                redirect('index.php/loadChangePass');
             }
         }
     }
