@@ -123,7 +123,7 @@
 
 <div id="editmodal" class="modal fade" role="dialog">
   <div class="modal-dialog">
-    <form action="<?=base_url()?>editmusicfile" method="post" enctype='multipart/form-data' class="form-inline" id='music-upload-form'>
+    <form action="<?=base_url()?>index.php/editmusicfile" method="post" enctype='multipart/form-data' class="form-inline" id='music-upload-form'>
         <!-- Modal content-->
         <div class="modal-content">
           <div class="modal-header">
@@ -185,7 +185,7 @@
 
 <div id="deletemodal" class="modal fade" role="dialog">
   <div class="modal-dialog">
-    <form action="<?=base_url()?>deletemusicfile" method="post" enctype='multipart/form-data'>
+    <form action="<?=base_url()?>index.php/deletemusicfile" method="post" enctype='multipart/form-data'>
         <!-- Modal content-->
         <div class="modal-content">
           <div class="modal-header">
