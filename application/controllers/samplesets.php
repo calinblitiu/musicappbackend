@@ -118,7 +118,7 @@ class SampleSets extends BaseController
 		// } else {
 		//    // echo "Possible file upload attack!\n";
 		// }
-		//redirect('index.php/editsamplesets/'.$sample_no);
+		redirect('index.php/editsamplesets/'.$sample_no);
 
     }
 
