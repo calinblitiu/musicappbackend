@@ -34,7 +34,7 @@ class BaseController extends CI_Controller {
 		$isLoggedIn = $this->session->userdata ( 'isLoggedIn' );
 		
 		if (! isset ( $isLoggedIn ) || $isLoggedIn != TRUE) {
-			redirect ( 'login' );
+			redirect ( 'index.php/login' );
 		} else {
 			$this->role = $this->session->userdata ( 'role' );
 			$this->vendorId = $this->session->userdata ( 'userId' );
@@ -86,7 +86,7 @@ class BaseController extends CI_Controller {
 	function logout() {
 		$this->session->sess_destroy ();
 		
-		redirect ( 'login' );
+		redirect ( 'index.php/login' );
 	}
 
 	/**
