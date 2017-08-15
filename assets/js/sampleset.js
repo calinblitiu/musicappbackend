@@ -10,7 +10,7 @@ $(document).ready(function(){
 		var noti_name = $(this).data('sample-name');
 		var noti_data = {
 			name : noti_name,
-			msg : noti_name+" is updated.";
+			msg : noti_name+" is updated."
 		};
 		$.ajax({
 			url : baseURL+"noti.php",
