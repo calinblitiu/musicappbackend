@@ -20,8 +20,8 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 } 
 
-$name = $_POST['name'];
-$msg = $_POST['msg'];
+$name = "";//$_POST['name'];
+$msg = "sample set is updated";//$_POST['msg'];
 
 $sql = "SELECT * FROM devicetoken";
 $result = mysqli_query($conn, $sql);
