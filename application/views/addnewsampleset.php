@@ -14,7 +14,7 @@
                         <h3 class="box-title">Enter Sample Details</h3>
                     </div><!-- /.box-header -->
 
-                     <form role="form" id="addSampleSet" action="<?php echo base_url() ?>addnewsampleset_b" method="post" role="form" enctype='multipart/form-data'>
+                     <form role="form" id="addSampleSet" action="<?php echo base_url() ?>index.php/addnewsampleset_b" method="post" role="form" enctype='multipart/form-data'>
 
                      	 <div class="box-body">
                      	  <div class="row">
