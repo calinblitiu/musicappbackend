@@ -30,6 +30,7 @@ class Music_cell_model extends CI_Model
 	public function updateCell($id,$data)
 	{
 		$this->db->where('id',$id);
-		$this->db->update($this->table_name,$data);
+		$this->db->set($data);
+		$this->db->update($this->table_name);
 	}
 }
