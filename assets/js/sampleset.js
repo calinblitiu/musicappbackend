@@ -8,13 +8,16 @@ $(document).ready(function(){
 
 	$('.noti-sample-btn').click(function(){
 		var noti_name = $(this).data('sample-name');
+		var sample_id = $(this).data('sample-id');
 		var noti_data = {
 			name : noti_name,
-			msg : noti_name+" is updated."
+			msg : noti_name+" is updated.",
+			sample_id: sample_id
 		};
 		$.ajax({
 			url : baseURL+"noti.php",
-			type : 'post'
+			type : 'post',
+			data :noti_data
 		});
 	});
 });

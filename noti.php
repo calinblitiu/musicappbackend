@@ -20,8 +20,9 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 } 
 
-$name = "";//$_POST['name'];
-$msg = "sample set is updated";//$_POST['msg'];
+$name = $_POST['name'];
+$msg = $_POST['msg'];
+$sample_id = $_POST['sample_id'];
 
 $sql = "SELECT * FROM devicetoken";
 $result = mysqli_query($conn, $sql);
@@ -39,7 +40,8 @@ $result = mysqli_query($conn, $sql);
                 // Create the payload body
                 $body['aps'] = array(
                     'alert' => $message,
-                    'sound' => 'default'
+                    'sound' => 'default',
+                    'id'    => $sample_id
                     );
                 // Encode the payload as JSON
                 $payload = json_encode($body);
