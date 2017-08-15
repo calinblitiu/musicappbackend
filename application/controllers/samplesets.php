@@ -118,7 +118,7 @@ class SampleSets extends BaseController
 		// } else {
 		//    // echo "Possible file upload attack!\n";
 		// }
-		redirect('editsamplesets/'.$sample_no);
+		redirect('index.php/editsamplesets/'.$sample_no);
 
     }
 
@@ -129,7 +129,7 @@ class SampleSets extends BaseController
         $field = $this->input->post('field-name');
         $sample_no = $this->input->post('sample-no');
         $this->sample_item_model->editItemField($item_no,$field,"");
-        redirect('editsamplesets/'.$sample_no);
+        redirect('index.php/editsamplesets/'.$sample_no);
     }
 
     public function deletMusicOneFile()
@@ -153,7 +153,7 @@ class SampleSets extends BaseController
     	$this->isLoggedIn();  
     	$sample_no = $this->input->post('sample-no');
     	$this->sample_model->deleteSample($sample_no);
-    	redirect('sample-sets-list');
+    	redirect('index.php/sample-sets-list');
     }
 
 
@@ -220,7 +220,7 @@ class SampleSets extends BaseController
 
     		//$last_item_row = $this->sample_item_model->getLastRow();
 
-    		redirect('editsamplesets/'.$last_row[0]['id']);
+    		redirect('index.php/editsamplesets/'.$last_row[0]['id']);
     	}
     }
 
@@ -254,7 +254,7 @@ class SampleSets extends BaseController
 
     	$this->sample_model->updateSample($data);
 
-    	redirect('editsampleset/'.$data['id']);
+    	redirect('index.php/editsampleset/'.$data['id']);
     }
 
 
