@@ -11,7 +11,7 @@
         <div class="row">
             <div class="col-xs-12 text-right">
                 <div class="form-group">
-                    <a class="btn btn-primary" href="<?php echo base_url(); ?>addnewsampleset"><i class="fa fa-plus"></i> Add New Sample Set</a>  
+                    <a class="btn btn-primary" href="<?php echo base_url(); ?>index.php/addnewsampleset"><i class="fa fa-plus"></i> Add New Sample Set</a>  
                 </div>
             </div>
         </div>
@@ -59,8 +59,8 @@
                       <th><?php echo $sample['is_free'] == "yes"?"-":$sample['price']?></th>
                       <th><?=$sample['is_free']?></th>
                       <th class="text-center">
-                        <a class="btn btn-sm btn-success" href="<?=base_url()?>editsampleset/<?=$sample['id']?>" alt="edit sample"><i class="fa fa-pencil"></i></a>
-                        <a class="btn btn-sm btn-info" href="<?=base_url()?>editsamplesets/<?=$sample['id']?>" alt="view sample set"><i class="fa fa-table"></i></a>
+                        <a class="btn btn-sm btn-success" href="<?=base_url()?>index.php/editsampleset/<?=$sample['id']?>" alt="edit sample"><i class="fa fa-pencil"></i></a>
+                        <a class="btn btn-sm btn-info" href="<?=base_url()?>index.php/editsamplesets/<?=$sample['id']?>" alt="view sample set"><i class="fa fa-table"></i></a>
                         <span class="btn btn-sm btn-danger remove-sample-btn" data-sample-id="<?=$sample['id']?>" alt="delete sample"><i class="fa fa-trash"></i></a>
                       </th>
                     </tr>
