@@ -26,7 +26,7 @@ $(document).ready(function(){
 		else{
 				var music_url = listen_btn.data('music-url');
 				$.ajax({
-					url : baseURL+'getmusicfiles/'+music_url,
+					url : baseURL+'index.php/getmusicfiles/'+music_url,
 					//data : {cell_id: music_url},
 					type : 'GET',
 					dataType : 'JSON',
@@ -78,7 +78,7 @@ $(document).ready(function(){
 		var listen_btn = me.siblings('.listen-music-btn');
 		music_url =listen_btn.data('music-url');
 		$.ajax({
-			url : baseURL+'getmusicfiles/'+music_url,
+			url : baseURL+'index.php/getmusicfiles/'+music_url,
 			//data : {cell_id: music_url},
 			type : 'GET',
 			dataType : 'JSON',
@@ -116,7 +116,7 @@ $(document).ready(function(){
 		// });
 		$('.listen-modal-body').html('<img src="'+baseURL+'assets/images/loading.gif" style="width: 100%">');
 		$.ajax({
-			url : baseURL+'getmusicfiles/'+music_url,
+			url : baseURL+'index.php/getmusicfiles/'+music_url,
 			//data : {cell_id: music_url},
 			type : 'GET',
 			dataType : 'JSON',
@@ -185,7 +185,7 @@ $(document).ready(function(){
 		};
 
 		$.ajax({
-			url: baseURL+"deletemusiconefile",
+			url: baseURL+"index.php/deletemusiconefile",
 			type:'post',
 			data:post_data,
 			dataType: 'json',
