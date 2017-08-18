@@ -23,7 +23,7 @@
                 <div class="box-header">
                     <h3 class="box-title">Simple Sets List</h3>
                     <div class="box-tools">
-                        <form action="<?php echo base_url() ?>searchsample" method="POST" id="searchList">
+                        <form action="<?php echo base_url() ?>index.php/searchsample" method="POST" id="searchList">
                             <div class="input-group">
                               <input type="text" name="searchText" value="<?=$search?>" class="form-control input-sm pull-right" style="width: 150px;" placeholder="Search"/>
                               <div class="input-group-btn">
