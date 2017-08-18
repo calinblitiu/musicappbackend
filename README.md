@@ -111,12 +111,12 @@ success = 1  : error
         error
         -sample is empty
         {
-            "success":0,
+            "success":1,
             "message":"There is no any sample"
         }
         -Item is empty
         {
-            "success":0,
+            "success":1,
             "message":"This item is empty!"
         }
 
