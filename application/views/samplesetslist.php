@@ -79,7 +79,7 @@
 
 <div id="deletemodal" class="modal fade" role="dialog">
   <div class="modal-dialog">
-    <form action="<?=base_url()?>deletesampleset" method="post">
+    <form action="<?=base_url()?>index.php/deletesampleset" method="post">
         <!-- Modal content-->
         <div class="modal-content">
           <div class="modal-header">
