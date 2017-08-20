@@ -59,7 +59,7 @@ class SampleSets extends BaseController
     	$this->isLoggedIn();  
     	$sample = $this->sample_model->getSample($sample_id);
 		
-		for ($i=1; $i <= 18; $i++) { 
+		for ($i=1; $i <= 20; $i++) { 
 			$sample[0]['key_item_'.$i] = $this->sample_item_model->getSampleItem($sample[0]['key_'.$i]);
 		}
 
@@ -204,7 +204,7 @@ class SampleSets extends BaseController
     	if ($result) {
     		$last_row = $this->sample_model->getLastRow();
 
-    		for ($i=1; $i <= 18; $i++)
+    		for ($i=1; $i <= 20; $i++)
     		{ 
     			$this->sample_item_model->addEmptyItem();
     			$last_item_row = $this->sample_item_model->getLastRow();
@@ -303,7 +303,7 @@ class SampleSets extends BaseController
 			$data['is_free'] = $sample[0]['is_free'];
 			$data['key'] = $key;
 			$items = array();
-			for ($i=1; $i <= 18; $i++) { 
+			for ($i=1; $i <= 20; $i++) { 
 				$temp = $this->sample_item_model->getSampleItem($sample[0]['key_'.$i]);
 				$items['key_'.$i] = $temp[0][$key];
 				if($items['key_'.$i] != null){
