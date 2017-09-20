@@ -22,7 +22,8 @@ success = 1  : error
             "is_free":"no",
             "price":"2",
             "thumb":"http:\/\/localhost\/assets\/thumbimages\/33bdc872b0baea295f1eab09183fd946.jpg",
-            "bpm" : "0"
+            "bpm" : "0",
+            "sync4" : "1"
         },
         {
             "id":"16",
@@ -31,7 +32,8 @@ success = 1  : error
             "is_free":"yes",
             "price":"12",
             "thumb":"http:\/\/localhost\/assets\/thumbimages\/no_img.png",
-             "bpm" : "0"
+            "bpm" : "0",
+            "sync4" : "1"
         }
         ]
     } 
