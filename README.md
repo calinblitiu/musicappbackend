@@ -248,7 +248,7 @@ success = 1  : error
 
 ### getsync4($id)
     
-    url     : http://churchflo.net/getsync4list
+    url     : http://churchflo.net/getsync4list/$id
 
     result  : 
             {
@@ -296,6 +296,48 @@ success = 1  : error
                         "bpm":"0"
                     }
                 ]}
+            }
+
+    error
+    {
+        "success":1,
+        "message":"There is no any sample"
+    }
+
+### getsync8($id)
+    
+    url     : http://churchflo.net/getsync8/$id
+
+    result  : 
+               {
+                "success":0,
+                "id":"6",
+                "name":"test8 u",
+                "description":"test8",
+                "is_free":"yes",
+                "price":"0",
+                "thumb":"http:\/\/localhost\/assets\/thumbimages\/218dcabb3e892066842f968e16649e34.jpg",
+                "bpm":"0",
+                "items":
+                {
+                    "cell_1":{
+                        "id":"2","name":"No Title",
+                        "drum":"http:\/\/localhost\/assets\/sync8-musicfiles\/sync8_2_bass.mp3",
+                        "bass":"http:\/\/localhost\/assets\/sync8-musicfiles\/sync8_2_piano.mp3",
+                        "piano":"",
+                        "rhodes":"",
+                        "organ":"",
+                        "synth":"",
+                        "guitar":""
+                    },
+                    "cell_2":"",
+                    "cell_3":"",
+                    "cell_4":"",
+                    "cell_5":"",
+                    "cell_6":"",
+                    "cell_7":"",
+                    "cell_8":""
+                }
             }
 
     error

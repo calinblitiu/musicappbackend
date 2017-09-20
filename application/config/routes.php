@@ -128,3 +128,4 @@ $route['getsync4/(:num)'] = 'sync4/getSync4Item/$1';
 
 //sync8
 $route['getsync8list'] = 'sync8/getSync8List';
+$route['getsync8/(:num)'] = 'sync8/getSync8/$1';

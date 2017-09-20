@@ -209,6 +209,61 @@ class Sync8 extends BaseController
         }
     }
 
+    public function getSync8($id)
+    {
+        $sync = $this->sync8_list_model->getSync8($id);
+
+        if(count($sync)>0)
+        {
+            $data['success'] = 0;
+            $data['id'] = $sync[0]['id'];
+            $data['name'] = $sync[0]['name'];
+            $data['description'] = $sync[0]['description'];
+            $data['is_free'] = $sync[0]['is_free'];
+            $data['price'] = $sync[0]['price'];
+            $data['thumb'] = $sync[0]['thumb'] == ""? base_url()."assets/thumbimages/no_img.png":base_url().'assets/thumbimages/'.$sync[0]['thumb'];
+            $data['bpm'] = $sync[0]['bpm'];
+
+            $items = array();
+            for($i = 1; $i <=8; $i++ )
+            {
+                if($sync[0]['cell_'.$i] == "" || $sync[0]['cell_'.$i] == null)
+                {
+                    $items['cell_'.$i] = "";
+                }
+                else
+                {
+                    $temp_item = $this->sync8_item_model->getCell($sync[0]['cell_'.$i]);
+                    if(count($temp_item) == 0 )
+                    {
+                         $items['cell_'.$i] = "";
+                    }
+                    else
+                    {
+                        $temp['id'] = $temp_item[0]['id'];
+                        $temp['name'] = $temp_item[0]['name'];
+                        for($j = 1; $j <= 7; $j++)
+                        {
+                            $temp[$this->player_kinds_array[$j-1]] = $temp_item[0]['player_'.$j] == ""? "":base_url().'assets/sync8-musicfiles/'.$temp_item[0]['player_'.$j];
+                        }
+
+                         $items['cell_'.$i] = $temp;
+                    }
+                }
+            }
+
+            $data['items'] = $items;
+
+            echo json_encode($data);
+            exit();
+        }
+
+        $data['success'] = 1;
+        $data['message'] = 'There is no any sample';
+        echo json_encode($data);
+        exit();
+    }
+
 }
 
 ?>
