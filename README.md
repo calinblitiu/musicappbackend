@@ -17,8 +17,7 @@ success = 1  : error
         {
             "id":"14",
             "name":"test",
-            "description":
-            "test1 sample1",
+            "description":"test1 sample1",
             "is_free":"no",
             "price":"2",
             "thumb":"http:\/\/localhost\/assets\/thumbimages\/33bdc872b0baea295f1eab09183fd946.jpg",
@@ -37,7 +36,7 @@ success = 1  : error
             "sync4" : "1",
             "set_type" : "2"
         }
-        ]
+    ]
     } 
 
     error
@@ -245,6 +244,31 @@ success = 1  : error
         "success":1,
         "message":"There is no any sample"
     }
+
+
+### getsync4($id)
+    
+    url     : http://churchflo.net/getsync4list
+
+    result  : 
+            {
+                "success":0,
+                "description":"test sync4",
+                "is_free":"no",
+                "price":"6",
+                "thumb":"http:\/\/localhost\/assets\/thumbimages\/d19d945df73b9b219fb04901c1339509.png",
+                "music_1":"http:\/\/localhost\/assets\/sync4-musicfiles\/sync4_1_1.mp3",
+                "music_2":"http:\/\/localhost\/assets\/sync4-musicfiles\/sync4_1_2.mp3",
+                "music_3":"http:\/\/localhost\/assets\/sync4-musicfiles\/sync4_1_3.mp3",
+                "music_4":"http:\/\/localhost\/assets\/sync4-musicfiles\/sync4_1_4.mp3",
+                "bpm":"0"
+            }
+
+    error
+    {
+        "success":1,
+        "message":"There is no any data"
+    }  
 
 ### getsync8list()
     

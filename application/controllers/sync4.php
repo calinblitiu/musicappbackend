@@ -185,9 +185,36 @@ class Sync4 extends BaseController
             exit();
         }
         else{
-            
+
             $data['success'] = 1;
             $data['message'] = 'There is no any sample';
+            echo json_encode($data);
+            exit();
+        }
+    }
+
+    public function getSync4Item($id)
+    {
+        $result = $this->sync4_list_model->getSync4($id);
+        if(count($result)>0)
+        {
+            $data['success'] = 0;
+            $data['description'] = $result[0]['description'];
+            $data['is_free'] = $result[0]['is_free'];
+            $data['price'] = $result[0]['price'];
+            $data['thumb'] = $result[0]['thumb'] == ""? base_url()."assets/thumbimages/no_img.png":base_url().'assets/thumbimages/'.$result[0]['thumb'];
+            $data['music_1'] = $result[0]['music_1'] == ""? "":base_url().'assets/sync4-musicfiles/'.$result[0]['music_1'];
+            $data['music_2'] = $result[0]['music_2'] == ""? "":base_url().'assets/sync4-musicfiles/'.$result[0]['music_2'];
+            $data['music_3'] = $result[0]['music_3'] == ""? "":base_url().'assets/sync4-musicfiles/'.$result[0]['music_3'];
+            $data['music_4'] = $result[0]['music_4'] == ""? "":base_url().'assets/sync4-musicfiles/'.$result[0]['music_4'];
+            $data['bpm'] = $result[0]['bpm'];
+
+            echo json_encode($data);
+            exit();
+        }
+        else{
+            $data['success'] = 1;
+            $data['message'] = 'There is no any data';
             echo json_encode($data);
             exit();
         }
