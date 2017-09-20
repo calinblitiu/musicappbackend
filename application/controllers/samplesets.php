@@ -27,6 +27,8 @@ class SampleSets extends BaseController
         $this->load->model('music_cell_model');
         $this->load->model('devicetoken_model');
         $this->load->model('paidstatus_model');
+        $this->load->model('sync8_list_model');
+        $this->load->model('sync8_item_model');
          
     }
 
@@ -263,12 +265,13 @@ class SampleSets extends BaseController
     	$result = $this->sample_model->getAllSample();
     	
     	$data = array();
+        $items = array();
     	if(count($result)>0)
     	{
     		$data['success'] = 0;
-    		$data['count']  =	count($result);
+    		
     		//$data['items'] = $result;
-    		$items = array();
+    		
     		for ($i=0; $i < count($result) ; $i++) { 
     			$temp['id'] = $result[$i]['id'];
     			$temp['name'] = $result[$i]['name'];
@@ -278,18 +281,47 @@ class SampleSets extends BaseController
                 $temp['thumb'] = $result[$i]['thumb'] == ""? base_url()."assets/thumbimages/no_img.png":base_url().'assets/thumbimages/'.$result[$i]['thumb'];
                 $temp['bpm'] = $result[$i]['bpm'];
                 $temp['sync4'] = $result[$i]['sync4'];
+                $temp['set_type'] = "1";
     			$items[] = $temp;
     		}
-    		$data['items'] = $items;
-    		echo json_encode($data);
-    		exit();
+
     	}
-    	else{
-    		$data['success'] = 1;
-    		$data['message'] = 'There is no any sample';
-    		echo json_encode($data);
-    		exit();
-    	}
+    
+
+        $result = $this->sync8_list_model->getAllSync8List();
+        
+        if(count($result)>0)
+        {
+            $data['success'] = 0;
+           
+            //$data['items'] = $result;
+            for ($i=0; $i < count($result) ; $i++) { 
+                $temp['id'] = $result[$i]['id'];
+                $temp['name'] = $result[$i]['name'];
+                $temp['description'] = $result[$i]['description'];
+                $temp['is_free'] = $result[$i]['is_free'];
+                $temp['price'] = $result[$i]['price'];
+                $temp['thumb'] = $result[$i]['thumb'] == ""? base_url()."assets/thumbimages/no_img.png":base_url().'assets/thumbimages/'.$result[$i]['thumb'];
+                $temp['bpm'] = $result[$i]['bpm'];
+                $temp['sync4'] = "0";
+                $temp['set_type'] = "2";
+                $items[] = $temp;
+            }
+           
+        }
+
+        if(count($items)>0)
+        {
+            $data['items'] = $items;
+            $data['count'] = count($items);
+            echo json_encode($data);
+            exit();
+        }
+
+        $data['success'] = 1;
+        $data['message'] = 'There is no any sample';
+        echo json_encode($data);
+        exit();
     }
 
     public function getSet($sample_id,$key){

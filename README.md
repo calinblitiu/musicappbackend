@@ -12,7 +12,7 @@ success = 1  : error
     success
     {
         "success":0,
-        "count":4,"
+        "count":2,"
         items":[
         {
             "id":"14",
@@ -23,7 +23,8 @@ success = 1  : error
             "price":"2",
             "thumb":"http:\/\/localhost\/assets\/thumbimages\/33bdc872b0baea295f1eab09183fd946.jpg",
             "bpm" : "0",
-            "sync4" : "1"
+            "sync4" : "1",
+            "set_type" : "1"
         },
         {
             "id":"16",
@@ -33,7 +34,8 @@ success = 1  : error
             "price":"12",
             "thumb":"http:\/\/localhost\/assets\/thumbimages\/no_img.png",
             "bpm" : "0",
-            "sync4" : "1"
+            "sync4" : "1",
+            "set_type" : "2"
         }
         ]
     } 
