@@ -40,7 +40,7 @@ success = 1  : error
 
     error
     {
-        "success":0,
+        "success":1,
         "message":"There is no any sample"
     }
 
@@ -91,7 +91,7 @@ success = 1  : error
 
     error
     {
-        "success":0,
+        "success":1,
         "message":"There is no any sample"
     }
 
@@ -237,3 +237,9 @@ success = 1  : error
                     }
                 ]}
             }
+
+    error
+    {
+        "success":1,
+        "message":"There is no any sample"
+    }

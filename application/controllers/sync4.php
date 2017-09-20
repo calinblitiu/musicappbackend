@@ -185,6 +185,7 @@ class Sync4 extends BaseController
             exit();
         }
         else{
+            
             $data['success'] = 1;
             $data['message'] = 'There is no any sample';
             echo json_encode($data);
