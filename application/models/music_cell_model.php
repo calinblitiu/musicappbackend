@@ -7,6 +7,7 @@ class Music_cell_model extends CI_Model
 	public function addEmptyCell()
 	{
 		$this->db->set('player_1',NULL);
+		//$this->db->set('name','No Title');
 		$this->db->insert($this->table_name);
 	}
 	

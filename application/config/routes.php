@@ -90,6 +90,23 @@ $route['updatesampleset_b'] = 'samplesets/updateSampleSet_B';
 $route['update_order'] = 'samplesets/updateOrder';
 $route['deletemusiconefile'] = 'samplesets/deletMusicOneFile';
 
+
+//sync4
+$route['sync4-lists'] = 'sync4/index';
+$route['addnewsync4'] = 'sync4/addNewSync4';
+$route['addnewsync4_b'] = 'sync4/addNewSync4_B';
+$route['editsync4/(:num)'] = 'sync4/editSync4/$1';
+$route['updatesync4_b'] = 'sync4/updateSync4_B';
+$route['sync4-upload-music'] = 'sync4/musicUpload';
+
+//sync8
+$route['sync8-lists'] = 'sync8/index';
+$route['addnewsync8'] = 'sync8/addNewSync8';
+$route['addnewsync8_b'] = 'sync8/addNewSync8_B';
+$route['editsync8/(:num)'] = 'sync8/editSync8s/$1';
+$route['editsync8-id/(:num)'] = 'sync8/editSync8/$1';
+$route['sync8-upload-music'] = 'sync8/musicUpload';
+$route['updatesync8_b'] = 'sync8/updateSync8_B';
 /**
 *Backend
 */
@@ -104,3 +121,6 @@ $route['registerdevicetoken/(:any)'] = 'samplesets/registerDeviceToken/$1';
 
 $route['updatepaidstatus/(:any)/(:num)/(:any)/(:any)'] = 'samplesets/updatePaidState/$1/$2/$3/$4';
 $route['getpaidstatus/(:any)/(:num)/(:any)'] = 'samplesets/getPaidState/$1/$2/$3';
+
+$route['getsync4list'] = 'sync4/getSync4List';
+$route['getsync4/(:num)'] = 'sync4/getSync4Item/$1';

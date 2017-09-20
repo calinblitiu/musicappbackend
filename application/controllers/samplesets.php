@@ -276,6 +276,7 @@ class SampleSets extends BaseController
     			$temp['is_free'] = $result[$i]['is_free'];
     			$temp['price'] = $result[$i]['price'];
                 $temp['thumb'] = $result[$i]['thumb'] == ""? base_url()."assets/thumbimages/no_img.png":base_url().'assets/thumbimages/'.$result[$i]['thumb'];
+                $temp['bpm'] = $result[$i]['bpm'];
     			$items[] = $temp;
     		}
     		$data['items'] = $items;

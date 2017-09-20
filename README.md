@@ -21,7 +21,8 @@ success = 1  : error
             "test1 sample1",
             "is_free":"no",
             "price":"2",
-            "thumb":"http:\/\/localhost\/assets\/thumbimages\/33bdc872b0baea295f1eab09183fd946.jpg"
+            "thumb":"http:\/\/localhost\/assets\/thumbimages\/33bdc872b0baea295f1eab09183fd946.jpg",
+            "bpm" : "0"
         },
         {
             "id":"16",
@@ -29,7 +30,8 @@ success = 1  : error
             "description":"this is test sample",
             "is_free":"yes",
             "price":"12",
-            "thumb":"http:\/\/localhost\/assets\/thumbimages\/no_img.png"
+            "thumb":"http:\/\/localhost\/assets\/thumbimages\/no_img.png",
+             "bpm" : "0"
         }
         ]
     } 
@@ -197,3 +199,39 @@ success = 1  : error
                     "success":0,
                     "status":"paid"
                 }
+
+### getsync4list()
+    
+    url     : http://churchflo.net/getsync4list
+
+    result  : 
+                {
+                    "success":0,
+                    "count":2,
+                    "items":[{
+                        "id":"1",
+                        "name":"test sync4 update",
+                        "description":"test sync4",
+                        "is_free":"no",
+                        "price":"6",
+                        "thumb":"http:\/\/localhost\/assets\/thumbimages\/d19d945df73b9b219fb04901c1339509.png",
+                        "music_1":"http:\/\/localhost\/assets\/sync4-musicfiles\/sync4_1_1.mp3",
+                        "music_2":"http:\/\/localhost\/assets\/sync4-musicfiles\/sync4_1_2.mp3",
+                        "music_3":"http:\/\/localhost\/assets\/sync4-musicfiles\/sync4_1_3.mp3",
+                        "music_4":"http:\/\/localhost\/assets\/sync4-musicfiles\/sync4_1_4.mp3",
+                        "bpm":"0"
+                    },{
+                        "id":"2",
+                        "name":"test aa",
+                        "description":"testaaaa",
+                        "is_free":"no",
+                        "price":"0",
+                        "thumb":"http:\/\/localhost\/assets\/thumbimages\/25af8e8e15ad36a14ef6f58331d38133.jpg",
+                        "music_1":"",
+                        "music_2":"http:\/\/localhost\/assets\/sync4-musicfiles\/sync4_2_2.mp3",
+                        "music_3":"http:\/\/localhost\/assets\/sync4-musicfiles\/sync4_2_3.mp3",
+                        "music_4":"http:\/\/localhost\/assets\/sync4-musicfiles\/2427d382a66de0555b86ae4c86f4afc3.mp3","
+                        bpm":"0"
+                    }
+                ]}
+            }

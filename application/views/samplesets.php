@@ -42,6 +42,7 @@
                     </tr>
                     <?php for($i = 1; $i<=20; $i++)
                     {
+                      //var_dump($sample['key_item_'.$i]);
                       ?>
                       <tr data-item-id="<?=$sample['key_item_'.$i][0]['id']?>" data-key-no="<?=$i?>">
                       <th><?=$i?></th>

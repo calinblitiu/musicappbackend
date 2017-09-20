@@ -2,7 +2,7 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-        <i class="fa fa-tachometer" aria-hidden="true"></i> Sample Sets
+        <i class="fa fa-tachometer" aria-hidden="true"></i> Triggerz Muti List
         <small>Add, Edit, Delete</small>
       </h1>
     </section>
@@ -10,7 +10,11 @@
     <section class="content">
         <div class="row">
             <div class="col-xs-12 text-right">
+
                 <div class="form-group">
+                    <a href="<?=base_url()?>index.php/sample-sets-list" class="tab-kind-triggers tab-kind-triggers-active">Triggerz Multi</a>
+                    <a href="<?=base_url()?>index.php/sync4-lists" class="tab-kind-triggers">Triggerz Sync4</a>
+                    <a href="<?=base_url()?>index.php/sync8-lists" class="tab-kind-triggers">Triggerz Sync8</a>
                     <a class="btn btn-primary" href="<?php echo base_url(); ?>index.php/addnewsampleset"><i class="fa fa-plus"></i> Add New Sample Set</a>  
                 </div>
             </div>
@@ -21,7 +25,7 @@
             <div class="col-xs-12">
               <div class="box">
                 <div class="box-header">
-                    <h3 class="box-title">Simple Sets List</h3>
+                    <h3 class="box-title">Triggerz Muti List</h3>
                     <div class="box-tools">
                         <form action="<?php echo base_url() ?>index.php/searchsample" method="POST" id="searchList">
                             <div class="input-group">
