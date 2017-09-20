@@ -175,6 +175,40 @@ class Sync8 extends BaseController
         redirect('index.php/editsync8-id/'.$data['id']);
     }
 
+    public function getSync8List()
+    {
+        $result = $this->sync8_list_model->getAllSync8List();
+        
+        $data = array();
+        if(count($result)>0)
+        {
+            $data['success'] = 0;
+            $data['count']  =   count($result);
+            //$data['items'] = $result;
+            $items = array();
+            for ($i=0; $i < count($result) ; $i++) { 
+                $temp['id'] = $result[$i]['id'];
+                $temp['name'] = $result[$i]['name'];
+                $temp['description'] = $result[$i]['description'];
+                $temp['is_free'] = $result[$i]['is_free'];
+                $temp['price'] = $result[$i]['price'];
+                $temp['thumb'] = $result[$i]['thumb'] == ""? base_url()."assets/thumbimages/no_img.png":base_url().'assets/thumbimages/'.$result[$i]['thumb'];
+                $temp['bpm'] = $result[$i]['bpm'];
+                $items[] = $temp;
+            }
+            $data['items'] = $items;
+            echo json_encode($data);
+            exit();
+        }
+        else{
+            
+            $data['success'] = 1;
+            $data['message'] = 'There is no any sample';
+            echo json_encode($data);
+            exit();
+        }
+    }
+
 }
 
 ?>

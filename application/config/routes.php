@@ -122,5 +122,9 @@ $route['registerdevicetoken/(:any)'] = 'samplesets/registerDeviceToken/$1';
 $route['updatepaidstatus/(:any)/(:num)/(:any)/(:any)'] = 'samplesets/updatePaidState/$1/$2/$3/$4';
 $route['getpaidstatus/(:any)/(:num)/(:any)'] = 'samplesets/getPaidState/$1/$2/$3';
 
+//sync4
 $route['getsync4list'] = 'sync4/getSync4List';
 $route['getsync4/(:num)'] = 'sync4/getSync4Item/$1';
+
+//sync8
+$route['getsync8list'] = 'sync8/getSync8List';
