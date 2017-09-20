@@ -248,7 +248,7 @@ success = 1  : error
 
 ### getsync4($id)
     
-    url     : http://churchflo.net/getsync4list/$id
+    url     : http://churchflo.net/getsync4/$id
 
     result  : 
             {
@@ -257,7 +257,7 @@ success = 1  : error
                 "is_free":"no",
                 "price":"6",
                 "thumb":"http:\/\/localhost\/assets\/thumbimages\/d19d945df73b9b219fb04901c1339509.png",
-                "music_1":"http:\/\/localhost\/assets\/sync4-musicfiles\/sync4_1_1.mp3",
+                "music_1":"http4:\/\/localhost\/assets\/sync4-musicfiles\/sync4_1_1.mp3",
                 "music_2":"http:\/\/localhost\/assets\/sync4-musicfiles\/sync4_1_2.mp3",
                 "music_3":"http:\/\/localhost\/assets\/sync4-musicfiles\/sync4_1_3.mp3",
                 "music_4":"http:\/\/localhost\/assets\/sync4-musicfiles\/sync4_1_4.mp3",
