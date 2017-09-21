@@ -134,13 +134,13 @@ class Sync8 extends BaseController
                 $upload_file_name = $file_name;
             } else {
                // echo "Possible file upload attack!\n";
-                //redirect('index.php/editsync8/'.$sync8_id);
+                redirect('index.php/editsync8/'.$sync8_id);
             }
 
          }
 
          $this->sync8_item_model->updateMusicFile($sync8_cell_id,$sync8_music_no,$upload_file_name);
-         //redirect('index.php/editsync8/'.$sync8_id);
+         redirect('index.php/editsync8/'.$sync8_id);
     }
 
     public function updateSync8_B()
