@@ -45,4 +45,16 @@ class Sync4_list_model extends CI_Model
 		$this->db->where('id',$id);
 		$this->db->update($this->table_name,array('music_'.$music_no => $file_name));
 	}
+
+	public function deleteSync4($id)
+	{
+		$this->db->where('id',$id);
+		$this->db->delete($this->table_name);
+	}
+
+	public function deleteMusicFile($id, $no)
+	{
+		$this->db->where('id',$id);
+		$this->db->update($this->table_name,array('music_'.$no => $no));
+	}
 }

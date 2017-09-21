@@ -41,7 +41,7 @@
                       ?>
                       <tr data-item-id="<?=$sample['key_item_'.$i][0]['id']?>" data-key-no="<?=$i?>">
                       <th><?=$i?></th>
-                      <th><?=$sample['key_item_'.$i][0]['name']?></th>
+                      <th class="sync8-cell-name" style="cursor: pointer;text-decoration: underline;"><?=$sample['key_item_'.$i][0]['name']?></th>
                       <th data-key="1">
                         <span class="btn btn-sm btn-success listen-music-btn" data-music-url="<?=$sample['key_item_'.$i][0]['player_1']?>"><i class="fa fa-headphones"></i></span>
                         <span class="btn btn-sm btn-info edit-music-btn"><i class="fa fa-pencil"></i></span>
@@ -101,103 +101,55 @@
     </section>
 </div>
 
-<div id="editmodal" class="modal fade" role="dialog">
-  <div class="modal-dialog">
-    <form action="<?=base_url()?>index.php/editmusicfile" method="post" enctype='multipart/form-data' class="form-inline" id='music-upload-form'>
-        <!-- Modal content-->
-        <div class="modal-content">
-          <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal">&times;</button>
-            <h4 class="modal-title">Edit Music File</h4>
-          </div>
-          <div class="modal-body">
-            <input type="hidden" name="sample-no" value="<?=$sample['id']?>">
-            <input type="hidden" name="item-no" id='music-item-no'>
-            <input type="hidden" name="field-name" id="music-field-name">
-            <input type="hidden" name="key-no" id="music-key-no">      
-            <div class="form-group add-music-form-group">
-             <label class="add-music-label" >Drum  : </label>
-             <input type="file" name="player_1" class="form-control"  accept="audio/*">
-             <span class="uploaded-span uploaded-1 hide">Uploaded</span>
-            </div>
-            
-            <div class="form-group add-music-form-group">
-              <label class="add-music-label" >Bass  : </label>
-             <input type="file" name="player_2" class="form-control"  accept="audio/*">
-             <span class="uploaded-span uploaded-2 hide">Uploaded</span>
-            </div>
-            <div class="form-group add-music-form-group">
-              <label class="add-music-label" >Piano : </label>
-             <input type="file" name="player_3" class="form-control"  accept="audio/*">
-             <span class="uploaded-span uploaded-3 hide">Uploaded</span>
-            </div>
-            <div class="form-group add-music-form-group">
-              <label class="add-music-label" >Rhodes:</label>
-             <input type="file" name="player_4" class="form-control"  accept="audio/*">
-             <span class="uploaded-span uploaded-4 hide">Uploaded</span>
-            </div>
-            <div class="form-group add-music-form-group">
-              <label class="add-music-label" >Organ:</label>
-             <input type="file" name="player_5" class="form-control"  accept="audio/*">
-             <span class="uploaded-span uploaded-5 hide">Uploaded</span>
-            </div>
-            <div class="form-group add-music-form-group">
-              <label class="add-music-label" >Synth:</label>
-             <input type="file" name="player_6" class="form-control"  accept="audio/*">
-             <span class="uploaded-span uploaded-6 hide">Uploaded</span>
-            </div>
-            <div class="form-group add-music-form-group">
-              <label class="add-music-label" >Guitar:</label>
-             <input type="file" name="player_7" class="form-control"  accept="audio/*">
-             <span class="uploaded-span uploaded-7 hide">Uploaded</span>
-            </div>
 
-           
-          </div>
-          <div class="modal-footer">
-            <button type="submit" class="btn btn-success" >Save</button>
-            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-          </div>
-        </div>
-    </form>
-  </div>
-</div>
 
 <div id="deletemodal" class="modal fade" role="dialog">
   <div class="modal-dialog">
-    <form action="<?=base_url()?>index.php/deletemusicfile" method="post" enctype='multipart/form-data'>
+    <form action="<?=base_url()?>index.php/deletesync8musicfile" method="post">
         <!-- Modal content-->
         <div class="modal-content">
           <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal">&times;</button>
-            <h4 class="modal-title">Delete Music File</h4>
+            <h4 class="modal-title">Delete Sample</h4>
           </div>
           <div class="modal-body">
-            <input type="hidden" name="sample-no" id="del-sample-no" value="<?=$sample['id']?>">
-            <input type="hidden" name="item-no" id='del-music-item-no'>
-            <input type="hidden" name="field-name" id="del-music-field-name">     
-
-            <h3>
-              <img src="<?=base_url()?>assets/images/loading.gif" style="width: 100%" class="del-items-loading">
-              <div class="hide del-items-div">
-                <p class="del-item"><span class="del-music-title">Drum</span><span class="btn btn-sm btn-danger remove-music-one-file remove-music-one-file-1" data-player="1"><i class="fa fa-trash"></i></span></p>
-                <p class="del-item"><span class="del-music-title">Buss</span><span class="btn btn-sm btn-danger remove-music-one-file remove-music-one-file-2" data-player="2"><i class="fa fa-trash"></i></span></p>
-                <p class="del-item"><span class="del-music-title">Piano</span><span class="btn btn-sm btn-danger remove-music-one-file remove-music-one-file-3" data-player="3"><i class="fa fa-trash"></i></span></p>
-                <p class="del-item"><span class="del-music-title">Rhodes</span><span class="btn btn-sm btn-danger remove-music-one-file remove-music-one-file-4" data-player="4"><i class="fa fa-trash"></i></span></p>
-                <p class="del-item"><span class="del-music-title">Organ</span><span class="btn btn-sm btn-danger remove-music-one-file remove-music-one-file-5" data-player="5"><i class="fa fa-trash"></i></span></p>
-                <p class="del-item"><span class="del-music-title">Synth</span><span class="btn btn-sm btn-danger remove-music-one-file remove-music-one-file-6" data-player="6"><i class="fa fa-trash"></i></span></p>
-                <p class="del-item"><span class="del-music-title">Guitar</span><span class="btn btn-sm btn-danger remove-music-one-file remove-music-one-file-7" data-player="7"><i class="fa fa-trash"></i></span>  </p>
-              </div>
-            </h3>
+            <input type="hidden" name="sync8-cell-id" id="sync8-cell-del-id">
+            <input type="hidden" name="sync8-cell-no" id="sync8-cell-del-no">
+            <input type="hidden" name="sync8-id" value="<?=$sample['id']?>">
+            <h2>Confirm Delete</h2>
           </div>
           <div class="modal-footer">
-            <button type="submit" class="btn btn-danger" >Delete All</button>
+            <button type="submit" class="btn btn-danger">Delete</button>
             <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
           </div>
         </div>
     </form>
   </div>
 </div>
+
+<div id="editmodal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <form action="<?=base_url()?>index.php/editsync8name" method="post">
+        <!-- Modal content-->
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <h4 class="modal-title">Edit Sync8 Name</h4>
+          </div>
+          <div class="modal-body">
+            <input type="hidden" name="sync8-cell-id" id="sync8-cell-edit-id">
+            <input class="form-control" type="text" name="sync8-cell-name" id="sync8-cell-edit-val" required="" placeholder="Please Input Sync8 Name">
+            <input type="hidden" name="sync8-id" value="<?=$sample['id']?>">
+          </div>
+          <div class="modal-footer">
+            <button type="submit" class="btn btn-danger">Change</button>
+            <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+          </div>
+        </div>
+    </form>
+  </div>
+</div>
+
 
 <div id="listen-modal" class="modal fade" role="dialog">
   <div class="modal-dialog">
@@ -241,11 +193,28 @@ var baseURL = '<?=base_url()?>';
     }
   });
 
+  $('.listen-music-btn').click(function(){
+    var me = $(this);
+    var music_url = baseURL+"assets/sync8-musicfiles/"+me.data('music-url');
+    var append_html='';
+    append_html+='<p><audio style="width:100%;" controls> <source src="'+music_url+'" type="audio/ogg"></audio></p><br>';
+    $('.listen-modal-body').html(append_html);
+    $("#listen-modal").modal({
+        backdrop:'static',
+        keyboar:false
+      });
+  });
+
+  // $('.listen-close-btn').click(function(){
+  //   $('.listen-modal-body').html("");
+  // });
+
+  $("#listen-modal").on('hidden.bs.modal',function () {
+    $('.listen-modal-body').html("");
+  });
+
   $(".edit-music-btn").click(function(){
     $("#sync8-upload-form").closest('form').get(0).reset();
-    
-
-
     var me = $(this);
     var p_th = me.parent();
     var pp_tr = me.parent().parent();
@@ -274,7 +243,29 @@ var baseURL = '<?=base_url()?>';
     $("#sync8-upload-form").submit();
   }
 
+  $(".remove-music-btn").click(function(){
+    $("#deletemodal").modal('show');
+    var me = $(this);
+    var p_th = me.parent();
+    var pp_tr = me.parent().parent();
+    var cell_id = pp_tr.attr('data-item-id');
+    var cell_item_no = p_th.attr('data-key');
+    
+    $("#sync8-cell-del-id").val(cell_id);
+    $("#sync8-cell-del-no").val(cell_item_no);
 
+  });
+
+  $(".sync8-cell-name").click(function(){
+    var me = $(this);
+   
+    var pp_tr = me.parent();
+    var cell_id = pp_tr.data('item-id');
+    // alert(cell_id);
+    $("#sync8-cell-edit-id").val(cell_id);
+    $("#sync8-cell-edit-val").val(me.html());
+    $("#editmodal").modal('show');
+  });
 </script>
 
 <style type="text/css">

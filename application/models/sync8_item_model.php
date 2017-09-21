@@ -41,4 +41,16 @@ class Sync8_item_model extends CI_Model
 		$this->db->set('player_'.$no,$name);
 		$this->db->update($this->table_name);
 	}
+
+	public function deleteMusicFile($id, $no)
+	{
+		$this->db->where('id',$id);
+		$this->db->update($this->table_name, array('player_'.$no => ""));
+	}
+
+	public function editName($id, $name)
+	{
+		$this->db->where('id',$id);
+		$this->db->update($this->table_name, array('name' => $name));
+	}
 }

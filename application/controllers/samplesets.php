@@ -27,6 +27,7 @@ class SampleSets extends BaseController
         $this->load->model('music_cell_model');
         $this->load->model('devicetoken_model');
         $this->load->model('paidstatus_model');
+        $this->load->model('sync4_list_model');
         $this->load->model('sync8_list_model');
         $this->load->model('sync8_item_model');
          
@@ -51,8 +52,10 @@ class SampleSets extends BaseController
     public function editSampleSet($sample_id){
     	$this->isLoggedIn();  
     	$sample = $this->sample_model->getSample($sample_id);
-    	//var_dump($sample);
-		$this->global['sample'] = $sample;    	
+		$this->global['sample'] = $sample;
+        $sync4 = $this->sync4_list_model->getAllSync4List();
+        $this->global['sync4s'] = $sync4;
+
     	$this->global['pageTitle'] = 'Edit Sample Set';
         $this->loadViews("sampleset", $this->global, NULL , NULL);
     }
@@ -178,6 +181,7 @@ class SampleSets extends BaseController
     	$data['name'] = $this->input->post('sname');
     	$data['description'] = $this->input->post('sdescription');
     	$data['price']	= $this->input->post('sprice');
+        $data['bpm'] = $this->input->post('bpm');
 
     	if($this->input->post('sfree'))
     	{
@@ -231,6 +235,8 @@ class SampleSets extends BaseController
     	$data['name'] = $this->input->post('sname');
     	$data['description'] = $this->input->post('sdescription');
     	$data['price']	= $this->input->post('sprice');
+        $data['bpm'] = $this->input->post('bpm');
+        $data['sync4'] = $this->input->post('sync4');
     	if($this->input->post('sfree'))
     	{
     		$data['is_free'] = 'yes';

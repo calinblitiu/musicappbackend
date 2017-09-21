@@ -46,12 +46,19 @@
 	                                    <input type="Number" class="form-control required" id="sprice" name="sprice" value="<?=$sample[0]['price']?>" <?php echo $sample[0]['is_free']=='yes'?'disabled':'';?>>
 	                                </div>
 	                            </div>
+                              <div class="col-md-12">                                
+                                <div class="form-group">
+                                    <label for="fname">BPM</label>
+                                    <input type="Number" class="form-control" id="bpm" name="bpm" value="<?=$sample[0]['bpm']?>" min="0">
+                                </div>
+                              </div>
+                              
                               <?php 
                                $thumimage_url = $sample[0]['thumb'] == ""? base_url()."assets/thumbimages/no_img.png":base_url().'assets/thumbimages/'.$sample[0]['thumb'];
                               ?>
                               <div class="col-md-12">                                
                                     <div class="form-group">
-                                        <label for="thumb">Collection Image</label>
+                                        
                                         <input type="file" class="" id="thumb" name="thumbimg" style="display: inline;"  accept="image/*">
                                         <img src="<?=$thumimage_url?>" id="thubpreview" style="width: 100px;">
                                     </div>
@@ -109,7 +116,16 @@
                       
                       <td> 
                         <span class="btn btn-sm btn-success edit-music-file" alt="edit sample" data-music-no="<?=$i?>"><i class="fa fa-pencil"></i></span>
-                        <span class="btn btn-sm btn-danger remove-sample-btn" alt="delete sample"><i class="fa fa-trash"></i></span>
+                        <?php
+                          if($sample[0]['music_'.$i] == null || $sample[0]['music_'.$i] == "" || !file_exists(FCPATH.'assets/sync4-musicfiles/'.$sample[0]['music_'.$i]))
+                          {
+                            echo '<span class="btn btn-sm btn-danger remove-sample-btn" alt="delete sample" disabled><i class="fa fa-trash"></i></span>';   
+                          }
+                          else{
+                            echo '<span class="btn btn-sm btn-danger remove-sample-btn" alt="delete sample" data-music-no="'.$i.'"><i class="fa fa-trash"></i></span>';
+                          }
+                        ?>
+                        
                       </td>
                     </tr>
                     
@@ -130,6 +146,31 @@
     <script src="<?php echo base_url(); ?>assets/js/addSample.js" type="text/javascript"></script>
   </section>
 </div>
+
+
+<div id="deletemodal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <form action="<?=base_url()?>index.php/deletesync4musicfile" method="post">
+        <!-- Modal content-->
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <h4 class="modal-title">Delete Sync4 Music File</h4>
+          </div>
+          <div class="modal-body">
+            <input type="hidden" name="sync4-music-no" id="sample-id-hidden">
+            <input type="hidden" name="sync4-id" value="<?=$sample[0]['id']?>">
+            <h2>Confirm Delete</h2>
+          </div>
+          <div class="modal-footer">
+            <button type="submit" class="btn btn-danger">Delete</button>
+            <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+          </div>
+        </div>
+    </form>
+  </div>
+</div>
+
 
 <script type="text/javascript">
   $(".edit-music-file").click(function(){
@@ -155,4 +196,11 @@
   {
     $("#sync4-upload-form").submit();
   }
+
+  $(".remove-sample-btn").click(function(){
+    var music_no = $(this).data('music-no');
+    //alert(music_no);
+    $("#sample-id-hidden").val(music_no);
+    $("#deletemodal").modal('show');
+  });
 </script>

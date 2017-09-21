@@ -62,6 +62,7 @@ class Sync4 extends BaseController
         $data['name'] = $this->input->post('sname');
         $data['description'] = $this->input->post('sdescription');
         $data['price']  = $this->input->post('sprice');
+        $data['bpm'] = $this->input->post('bpm');
 
         if($this->input->post('sfree'))
         {
@@ -98,6 +99,7 @@ class Sync4 extends BaseController
         $data['name'] = $this->input->post('sname');
         $data['description'] = $this->input->post('sdescription');
         $data['price']  = $this->input->post('sprice');
+        $data['bpm'] = $this->input->post('bpm');
         if($this->input->post('sfree'))
         {
             $data['is_free'] = 'yes';
@@ -220,6 +222,21 @@ class Sync4 extends BaseController
         }
     }
 
-  
+    public function deleteSync4()
+    {
+        $this->isLoggedIn(); 
+        $sync4_no = $this->input->post("sync4-no");
+        $this->sync4_list_model->deleteSync4($sync4_no);
+        redirect("index.php/sync4-lists");
+    }
+
+    public function deleteMusicFile()
+    {
+        $this->isLoggedIn();
+        $sync4_no = $this->input->post("sync4-music-no");
+        $sync4_id = $this->input->post("sync4-id");
+        $this->sync4_list_model->deleteMusicFile($sync4_id,$sync4_no);
+        redirect("index.php/editsync4/".$sync4_id);
+    }
 
 }

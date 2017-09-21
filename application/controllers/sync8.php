@@ -61,6 +61,7 @@ class Sync8 extends BaseController
         $data['name'] = $this->input->post('sname');
         $data['description'] = $this->input->post('sdescription');
         $data['price']  = $this->input->post('sprice');
+        $data['bpm'] = $this->input->post('bpm');
 
         if($this->input->post('sfree'))
         {
@@ -93,7 +94,7 @@ class Sync8 extends BaseController
             $last_item_row = $this->sync8_item_model->getLastRow();
             $this->sync8_list_model->addKeyItem($last_row[0]['id'],$i,$last_item_row[0]['id']);
         }
-       // redirect('index.php/editsync8/'.$last_row[0]['id']);
+        redirect('index.php/editsync8/'.$last_row[0]['id']);
 
     }
 
@@ -147,6 +148,7 @@ class Sync8 extends BaseController
         $data['name'] = $this->input->post('sname');
         $data['description'] = $this->input->post('sdescription');
         $data['price']  = $this->input->post('sprice');
+        $data['bpm'] = $this->input->post('bpm');
         if($this->input->post('sfree'))
         {
             $data['is_free'] = 'yes';
@@ -262,6 +264,36 @@ class Sync8 extends BaseController
         $data['message'] = 'There is no any sample';
         echo json_encode($data);
         exit();
+    }
+
+    public function deleteSync8()
+    {
+        $this->isLoggedIn();
+        $sync8_id = $this->input->post('sync8-id');
+        $this->sync8_list_model->deletSync8($sync8_id);
+        redirect('index.php/sync8-lists');
+    }
+
+    public function deleteMusicFile()
+    {
+        $this->isLoggedIn();
+        $sync8_cell_id = $this->input->post('sync8-cell-id');
+        $sync8_cell_no = $this->input->post('sync8-cell-no');
+        $sync8_id = $this->input->post('sync8-id');
+        $this->sync8_item_model->deleteMusicFile($sync8_cell_id, $sync8_cell_no);
+        
+        redirect('index.php/editsync8/'.$sync8_id);
+    }
+
+    public function editName()
+    {
+        $this->isLoggedIn();
+        $sync8_cell_id = $this->input->post('sync8-cell-id');
+        $sync8_cell_name = $this->input->post('sync8-cell-name');
+        $sync8_id = $this->input->post('sync8-id');
+        $this->sync8_item_model->editName($sync8_cell_id, $sync8_cell_name);
+        
+        redirect('index.php/editsync8/'.$sync8_id);
     }
 
 }

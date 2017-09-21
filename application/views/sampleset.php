@@ -46,6 +46,32 @@
 	                                    <input type="Number" class="form-control required" id="sprice" name="sprice" value="<?=$sample[0]['price']?>" <?php echo $sample[0]['is_free']=='yes'?'disabled':'';?>>
 	                                </div>
 	                            </div>
+
+                              <div class="col-md-12">                                
+                                <div class="form-group">
+                                    <label for="fname">BPM</label>
+                                    <input type="Number" class="form-control" id="bpm" name="bpm" value="<?=$sample[0]['bpm']?>" min="0">
+                                </div>
+                              </div>
+
+                              <div class="col-md-12">                                
+                                <div class="form-group">
+                                    <label for="fname">Sync4</label>
+                                    <select class="form-control" name='sync4'>
+                                      <option value="0" <?php echo $sample[0]['sync4'] == "0"?  "selected" : ""?>>No Selected Sync4</option>
+                                      <?php
+                                        foreach ($sync4s as $sync4) 
+                                        {
+                                          $checked_str = $sample[0]['sync4'] == $sync4['id']?  "selected" : "";
+                                          $thum_url = $sync4['thumb'] == "" ? base_url()."assets/thumbimages/no_img.png" : base_url()."assets/thumbimages/". $sync4['thumb'];
+                                          echo "<option ".$checked_str." value='".$sync4['id']."'>".$sync4['name']."</option>";
+                                        }
+                                      ?>
+                                    </select>
+                                    
+                                </div>
+                              </div>
+
                               <?php 
                                $thumimage_url = $sample[0]['thumb'] == ""? base_url()."assets/thumbimages/no_img.png":base_url().'assets/thumbimages/'.$sample[0]['thumb'];
                               ?>

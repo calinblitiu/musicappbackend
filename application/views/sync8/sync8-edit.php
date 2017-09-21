@@ -46,12 +46,18 @@
 	                                    <input type="Number" class="form-control required" id="sprice" name="sprice" value="<?=$sample[0]['price']?>" <?php echo $sample[0]['is_free']=='yes'?'disabled':'';?>>
 	                                </div>
 	                            </div>
+
+                              <div class="col-md-12">                                
+                                <div class="form-group">
+                                    <label for="fname">BPM</label>
+                                    <input type="Number" class="form-control" id="bpm" name="bpm" value="<?=$sample[0]['bpm']?>" min="0">
+                                </div>
+                              </div>
                               <?php 
                                $thumimage_url = $sample[0]['thumb'] == ""? base_url()."assets/thumbimages/no_img.png":base_url().'assets/thumbimages/'.$sample[0]['thumb'];
                               ?>
                               <div class="col-md-12">                                
                                     <div class="form-group">
-                                        <label for="thumb">Collection Image</label>
                                         <input type="file" class="" id="thumb" name="thumbimg" style="display: inline;"  accept="image/*">
                                         <img src="<?=$thumimage_url?>" id="thubpreview" style="width: 100px;">
                                     </div>

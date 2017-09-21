@@ -46,6 +46,12 @@ class Sync8_list_model extends CI_Model
 		$this->db->where('id',$data['id']);
 		$this->db->update($this->table_name,$data);
 	}
+
+	public function deletSync8($id)
+	{
+		$this->db->where('id',$id);
+		$this->db->delete($this->table_name);
+	}
 }
 
 ?>

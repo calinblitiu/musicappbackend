@@ -98,6 +98,8 @@ $route['addnewsync4_b'] = 'sync4/addNewSync4_B';
 $route['editsync4/(:num)'] = 'sync4/editSync4/$1';
 $route['updatesync4_b'] = 'sync4/updateSync4_B';
 $route['sync4-upload-music'] = 'sync4/musicUpload';
+$route['deletesync4'] = 'sync4/deleteSync4';
+$route['deletesync4musicfile'] = 'sync4/deleteMusicFile';
 
 //sync8
 $route['sync8-lists'] = 'sync8/index';
@@ -107,6 +109,9 @@ $route['editsync8/(:num)'] = 'sync8/editSync8s/$1';
 $route['editsync8-id/(:num)'] = 'sync8/editSync8/$1';
 $route['sync8-upload-music'] = 'sync8/musicUpload';
 $route['updatesync8_b'] = 'sync8/updateSync8_B';
+$route['deletesync8'] = 'sync8/deleteSync8';
+$route['deletesync8musicfile'] = 'sync8/deleteMusicFile';
+$route['editsync8name'] = 'sync8/editName';
 /**
 *Backend
 */

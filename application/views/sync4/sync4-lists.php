@@ -83,15 +83,15 @@
 
 <div id="deletemodal" class="modal fade" role="dialog">
   <div class="modal-dialog">
-    <form action="<?=base_url()?>index.php/deletesampleset" method="post">
+    <form action="<?=base_url()?>index.php/deletesync4" method="post">
         <!-- Modal content-->
         <div class="modal-content">
           <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal">&times;</button>
-            <h4 class="modal-title">Delete Sample</h4>
+            <h4 class="modal-title">Delete Sync4</h4>
           </div>
           <div class="modal-body">
-            <input type="hidden" name="sample-no" id="sample-id-hidden">
+            <input type="hidden" name="sync4-no" id="sample-id-hidden">
             <h2>Confirm Delete</h2>
           </div>
           <div class="modal-footer">
@@ -103,4 +103,27 @@
   </div>
 </div>
 
-<script type="text/javascript" src="<?php echo base_url(); ?>assets/js/sampleset.js"></script>
+<!-- <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/sampleset.js"></script> -->
+<script type="text/javascript">
+    $('.remove-sample-btn').click(function(){
+    var sample_no = $(this).data('sample-id');
+    $('#sample-id-hidden').val(sample_no);
+    $('#deletemodal').modal('show');
+    //alert(sample_no);
+  });
+
+  $('.noti-sample-btn').click(function(){
+    var noti_name = $(this).data('sample-name');
+    var sample_id = $(this).data('sample-id');
+    var noti_data = {
+      name : noti_name,
+      msg : noti_name+" is updated.",
+      sample_id: sample_id
+    };
+    $.ajax({
+      url : baseURL+"noti.php",
+      type : 'post',
+      data :noti_data
+    });
+  });
+</script>
