@@ -118,6 +118,7 @@ class Sync8 extends BaseController
         $sync8_cell_id = $this->input->post('sync8-cell-id');
         $sync8_music_no = $this->input->post('sync8-music-no');
         $sync8_id = $this->input->post('sync8-id');
+        $sync8_cell_no = $this->input->post('sync8-cell-no');
         $upload_file_name = "";
 
         if($_FILES['sync8-music-file']['name']){
@@ -125,7 +126,7 @@ class Sync8 extends BaseController
             $uploaddir = './assets/sync8-musicfiles/';
             $path = $_FILES['sync8-music-file']['name'];
             $ext = pathinfo($path, PATHINFO_EXTENSION);
-            $dest_filename = 'sync8_'.$sync8_cell_id.'_'.$this->player_kinds_array[$sync8_music_no] . '.' . $ext;
+            $dest_filename = 'sync8_'.$sync8_id.'_'.$sync8_cell_no.'_'.$this->player_kinds_array[$sync8_music_no] . '.' . $ext;
             $uploadfile = $uploaddir .$dest_filename;
             $file_name = $dest_filename;
             if (move_uploaded_file($_FILES['sync8-music-file']['tmp_name'], $uploadfile)) {

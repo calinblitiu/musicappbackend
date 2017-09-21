@@ -90,6 +90,7 @@
                     <input type="hidden" name="sync8-cell-id" id="sync8-cell-id" value="">
                     <input type="hidden" name="sync8-music-no" id="sync8-music-no">
                     <input type="hidden" name="sync8-id" value="<?=$sample['id']?>">
+                    <input type="hidden" name="sync8-cell-no" id="sync8-cell-no">
                     <input type="file" name="sync8-music-file" id="sync8-music-file" accept="audio/*">
                   </form>
 
@@ -220,9 +221,10 @@ var baseURL = '<?=base_url()?>';
     var pp_tr = me.parent().parent();
     var cell_id = pp_tr.attr('data-item-id');
     var cell_item_no = p_th.attr('data-key');
+    var cell_no = pp_tr.data('key-no');
     $("#sync8-cell-id").val(cell_id);
     $("#sync8-music-no").val(cell_item_no);
-
+    $("#sync8-cell-no").val(cell_no);
     $("#sync8-music-file").trigger('click');
   });
 
