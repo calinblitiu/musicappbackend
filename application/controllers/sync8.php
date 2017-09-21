@@ -126,7 +126,7 @@ class Sync8 extends BaseController
             $uploaddir = './assets/sync8-musicfiles/';
             $path = $_FILES['sync8-music-file']['name'];
             $ext = pathinfo($path, PATHINFO_EXTENSION);
-            $dest_filename = 'sync8_'.$sync8_id.'_'.$sync8_cell_no.'_'.$this->player_kinds_array[$sync8_music_no] . '.' . $ext;
+            $dest_filename = 'sync8_'.$sync8_id.'_'.$sync8_cell_no.'_'.$this->player_kinds_array[$sync8_music_no-1] . '.' . $ext;
             $uploadfile = $uploaddir .$dest_filename;
             $file_name = $dest_filename;
             if (move_uploaded_file($_FILES['sync8-music-file']['tmp_name'], $uploadfile)) {
