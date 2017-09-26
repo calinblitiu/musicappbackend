@@ -183,6 +183,17 @@ var baseURL = '<?=base_url()?>';
 <!-- <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/editItems.js" charset="utf-8"></script> -->
 
 <script type="text/javascript">
+
+  function makeid() {
+    var text = "";
+    var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+
+    for (var i = 0; i < 5; i++)
+      text += possible.charAt(Math.floor(Math.random() * possible.length));
+
+    return text;
+  }
+
   $('.listen-music-btn').each(function(){
     var me = $(this);
     var music_url = me.data('music-url');
@@ -196,7 +207,12 @@ var baseURL = '<?=base_url()?>';
 
   $('.listen-music-btn').click(function(){
     var me = $(this);
-    var music_url = baseURL+"assets/sync8-musicfiles/"+me.data('music-url');
+    var music_url = baseURL+"assets/sync8-musicfiles/"+me.data('music-url')+"?"+makeid();
+    // caches.open('v1').then(function(cache) {
+      // caches.delete(music_url).then(function(response) {
+        
+      // });
+    // })
     var append_html='';
     append_html+='<p><audio style="width:100%;" controls> <source src="'+music_url+'" type="audio/ogg"></audio></p><br>';
     $('.listen-modal-body').html(append_html);

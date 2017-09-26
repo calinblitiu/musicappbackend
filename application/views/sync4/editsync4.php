@@ -1,3 +1,14 @@
+<?php
+function generateRandomString($length = 5) {
+    $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+    $charactersLength = strlen($characters);
+    $randomString = '';
+    for ($i = 0; $i < $length; $i++) {
+        $randomString .= $characters[rand(0, $charactersLength - 1)];
+    }
+    return $randomString;
+}
+?>
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <section class="content-header">
@@ -107,7 +118,7 @@
                           else{
                             ?>
                               <audio controls="">
-                                <source src="<?=base_url()?>assets/sync4-musicfiles/<?=$sample[0]['music_'.$i]?>" type="audio/ogg">
+                                <source src="<?=base_url()?>assets/sync4-musicfiles/<?=$sample[0]['music_'.$i]?>?<?=generateRandomString()?>" type="audio/ogg">
                               </audio>
                             <?php
                           }

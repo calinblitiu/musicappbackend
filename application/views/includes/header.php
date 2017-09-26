@@ -3,9 +3,9 @@
   <head>
     <meta charset="UTF-8">
     <meta http-equiv='cache-control' content='no-cache'>
-    <meta http-equiv='expires' content='0'>
+    <meta http-equiv='expires' content='-1'>
     <meta http-equiv='pragma' content='no-cache'>
-    
+
     <title><?php echo $pageTitle; ?></title>
     <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
     <!-- Bootstrap 3.3.4 -->
@@ -31,6 +31,7 @@
     <script src="<?php echo base_url(); ?>assets/js/jQuery-2.1.4.min.js"></script>
     <script type="text/javascript">
         var baseURL = "<?php echo base_url(); ?>";
+
     </script>
     <script src="http://code.jquery.com/ui/1.11.2/jquery-ui.min.js" type="text/javascript"></script>
     

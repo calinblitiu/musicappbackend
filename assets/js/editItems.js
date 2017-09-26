@@ -1,4 +1,15 @@
 $(document).ready(function(){
+
+	 function makeid() {
+	    var text = "";
+	    var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+
+	    for (var i = 0; i < 5; i++)
+	      text += possible.charAt(Math.floor(Math.random() * possible.length));
+
+	    return text;
+	  }
+
 	$('.edit-music-btn').click(function(){
 		document.getElementById("music-upload-form").reset();
 		var me = $(this);
@@ -125,13 +136,13 @@ $(document).ready(function(){
 				{
 					//window.temp_music_data = data;
 					var append_html='';
-					append_html+='<p><b style="float:left;">Drum : </b><audio style="float:right;" controls> <source src="'+data.player_1+'" type="audio/ogg"></audio></p><br>';
-					append_html+='<p><b style="float:left;">Bass : </b><audio style="float:right;" controls> <source src="'+data.player_2+'" type="audio/ogg"></audio></p><br>';
-					append_html+='<p><b style="float:left;">Piano : </b><audio style="float:right;" controls> <source src="'+data.player_3+'" type="audio/ogg"></audio></p><br>';
-					append_html+='<p><b style="float:left;">Rhodes : </b><audio style="float:right;" controls> <source src="'+data.player_4+'" type="audio/ogg"></audio></p><br>';
-					append_html+='<p><b style="float:left;">Organ : </b><audio style="float:right;" controls> <source src="'+data.player_5+'" type="audio/ogg"></audio></p><br>';
-					append_html+='<p><b style="float:left;">Synth : </b><audio style="float:right;" controls> <source src="'+data.player_6+'" type="audio/ogg"></audio></p><br>';
-					append_html+='<p><b style="float:left;">Guitar  : </b><audio style="float:right;" controls> <source src="'+data.player_7+'" type="audio/ogg"></audio></p><br>';
+					append_html+='<p><b style="float:left;">Drum : </b><audio style="float:right;" controls> <source src="'+data.player_1+"?"+makeid()+'" type="audio/ogg"></audio></p><br>';
+					append_html+='<p><b style="float:left;">Bass : </b><audio style="float:right;" controls> <source src="'+data.player_2+"?"+makeid()+'" type="audio/ogg"></audio></p><br>';
+					append_html+='<p><b style="float:left;">Piano : </b><audio style="float:right;" controls> <source src="'+data.player_3+"?"+makeid()+'" type="audio/ogg"></audio></p><br>';
+					append_html+='<p><b style="float:left;">Rhodes : </b><audio style="float:right;" controls> <source src="'+data.player_4+"?"+makeid()+'" type="audio/ogg"></audio></p><br>';
+					append_html+='<p><b style="float:left;">Organ : </b><audio style="float:right;" controls> <source src="'+data.player_5+"?"+makeid()+'" type="audio/ogg"></audio></p><br>';
+					append_html+='<p><b style="float:left;">Synth : </b><audio style="float:right;" controls> <source src="'+data.player_6+"?"+makeid()+'" type="audio/ogg"></audio></p><br>';
+					append_html+='<p><b style="float:left;">Guitar  : </b><audio style="float:right;" controls> <source src="'+data.player_7+"?"+makeid()+'" type="audio/ogg"></audio></p><br>';
 					
 					$('.listen-modal-body').html(append_html);
 

@@ -5,3 +5,7 @@ RewriteCond $1 !^(index\.php|(.*)\.swf|forums|images|css|downloads|jquery|js|rob
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteRule ^(.*)$ ./?$1 [L,QSA]
+
+<ifModule mod_headers.c>
+    Header set Cache-Control no-cache
+</ifModule>
