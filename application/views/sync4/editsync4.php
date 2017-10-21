@@ -104,7 +104,7 @@ function generateRandomString($length = 5) {
                       
                     </tr>
                     <?php
-                      for($i=1;$i<=4;$i++)
+                      for($i=1;$i<=5;$i++)
                       {
                     ?>
                     <tr>
