@@ -35,7 +35,7 @@
                       <th>Guitar</th>               
                       
                     </tr>
-                    <?php for($i = 1; $i<=8; $i++)
+                    <?php for($i = 1; $i<=9; $i++)
                     {
                       //var_dump($sample['key_item_'.$i]);
                       ?>

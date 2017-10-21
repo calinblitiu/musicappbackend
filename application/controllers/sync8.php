@@ -91,7 +91,7 @@ class Sync8 extends BaseController
         $result = $this->sync8_list_model->addNewSync8($data);
         $last_row = $this->sync8_list_model->getLastRow();
         
-        for ($i=1; $i <= 8; $i++)
+        for ($i=1; $i <= 9; $i++)
         { 
             $this->sync8_item_model->addEmptyCell();
             $last_item_row = $this->sync8_item_model->getLastRow();
@@ -106,7 +106,7 @@ class Sync8 extends BaseController
         $this->isLoggedIn();  
         $sample = $this->sync8_list_model->getSync8($sample_id);
         
-        for ($i=1; $i <= 8; $i++) { 
+        for ($i=1; $i <= 9; $i++) { 
             $sample[0]['key_item_'.$i] = $this->sync8_item_model->getCell($sample[0]['cell_'.$i]);
         }
 
@@ -231,7 +231,7 @@ class Sync8 extends BaseController
             $data['bpm'] = $sync[0]['bpm'];
 
             $items = array();
-            for($i = 1; $i <=8; $i++ )
+            for($i = 1; $i <=9; $i++ )
             {
                 if($sync[0]['cell_'.$i] == "" || $sync[0]['cell_'.$i] == null)
                 {
