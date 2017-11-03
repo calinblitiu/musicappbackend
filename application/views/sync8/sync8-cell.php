@@ -26,13 +26,20 @@
                     <tr>
                       <th>Id</th>
                       <th>Name</th>
-                      <th>Drum</th>
+                    <!--   <th>Drum</th>
                       <th>Bass</th>
                       <th>Piano</th>
                       <th>Rhodes</th>
                       <th>Organ</th>
                       <th>Synth</th>
-                      <th>Guitar</th>               
+                      <th>Guitar</th>   -->             
+                      <th>Loop</th>
+                      <th>Drums</th>
+                      <th>Bass</th>
+                      <th>Keys</th>
+                      <th>Aux</th>
+                      <th>BGV</th>
+                      <th>Guitar</th>  
                       
                     </tr>
                     <?php for($i = 1; $i<=9; $i++)

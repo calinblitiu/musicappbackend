@@ -16,7 +16,7 @@ class Sync8 extends BaseController
      */
 
     //public $key_array = array('C','Db','D','Eb','E','F','Gb','G','Ab','A','Bb','B');
-    public $player_kinds_array = array('drum','bass','piano','rhodes','organ','synth','guitar');
+    public $player_kinds_array = array('loop','drums','bass','keys','aux','bgv','guitar');
 
     public function __construct()
     {
