@@ -1,0 +1,22 @@
+.tab-kind-triggers
+{
+	float: left;
+	margin : 0 10px 0 0;
+	padding: 15px;
+	font-size: 15px;
+	background: white;
+	border: solid 1px;
+	border-bottom: 0;
+	border-radius: 15px 15px 0 0;
+	font-weight: 700;
+}
+
+.tab-kind-triggers:hover
+{
+	background: #c3dbf5;
+}
+
+.tab-kind-triggers-active
+{
+	background: #c3dbf5!important;
+}
