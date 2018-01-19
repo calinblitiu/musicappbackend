@@ -290,7 +290,8 @@ $this->output->set_header("Expires: Mon, 26 Jul 1997 05:00:00 GMT");
     			$temp['price'] = $result[$i]['price'];
                 $temp['thumb'] = $result[$i]['thumb'] == ""? base_url()."assets/thumbimages/no_img.png":base_url().'assets/thumbimages/'.$result[$i]['thumb'];
                 $temp['bpm'] = $result[$i]['bpm'];
-                $temp['sync4'] = $result[$i]['sync4'];
+                $temp['sync4_left'] = $result[$i]['sync4'];
+                $temp['sync4_right'] = $result[$i]['sync4_2'];
                 $temp['set_type'] = "1";
     			$items[] = $temp;
     		}
@@ -313,7 +314,8 @@ $this->output->set_header("Expires: Mon, 26 Jul 1997 05:00:00 GMT");
                 $temp['price'] = $result[$i]['price'];
                 $temp['thumb'] = $result[$i]['thumb'] == ""? base_url()."assets/thumbimages/no_img.png":base_url().'assets/thumbimages/'.$result[$i]['thumb'];
                 $temp['bpm'] = $result[$i]['bpm'];
-                $temp['sync4'] = "0";
+                $temp['sync4_left'] = "0";
+                $temp['sync4_right'] = "0";
                 $temp['set_type'] = "2";
                 $items[] = $temp;
             }

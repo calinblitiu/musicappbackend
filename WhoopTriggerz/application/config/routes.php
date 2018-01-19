@@ -113,6 +113,11 @@ $route['updatesync8_b'] = 'sync8/updateSync8_B';
 $route['deletesync8'] = 'sync8/deleteSync8';
 $route['deletesync8musicfile'] = 'sync8/deleteMusicFile';
 $route['editsync8name'] = 'sync8/editName';
+
+/*
+ * Image List
+ * */
+
 /**
  *Backend
  */

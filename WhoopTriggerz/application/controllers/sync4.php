@@ -183,6 +183,13 @@ class Sync4 extends BaseController
                 $temp['music_3'] = $result[$i]['music_3'] == ""? "":base_url().'assets/sync4-musicfiles/'.$result[$i]['music_3'];
                 $temp['music_4'] = $result[$i]['music_4'] == ""? "":base_url().'assets/sync4-musicfiles/'.$result[$i]['music_4'];
                 $temp['music_5'] = $result[$i]['music_5'] == ""? "":base_url().'assets/sync4-musicfiles/'.$result[$i]['music_5'];
+
+                $temp['music_title_1'] = $result[$i]['music_title_1'] == ""? "":base_url().'assets/sync4-musicfiles/'
+                    .$result[$i]['music_title_1'];
+                $temp['music_title_2'] = $result[$i]['music_title_2'] == ""? "":base_url().'assets/sync4-musicfiles/'.$result[$i]['music_title_2'];
+                $temp['music_title_3'] = $result[$i]['music_title_3'] == ""? "":base_url().'assets/sync4-musicfiles/'.$result[$i]['music_title_3'];
+                $temp['music_title_4'] = $result[$i]['music_title_4'] == ""? "":base_url().'assets/sync4-musicfiles/'.$result[$i]['music_title_4'];
+                $temp['music_title_5'] = $result[$i]['music_title_5'] == ""? "":base_url().'assets/sync4-musicfiles/'.$result[$i]['music_title_5'];
                 $temp['bpm'] = $result[$i]['bpm'];
                 $items[] = $temp;
             }
@@ -214,6 +221,13 @@ class Sync4 extends BaseController
             $data['music_3'] = $result[0]['music_3'] == ""? "":base_url().'assets/sync4-musicfiles/'.$result[0]['music_3'];
             $data['music_4'] = $result[0]['music_4'] == ""? "":base_url().'assets/sync4-musicfiles/'.$result[0]['music_4'];
             $data['music_5'] = $result[0]['music_5'] == ""? "":base_url().'assets/sync4-musicfiles/'.$result[0]['music_5'];
+
+            $data['music_title_1'] = $result[0]['music_title_1'] == ""? "":base_url().'assets/sync4-musicfiles/'
+                .$result[0]['music_title_1'];
+            $data['music_title_2'] = $result[0]['music_title_2'] == ""? "":base_url().'assets/sync4-musicfiles/'.$result[0]['music_title_2'];
+            $data['music_title_3'] = $result[0]['music_title_3'] == ""? "":base_url().'assets/sync4-musicfiles/'.$result[0]['music_title_3'];
+            $data['music_title_4'] = $result[0]['music_title_4'] == ""? "":base_url().'assets/sync4-musicfiles/'.$result[0]['music_title_4'];
+            $data['music_title_5'] = $result[0]['music_title_5'] == ""? "":base_url().'assets/sync4-musicfiles/'.$result[0]['music_title_5'];
             $data['bpm'] = $result[0]['bpm'];
 
             echo json_encode($data);
