@@ -50,15 +50,15 @@
 	                            </div>
 
                                 <div class="col-md-12">                                
-                                <div class="form-group">
-                                    <label for="fname">BPM</label>
-                                    <input type="Number" class="form-control" id="bpm" name="bpm" value="0" min="0">
+                                    <div class="form-group">
+                                        <label for="fname">BPM</label>
+                                        <input type="Number" class="form-control" id="bpm" name="bpm" value="0" min="0">
+                                    </div>
                                 </div>
-                              </div>
 
                                 <div class="col-md-12">                                
                                     <div class="form-group">
-                                       
+                                        
                                         <input type="file" class="" id="thumb" name="thumbimg" style="display: inline;" accept="image/*">
                                         <img src="<?=base_url()?>assets/thumbimages/no_img.png" id="thubpreview" style="width: 100px;">
                                     </div>

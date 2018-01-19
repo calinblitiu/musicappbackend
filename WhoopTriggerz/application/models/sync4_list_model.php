@@ -27,13 +27,6 @@ class Sync4_list_model extends CI_Model
         return $result;
     }
 
-    public function addKeyItem($id,$key_no,$item_id)
-    {
-        $this->db->where('id',$id);
-        $this->db->set('music_'.$key_no,$item_id);
-        $this->db->update($this->table_name);
-    }
-
     public function getSync4($sample_id)
     {
         $this->db->where('id',$sample_id);
@@ -47,9 +40,27 @@ class Sync4_list_model extends CI_Model
         $this->db->update($this->table_name,$data);
     }
 
+    public function updateMusicFile($id, $music_no,$file_name)
+    {
+        $this->db->where('id',$id);
+        $this->db->update($this->table_name,array('music_'.$music_no => $file_name));
+    }
+
     public function deleteSync4($id)
     {
         $this->db->where('id',$id);
         $this->db->delete($this->table_name);
+    }
+
+    public function deleteMusicFile($id, $no)
+    {
+        $this->db->where('id',$id);
+        $this->db->update($this->table_name,array('music_'.$no => $no));
+    }
+
+    public function editMusicName($id, $no)
+    {
+        $this->db->where('id',$id);
+        $this->db->update($this->table_name,array('music_title_'.$no => $no));
     }
 }

@@ -95,12 +95,12 @@ $route['deletemusiconefile'] = 'samplesets/deletMusicOneFile';
 $route['sync4-lists'] = 'sync4/index';
 $route['addnewsync4'] = 'sync4/addNewSync4';
 $route['addnewsync4_b'] = 'sync4/addNewSync4_B';
-$route['editsync4/(:num)'] = 'sync4/editSync4s/$1';
-$route['editsync4-id/(:num)'] = 'sync4/editSync4/$1';
+$route['editsync4/(:num)'] = 'sync4/editSync4/$1';
 $route['updatesync4_b'] = 'sync4/updateSync4_B';
 $route['sync4-upload-music'] = 'sync4/musicUpload';
 $route['deletesync4'] = 'sync4/deleteSync4';
 $route['deletesync4musicfile'] = 'sync4/deleteMusicFile';
+$route['editsync4musicname'] = 'sync4/editMusicName';
 
 //sync8
 $route['sync8-lists'] = 'sync8/index';
@@ -114,8 +114,8 @@ $route['deletesync8'] = 'sync8/deleteSync8';
 $route['deletesync8musicfile'] = 'sync8/deleteMusicFile';
 $route['editsync8name'] = 'sync8/editName';
 /**
-*Backend
-*/
+ *Backend
+ */
 
 $route['getsetlist'] = 'samplesets/getSetList';
 $route['getset/(:num)/(:any)'] = 'samplesets/getSet/$1/$2';

@@ -28,16 +28,15 @@ class Sync4 extends BaseController
         $this->load->model('devicetoken_model');
         $this->load->model('paidstatus_model');
         $this->load->model('sync4_list_model');
-        $this->load->model('sync4_item_model');
         $this->output->set_header('Last-Modified: ' . gmdate("D, d M Y H:i:s") . ' GMT');('Cache-Control: no-store, no-cache, must-revalidate, post-check=0, pre-check=0');
         $this->output->set_header('Pragma: no-cache');
         $this->output->set_header("Expires: Mon, 26 Jul 1997 05:00:00 GMT");
-         
+
     }
 
     public function index()
     {
-    	$this->isLoggedIn();  
+        $this->isLoggedIn();
         $this->global['pageTitle'] = 'Triggerz Sync4';
         $this->global['samples'] = $this->sync4_list_model->getAllSync4List();
         $this->global['search']='';
@@ -51,14 +50,16 @@ class Sync4 extends BaseController
         $this->loadViews("sync4/addnewsync4", $this->global, NULL , NULL);
     }
 
-    public function editSync4($sync4_id)
-    {
+
+    public function editSync4($sync4_id){
         $this->isLoggedIn();
         $sync4 = $this->sync4_list_model->getSync4($sync4_id);
         $this->global['sample'] = $sync4;
         $this->global['pageTitle'] = 'Edit Sync4';
-        $this->loadViews("sync4/sync4-edit", $this->global, NULL , NULL);
+        $this->loadViews("sync4/editsync4", $this->global, NULL , NULL);
     }
+
+
 
     public function addNewSync4_B(){
         $data['name'] = $this->input->post('sname');
@@ -90,64 +91,13 @@ class Sync4 extends BaseController
 
         $result = $this->sync4_list_model->addNewSync4($data);
         $last_row = $this->sync4_list_model->getLastRow();
-
-        for ($i=1; $i <= 5; $i++)
-        {
-            $this->sync4_item_model->addEmptyCell();
-            $last_item_row = $this->sync4_item_model->getLastRow();
-            $this->sync4_list_model->addKeyItem($last_row[0]['id'],$i,$last_item_row[0]['id']);
-        }
         redirect('index.php/editsync4/'.$last_row[0]['id']);
 
+        //redirect('index.php/addnewsync4');
+
     }
 
-
-    public function editSync4s($sample_id){
-        $this->isLoggedIn();
-        $sample = $this->sync4_list_model->getSync4($sample_id);
-
-        for ($i=1; $i <= 5; $i++) {
-            $sample[0]['key_item_'.$i] = $this->sync4_item_model->getCell($sample[0]['music_'.$i]);
-        }
-
-        $this->global['sample'] = $sample[0];
-        $this->global['pageTitle'] = 'Edit Sample Sets';
-        $this->loadViews("sync4/sync4-cell", $this->global, NULL , NULL);
-    }
-
-
-    public function musicUpload()
-    {
-        $sync4_cell_id = $this->input->post('sync4-cell-id');
-        $sync4_music_no = $this->input->post('sync4-music-no');
-        $sync4_id = $this->input->post('sync4-id');
-        $sync4_cell_no = $this->input->post('sync4-cell-no');
-        $upload_file_name = "";
-
-        if($_FILES['sync4-music-file']['name']){
-
-            $uploaddir = './assets/sync4-musicfiles/';
-            $path = $_FILES['sync4-music-file']['name'];
-            $ext = pathinfo($path, PATHINFO_EXTENSION);
-            $dest_filename = 'sync4_'.$sync4_id.'_'.$sync4_cell_no.'_'.$this->player_kinds_array[$sync4_music_no-1] . '.' . $ext;
-            $uploadfile = $uploaddir .$dest_filename;
-            $file_name = $dest_filename;
-            if (move_uploaded_file($_FILES['sync4-music-file']['tmp_name'], $uploadfile)) {
-                //$this->sample_item_model->editItemField($item_no,$field,$file_name);
-                $upload_file_name = $file_name;
-            } else {
-                // echo "Possible file upload attack!\n";
-                redirect('index.php/editsync4/'.$sync4_id);
-            }
-
-        }
-
-        $this->sync4_item_model->updateMusicFile($sync4_cell_id,$sync4_music_no,$upload_file_name);
-        redirect('index.php/editsync4/'.$sync4_id);
-    }
-
-    public function updateSync4_B()
-    {
+    public function updateSync4_B(){
         $data['id'] = $this->input->post('sid');
         $data['name'] = $this->input->post('sname');
         $data['description'] = $this->input->post('sdescription');
@@ -178,8 +128,37 @@ class Sync4 extends BaseController
 
         $this->sync4_list_model->updateSync4($data);
 
-        redirect('index.php/editsync4-id/'.$data['id']);
+        redirect('index.php/editsync4/'.$data['id']);
     }
+
+    public function musicUpload()
+    {
+        $sync4_id = $this->input->post('sync4-id');
+        $sync4_music_no = $this->input->post('sync4-music-no');
+        $upload_file_name = "";
+
+        if($_FILES['sync4-music-file']['name']){
+
+            $uploaddir = './assets/sync4-musicfiles/';
+            $path = $_FILES['sync4-music-file']['name'];
+            $ext = pathinfo($path, PATHINFO_EXTENSION);
+            $dest_filename = "sync4_". $sync4_id."_" . $sync4_music_no . '.' . $ext;
+            $uploadfile = $uploaddir .$dest_filename;
+            $file_name = $dest_filename;
+            if (move_uploaded_file($_FILES['sync4-music-file']['tmp_name'], $uploadfile)) {
+                //$this->sample_item_model->editItemField($item_no,$field,$file_name);
+                $upload_file_name = $file_name;
+            } else {
+                // echo "Possible file upload attack!\n";
+                redirect('index.php/editsync4/'.$sync4_id);
+            }
+
+        }
+
+        $this->sync4_list_model->updateMusicFile($sync4_id,$sync4_music_no,$upload_file_name);
+        redirect('index.php/editsync4/'.$sync4_id);
+    }
+
 
     public function getSync4List()
     {
@@ -199,6 +178,11 @@ class Sync4 extends BaseController
                 $temp['is_free'] = $result[$i]['is_free'];
                 $temp['price'] = $result[$i]['price'];
                 $temp['thumb'] = $result[$i]['thumb'] == ""? base_url()."assets/thumbimages/no_img.png":base_url().'assets/thumbimages/'.$result[$i]['thumb'];
+                $temp['music_1'] = $result[$i]['music_1'] == ""? "":base_url().'assets/sync4-musicfiles/'.$result[$i]['music_1'];
+                $temp['music_2'] = $result[$i]['music_2'] == ""? "":base_url().'assets/sync4-musicfiles/'.$result[$i]['music_2'];
+                $temp['music_3'] = $result[$i]['music_3'] == ""? "":base_url().'assets/sync4-musicfiles/'.$result[$i]['music_3'];
+                $temp['music_4'] = $result[$i]['music_4'] == ""? "":base_url().'assets/sync4-musicfiles/'.$result[$i]['music_4'];
+                $temp['music_5'] = $result[$i]['music_5'] == ""? "":base_url().'assets/sync4-musicfiles/'.$result[$i]['music_5'];
                 $temp['bpm'] = $result[$i]['bpm'];
                 $items[] = $temp;
             }
@@ -215,89 +199,59 @@ class Sync4 extends BaseController
         }
     }
 
-    public function getSync4($id)
+    public function getSync4Item($id)
     {
-        $sync = $this->sync4_list_model->getSync4($id);
-
-        if(count($sync)>0)
+        $result = $this->sync4_list_model->getSync4($id);
+        if(count($result)>0)
         {
             $data['success'] = 0;
-            $data['id'] = $sync[0]['id'];
-            $data['name'] = $sync[0]['name'];
-            $data['description'] = $sync[0]['description'];
-            $data['is_free'] = $sync[0]['is_free'];
-            $data['price'] = $sync[0]['price'];
-            $data['thumb'] = $sync[0]['thumb'] == ""? base_url()."assets/thumbimages/no_img.png":base_url().'assets/thumbimages/'.$sync[0]['thumb'];
-            $data['bpm'] = $sync[0]['bpm'];
-
-            $items = array();
-            for($i = 1; $i <=5; $i++ )
-            {
-                if($sync[0]['music_'.$i] == "" || $sync[0]['music_'.$i] == null)
-                {
-                    $items['music_'.$i] = "";
-                }
-                else
-                {
-                    $temp_item = $this->sync4_item_model->getCell($sync[0]['music_'.$i]);
-                    if(count($temp_item) == 0 )
-                    {
-                        $items['music_'.$i] = "";
-                    }
-                    else
-                    {
-                        $temp['id'] = $temp_item[0]['id'];
-                        $temp['name'] = $temp_item[0]['name'];
-                        for($j = 1; $j <= 7; $j++)
-                        {
-                            $temp[$this->player_kinds_array[$j-1]] = $temp_item[0]['player_'.$j] == ""? "":base_url().'assets/sync4-musicfiles/'.$temp_item[0]['player_'.$j];
-                        }
-
-                        $items['music_'.$i] = $temp;
-                    }
-                }
-            }
-
-            $data['items'] = $items;
+            $data['description'] = $result[0]['description'];
+            $data['is_free'] = $result[0]['is_free'];
+            $data['price'] = $result[0]['price'];
+            $data['thumb'] = $result[0]['thumb'] == ""? base_url()."assets/thumbimages/no_img.png":base_url().'assets/thumbimages/'.$result[0]['thumb'];
+            $data['music_1'] = $result[0]['music_1'] == ""? "":base_url().'assets/sync4-musicfiles/'.$result[0]['music_1'];
+            $data['music_2'] = $result[0]['music_2'] == ""? "":base_url().'assets/sync4-musicfiles/'.$result[0]['music_2'];
+            $data['music_3'] = $result[0]['music_3'] == ""? "":base_url().'assets/sync4-musicfiles/'.$result[0]['music_3'];
+            $data['music_4'] = $result[0]['music_4'] == ""? "":base_url().'assets/sync4-musicfiles/'.$result[0]['music_4'];
+            $data['music_5'] = $result[0]['music_5'] == ""? "":base_url().'assets/sync4-musicfiles/'.$result[0]['music_5'];
+            $data['bpm'] = $result[0]['bpm'];
 
             echo json_encode($data);
             exit();
         }
-
-        $data['success'] = 1;
-        $data['message'] = 'There is no any sample';
-        echo json_encode($data);
-        exit();
+        else{
+            $data['success'] = 1;
+            $data['message'] = 'There is no any data';
+            echo json_encode($data);
+            exit();
+        }
     }
 
     public function deleteSync4()
     {
         $this->isLoggedIn();
-        $sync4_id = $this->input->post('sync4-id');
-        $this->sync4_list_model->deleteSync4($sync4_id);
-        redirect('index.php/sync4-lists');
+        $sync4_no = $this->input->post("sync4-no");
+        $this->sync4_list_model->deleteSync4($sync4_no);
+        redirect("index.php/sync4-lists");
     }
 
     public function deleteMusicFile()
     {
         $this->isLoggedIn();
-        $sync4_cell_id = $this->input->post('sync4-cell-id');
-        $sync4_cell_no = $this->input->post('sync4-cell-no');
-        $sync4_id = $this->input->post('sync4-id');
-        $this->sync4_item_model->deleteMusicFile($sync4_cell_id, $sync4_cell_no);
-
-        redirect('index.php/editsync4/'.$sync4_id);
+        $sync4_no = $this->input->post("sync4-music-no");
+        $sync4_id = $this->input->post("sync4-id");
+        $this->sync4_list_model->deleteMusicFile($sync4_id,$sync4_no);
+        redirect("index.php/editsync4/".$sync4_id);
     }
 
-    public function editName()
+    public function editMusicName()
     {
         $this->isLoggedIn();
-        $sync4_cell_id = $this->input->post('sync4-cell-id');
-        $sync4_cell_name = $this->input->post('sync4-cell-name');
+        $sync4_music_id = $this->input->post('sync4-music-no');
+        $sync4_music_name = $this->input->post('sync4-music-name');
         $sync4_id = $this->input->post('sync4-id');
-        $this->sync4_item_model->editName($sync4_cell_id, $sync4_cell_name);
+        $this->sync4_list_model->editMusicName($sync4_id, $sync4_music_id, $sync4_music_name);
 
         redirect('index.php/editsync4/'.$sync4_id);
     }
-
 }
