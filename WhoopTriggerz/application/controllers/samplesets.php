@@ -240,6 +240,7 @@ $this->output->set_header("Expires: Mon, 26 Jul 1997 05:00:00 GMT");
     	$data['price']	= $this->input->post('sprice');
         $data['bpm'] = $this->input->post('bpm');
         $data['sync4'] = $this->input->post('sync4');
+        $data['sync4_2'] = $this->input->post('sync4_2');
     	if($this->input->post('sfree'))
     	{
     		$data['is_free'] = 'yes';

@@ -14,7 +14,8 @@
                 <div class="form-group">
                     <a href="<?=base_url()?>index.php/sample-sets-list" class="tab-kind-triggers">Triggerz Multi</a>
                     <a href="<?=base_url()?>index.php/sync4-lists" class="tab-kind-triggers">Triggerz Sync4</a>
-                    <a href="<?=base_url()?>index.php/sample-sets-list" class="tab-kind-triggers tab-kind-triggers-active">Triggerz Sync8</a>
+                    <a href="<?=base_url()?>index.php/sync8-lists" class="tab-kind-triggers
+                    tab-kind-triggers-active">Triggerz Sync8</a>
                     <a class="btn btn-primary" href="<?php echo base_url(); ?>index.php/addnewsync8"><i class="fa fa-plus"></i> Add New Sync8</a>  
                 </div>
             </div>

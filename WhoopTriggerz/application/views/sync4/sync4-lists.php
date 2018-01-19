@@ -13,9 +13,10 @@
 
                 <div class="form-group">
                     <a href="<?=base_url()?>index.php/sample-sets-list" class="tab-kind-triggers">Triggerz Multi</a>
-                    <a href="<?=base_url()?>index.php/sync4-lists" class="tab-kind-triggers tab-kind-triggers-active">Triggerz Sync4</a>
+                    <a href="<?=base_url()?>index.php/sync4-lists" class="tab-kind-triggers
+                    tab-kind-triggers-active">Triggerz Sync4</a>
                     <a href="<?=base_url()?>index.php/sync8-lists" class="tab-kind-triggers">Triggerz Sync8</a>
-                    <a class="btn btn-primary" href="<?php echo base_url(); ?>index.php/addnewsync4"><i class="fa fa-plus"></i> Add New Sync4</a>  
+                    <a class="btn btn-primary" href="<?php echo base_url(); ?>index.php/addnewsync4"><i class="fa fa-plus"></i> Add New Sync4</a>
                 </div>
             </div>
         </div>
@@ -63,8 +64,8 @@
                       <th><?php echo $sample['is_free'] == "yes"?"-":$sample['price']?></th>
                       <th><?=$sample['is_free']?></th>
                       <th class="text-center">
-                        <a class="btn btn-sm btn-success" href="<?=base_url()?>index.php/editsync4/<?=$sample['id']?>" alt="edit sample"><i class="fa fa-pencil"></i></a>
-                        <!-- <a class="btn btn-sm btn-info" href="<?=base_url()?>index.php/editsamplesets/<?=$sample['id']?>" alt="view sample set"><i class="fa fa-table"></i></a> -->
+                        <a class="btn btn-sm btn-success" href="<?=base_url()?>index.php/editsync4-id/<?=$sample['id']?>" alt="edit sample"><i class="fa fa-pencil"></i></a>
+                        <a class="btn btn-sm btn-info" href="<?=base_url()?>index.php/editsync4/<?=$sample['id']?>" alt="view sample set"><i class="fa fa-table"></i></a>
                         <span class="btn btn-sm btn-danger remove-sample-btn" data-sample-id="<?=$sample['id']?>" alt="delete sample"><i class="fa fa-trash"></i></span>
                         <span class="btn btn-sm btn-success noti-sample-btn" data-sample-name="<?=$sample['name']?>" data-sample-id="<?=$sample['id']?>" alt="notification"><i class="fa fa-bell"></i></span>
                       </th>
@@ -88,10 +89,10 @@
         <div class="modal-content">
           <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal">&times;</button>
-            <h4 class="modal-title">Delete Sync4</h4>
+            <h4 class="modal-title">Delete Sample</h4>
           </div>
           <div class="modal-body">
-            <input type="hidden" name="sync4-no" id="sample-id-hidden">
+            <input type="hidden" name="sync4-id" id="sample-id-hidden">
             <h2>Confirm Delete</h2>
           </div>
           <div class="modal-footer">
@@ -104,12 +105,13 @@
 </div>
 
 <!-- <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/sampleset.js"></script> -->
+
 <script type="text/javascript">
-    $('.remove-sample-btn').click(function(){
-    var sample_no = $(this).data('sample-id');
-    $('#sample-id-hidden').val(sample_no);
+  $('.remove-sample-btn').click(function(){
+    var sync4_id = $(this).data('sample-id');
+    $('#sample-id-hidden').val(sync4_id);
     $('#deletemodal').modal('show');
-    //alert(sample_no);
+    //alert(sync4_id);
   });
 
   $('.noti-sample-btn').click(function(){
