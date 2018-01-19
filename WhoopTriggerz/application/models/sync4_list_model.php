@@ -58,9 +58,9 @@ class Sync4_list_model extends CI_Model
         $this->db->update($this->table_name,array('music_'.$no => $no));
     }
 
-    public function editMusicName($id, $no)
+    public function editMusicName($id, $no, $name)
     {
         $this->db->where('id',$id);
-        $this->db->update($this->table_name,array('music_title_'.$no => $no));
+        $this->db->update($this->table_name,array('music_title_'.$no => $name));
     }
 }
