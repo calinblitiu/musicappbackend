@@ -80,8 +80,7 @@ $count = count($new_array);
                                     <?php $i = 0; ?>
                                     <?php foreach($new_array as $row): ?>
                                         <li class="element ui-state-default" data-image-id="<?php echo $row['id'] ?>" data-index="<?php echo $i+1; ?>">
-                                            <img src="<?php echo base_url('index.php/assets') ?>/upload_images/<?php
-                                            echo $row['path'] ?>">
+                                            <img src="<?php echo base_url('assets') ?>/upload_images/<?php echo $row['path'] ?>">
                                             <div class="right-box">
                                                 <label>Link : </label><br/>
                                                 <input type="text" name="link_<?php echo $row['id'] ?>" value="<?php echo $row['link'] ?> ">
