@@ -80,7 +80,8 @@ $count = count($new_array);
                                     <?php $i = 0; ?>
                                     <?php foreach($new_array as $row): ?>
                                         <li class="element ui-state-default" data-image-id="<?php echo $row['id'] ?>" data-index="<?php echo $i+1; ?>">
-                                            <img src="<?php echo base_url('assets') ?>/upload_images/<?php echo $row['path'] ?>">
+                                            <img src="<?php echo base_url('index.php/assets') ?>/upload_images/<?php
+                                            echo $row['path'] ?>">
                                             <div class="right-box">
                                                 <label>Link : </label><br/>
                                                 <input type="text" name="link_<?php echo $row['id'] ?>" value="<?php echo $row['link'] ?> ">
@@ -125,7 +126,7 @@ $count = count($new_array);
 
 <div id="addmodal" class="modal fade" role="dialog">
     <div class="modal-dialog">
-        <form action="<?=base_url('saveImage')?>" method="post" enctype="multipart/form-data">
+        <form action="<?=base_url('index.php/saveImage')?>" method="post" enctype="multipart/form-data">
             <!-- Modal content-->
             <div class="modal-content">
                 <div class="modal-header">
@@ -230,7 +231,7 @@ $count = count($new_array);
                 }
 
                 if (left_sibling_id) {
-                    $.post('<?php echo base_url('update-index') ?>', {
+                    $.post('<?php echo base_url('index.php/update-index') ?>', {
                             id: id,
                             left_sibling_id: left_sibling_id,
                             right_sibling_id: right_sibling_id
@@ -245,7 +246,7 @@ $count = count($new_array);
 
         $('.remove').on('click', function (ele) {
             var imageId = $(this).attr('data-image-id');
-            $.post('<?php echo base_url("delete-image") ?>', {image: imageId, type: 'delete'}, function (data) {
+            $.post('<?php echo base_url("index.php/delete-image") ?>', {image: imageId, type: 'delete'}, function (data) {
                 if (JSON.parse(data).status == 'success') {
                     $('#sortable li').each(function (i, ele) {
                         if ($(this).attr('data-image-id') == JSON.parse(data).image) {
@@ -258,7 +259,7 @@ $count = count($new_array);
 
         $('.save').on('click', function (ele) {
             var linkId = $(this).attr('data-link-id');
-            $.post('<?php echo base_url("update-title") ?>', {'link-id': linkId, 'link-text': $(this).parent().find
+            $.post('<?php echo base_url("index.php/update-title") ?>', {'link-id': linkId, 'link-text': $(this).parent().find
             ('input').val(), type:
             'save'},
                 function (data) {
