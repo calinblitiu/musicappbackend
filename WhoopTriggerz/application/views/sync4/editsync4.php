@@ -72,6 +72,7 @@ function generateRandomString($length = 5) {
 
                                         <input type="file" class="" id="thumb" name="thumbimg" style="display: inline;"  accept="image/*">
                                         <img src="<?=$thumimage_url?>" id="thubpreview" style="width: 100px;">
+                                        <p>*Image size must be 2048x768 pixel.</p>
                                     </div>
                                 </div>
                             </div>

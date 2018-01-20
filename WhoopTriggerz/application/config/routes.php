@@ -117,7 +117,11 @@ $route['editsync8name'] = 'sync8/editName';
 /*
  * Image List
  * */
-
+$route['images'] = "images/listImages";
+$route['saveImage'] = "images/saveImage";
+$route['update-index'] = "images/updateIndex";
+$route['update-title'] = "images/updateTitle";
+$route['delete-image'] = "images/deleteImage";
 /**
  *Backend
  */
@@ -140,3 +144,6 @@ $route['getsync4/(:num)'] = 'sync4/getSync4Item/$1';
 //sync8
 $route['getsync8list'] = 'sync8/getSync8List';
 $route['getsync8/(:num)'] = 'sync8/getSync8/$1';
+
+// images
+$route['getimagelist'] = 'images/getImageList';

@@ -15,7 +15,8 @@
                     <a href="<?=base_url()?>index.php/sample-sets-list" class="tab-kind-triggers tab-kind-triggers-active">Triggerz Multi</a>
                     <a href="<?=base_url()?>index.php/sync4-lists" class="tab-kind-triggers">Triggerz Sync4</a>
                     <a href="<?=base_url()?>index.php/sync8-lists" class="tab-kind-triggers">Triggerz Sync8</a>
-                    <a class="btn btn-primary" href="<?php echo base_url(); ?>index.php/addnewsampleset"><i class="fa fa-plus"></i> Add New Sample Set</a>  
+                    <a href="<?=base_url()?>index.php/images" class="tab-kind-triggers">Images</a>
+                    <a class="btn btn-primary" href="<?php echo base_url(); ?>index.php/addnewsampleset"><i class="fa fa-plus"></i> Add New Sample Set</a>
                 </div>
             </div>
         </div>

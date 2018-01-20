@@ -60,6 +60,7 @@
                                     <div class="form-group">
                                         <input type="file" class="" id="thumb" name="thumbimg" style="display: inline;"  accept="image/*">
                                         <img src="<?=$thumimage_url?>" id="thubpreview" style="width: 100px;">
+                                        <p>*Image size must be 2048x768 pixel.</p>
                                     </div>
                                 </div>
                      	 </div>

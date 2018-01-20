@@ -1,2 +1,13 @@
 .idea/*
 application/config/database.php
+assets/music-sample/*
+assets/sync4-musicfiles/*
+assets/sync8-musicfiles/*
+assets/thumbimages/*
+
+WhoopTriggerz/application/config/database.php
+WhoopTriggerz/assets/music-sample/*
+WhoopTriggerz/assets/sync4-musicfiles/*
+WhoopTriggerz/assets/sync8-musicfiles/*
+WhoopTriggerz/assets/thumbimages/*
+WhoopTriggerz/assets/upload_images/*

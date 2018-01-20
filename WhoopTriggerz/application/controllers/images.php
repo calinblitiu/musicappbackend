@@ -8,25 +8,174 @@
 if(!defined('BASEPATH')) exit('No direct script access allowed');
 require APPPATH . '/libraries/BaseController.php';
 
-class Images extends CI_Controller
+class Images extends BaseController
 {
+    public function __construct()
+    {
+        parent::__construct();
+        $this->load->model('images_model');
 
-    function listImages() {
-        $sql = 'SELECT * FROM User_Images ORDER BY index_num ';
-        $result = mysql_query($sql);
-        $count = mysql_num_rows($result);
+        $this->output->set_header('Last-Modified: ' . gmdate("D, d M Y H:i:s") . ' GMT');('Cache-Control: no-store, no-cache, must-revalidate, post-check=0, pre-check=0');
+        $this->output->set_header('Pragma: no-cache');
+        $this->output->set_header("Expires: Mon, 26 Jul 1997 05:00:00 GMT");
+    }
+
+    public function listImages() {
+        $this->isLoggedIn();
+
+        $images = $this->images_model->getAllImages();
+
+        $this->global['images'] = $images;
+        $this->global['pageTitle'] = 'Image List';
+        $this->global['search']='';
+
+        $this->loadViews("images/list", $this->global, NULL , NULL);
+    }
+
+    public function deleteImage() {
+        $imageId = $this->input->post('image');
+
+        $image = $this->images_model->getImage($imageId);
+
+        if ($image[0]) {
+            $result = $this->images_model->deleteImage($imageId);
+            $after_id = $image[0]['id'];
+            $after_index = $image[0]['index_num'];
+
+            $update = array('index_num' => $after_index);
+            $where = array('index_num' => $after_id);
+            $update_result = $this->images_model->updateImage($update, $where);
+
+            if ($update_result) {
+                echo json_encode(array('status' => 'success', 'msg' => "Image $after_id was removed", 'image' => $imageId));
+            }
+        } else {
+            echo json_encode(array('status' => 'failed', 'msg' => "failed"));
+        }
+
+    }
+
+    public function saveImages() {
+
+        for ($i = 0; $i < count($_FILES['file']['name']); $i++) {
+            $image = array('name' => $_FILES['file']['name'][$i], 'tmp_name' => $_FILES['file']['tmp_name'][$i]);
+            $filename = $this->saveImage($image);
+
+            if ($filename) {
+                $index_num = $this->images_model->getMaxIndex();
+
+                if (is_null($index_num)) {
+                    $index_num = 0;
+                }
+
+                $link = '';
+                if (isset($_POST['links']) && isset($_POST['links'][$i])) {
+                    $link = $_POST['links'][$i];
+                }
+
+                $current_time = date('Y-m-d h:i:s');
+            }
+        }
+    }
+
+    public function saveImage() {
+        $image = $_FILES['file'];
+
+        $uploaddir = './assets/upload_images/';
+        $path = $image['name'];
+        $ext = pathinfo($path, PATHINFO_EXTENSION);
+        $dest_filename = md5(uniqid(rand(), true)) . '.' . $ext;
+        $uploadfile = $uploaddir .$dest_filename;
+        $file_name = $dest_filename;
+        if (move_uploaded_file($image['tmp_name'], $uploadfile)) {
+            $index_num = $this->images_model->getMaxIndex();
+
+            if (is_null($index_num)) {
+                $index_num = 0;
+            }
+
+            $link = '';
+            if (isset($_POST['links'])) {
+                $link = $_POST['links'];
+            }
+
+            $current_time = date('Y-m-d h:i:s');
+
+            $data = array(
+                'user' => 0,
+                'index_num' => $index_num,
+                'path' => $file_name,
+                'link' => $link,
+                'created_at' => $current_time,
+                'updated_at' => $current_time
+            );
+
+            $this->images_model->addNewImage($data);
+
+        } else {
+
+        }
+
+        redirect('/index.php/images');
+    }
+
+    public function updateIndex() {
+        $id = $this->input->post('id');
+        $left_sibling = $this->input->post('left_sibling_id');
+        $right_sibling = $this->input->post('right_sibling_id');
+
+        if ($left_sibling == 'parent') {
+            $left_sibling = 0;
+        }
+
+        $row = $this->images_model->getImage($id);
+
+        $data = array('index_num' => $left_sibling);
+        $where = array('id' => $id);
+        $result = $this->images_model->updateImage($data, $where);
+
+        if ($result) {
+
+            $data_a = array('index_num' => $row[0]['index_num']);
+            $where_a = array('index_num' => $row[0]['id']);
+            $result_a = $this->images_model->updateImage($data_a, $where_a);
+
+            $data_b = array('index_num' => $id);
+            $where_b = array('id' => $right_sibling);
+            $result_b = $this->images_model->updateImage($data_b, $where_b);
+
+        }
+
+        if ($result && $result_b) {
+            echo true;
+        } else {
+            echo false;
+        }
+    }
+
+    public function updateTitle() {
+        $imageId = $this->input->post('link-id');
+        $imageLink = $this->input->post('link-text');
+
+        $data = array('link' => $imageLink);
+        $where = array('id' => $imageId);
+        $this->images_model->updateImage($data, $where);
+
+        echo true;
+    }
+
+    /*
+     * Backend API for image list
+     */
+    public function getImageList() {
+        $list = $this->images_model->getAllImages();
 
         // store the result in array form
         $result_set = array();
-        if ($count > 0) {
+        if (count($list) > 0) {
             $i = 0;
             $rows = array();
-            while ($row = mysql_fetch_array($result)) {
-                if ($i == 0) {
-                    $rows[0] = $row;
-                    $i++;
-                    continue;
-                }
+            foreach ($list as $row) {
                 $rows[$row['index_num']] = $row;
                 $i++;
             }
@@ -53,31 +202,6 @@ class Images extends CI_Controller
             $msg = "Images is not existing.";
         }
 
-        mysql_close();
-        // set the header to JSON
-        header('Content-Type: application/json');
-
         echo json_encode(array('status' => $status, 'msg' => $msg, 'result' => $result_set));
-    }
-
-    function deleteImage($imageId) {
-        $image = "SELECT * FROM  User_Images WHERE id = $imageId";
-        $image = mysql_fetch_array(mysql_query($image));
-
-        $delete_row = "DELETE FROM User_Images WHERE id = $imageId";
-        $result = mysql_query($delete_row);
-
-        if ($result) {
-            $after_id = $image['id'];
-            $after_index = $image['index_num'];
-            $update_after = "UPDATE User_Images SET index_num = $after_index WHERE index_num = $after_id";
-            $update_result = mysql_query($update_after);
-
-            if ($update_result) {
-                echo json_encode(array('status' => 'success', 'msg' => "Image #$after_id was removed"));
-            }
-        } else {
-            echo json_encode(array('status' => 'failed', 'msg' => "failed"));
-        }
     }
 }
