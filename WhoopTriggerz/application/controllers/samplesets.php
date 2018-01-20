@@ -30,9 +30,10 @@ class SampleSets extends BaseController
         $this->load->model('sync4_list_model');
         $this->load->model('sync8_list_model');
         $this->load->model('sync8_item_model');
+
         $this->output->set_header('Last-Modified: ' . gmdate("D, d M Y H:i:s") . ' GMT');('Cache-Control: no-store, no-cache, must-revalidate, post-check=0, pre-check=0');
-$this->output->set_header('Pragma: no-cache');
-$this->output->set_header("Expires: Mon, 26 Jul 1997 05:00:00 GMT");
+        $this->output->set_header('Pragma: no-cache');
+        $this->output->set_header("Expires: Mon, 26 Jul 1997 05:00:00 GMT");
          
     }
 
@@ -290,8 +291,63 @@ $this->output->set_header("Expires: Mon, 26 Jul 1997 05:00:00 GMT");
     			$temp['price'] = $result[$i]['price'];
                 $temp['thumb'] = $result[$i]['thumb'] == ""? base_url()."assets/thumbimages/no_img.png":base_url().'assets/thumbimages/'.$result[$i]['thumb'];
                 $temp['bpm'] = $result[$i]['bpm'];
-                $temp['sync4_left'] = $result[$i]['sync4'];
-                $temp['sync4_right'] = $result[$i]['sync4_2'];
+
+                $sync4_l = array();
+                if ($result[$i]['sync4']) {
+                    $result_sync4_l = $this->sync4_list_model->getSync4($result[$i]['sync4']);
+                    if(count($result_sync4_l)>0)
+                    {
+                        $sync4_l['success'] = 0;
+                        $sync4_l['description'] = $result_sync4_l[0]['description'];
+                        $sync4_l['is_free'] = $result_sync4_l[0]['is_free'];
+                        $sync4_l['price'] = $result_sync4_l[0]['price'];
+                        $sync4_l['thumb'] = $result_sync4_l[0]['thumb'] == ""? base_url()."assets/thumbimages/no_img.png":base_url().'assets/thumbimages/'.$result[0]['thumb'];
+                        $sync4_l['music_1'] = $result_sync4_l[0]['music_1'] == ""? "":base_url().'assets/sync4-musicfiles/'.$result_sync4_l[0]['music_1'];
+                        $sync4_l['music_2'] = $result_sync4_l[0]['music_2'] == ""? "":base_url().'assets/sync4-musicfiles/'.$result_sync4_l[0]['music_2'];
+                        $sync4_l['music_3'] = $result_sync4_l[0]['music_3'] == ""? "":base_url().'assets/sync4-musicfiles/'.$result_sync4_l[0]['music_3'];
+                        $sync4_l['music_4'] = $result_sync4_l[0]['music_4'] == ""? "":base_url().'assets/sync4-musicfiles/'.$result_sync4_l[0]['music_4'];
+                        $sync4_l['music_5'] = $result_sync4_l[0]['music_5'] == ""? "":base_url().'assets/sync4-musicfiles/'.$result_sync4_l[0]['music_5'];
+
+                        $sync4_l['music_title_1'] = $result_sync4_l[0]['music_title_1'] == ""? "":$result_sync4_l[0]['music_title_1'];
+                        $sync4_l['music_title_2'] = $result_sync4_l[0]['music_title_2'] == ""? "":$result_sync4_l[0]['music_title_2'];
+                        $sync4_l['music_title_3'] = $result_sync4_l[0]['music_title_3'] == ""? "":$result_sync4_l[0]['music_title_3'];
+                        $sync4_l['music_title_4'] = $result_sync4_l[0]['music_title_4'] == ""? "":$result_sync4_l[0]['music_title_4'];
+                        $sync4_l['music_title_5'] = $result_sync4_l[0]['music_title_5'] == ""? "":$result_sync4_l[0]['music_title_5'];
+
+                        $sync4_l['bpm'] = $result_sync4_l[0]['bpm'];
+                    }
+                }
+                $temp['sync4_left']['id'] = $result[$i]['sync4'];
+                $temp['sync4_left']['data'] = $sync4_l;
+
+                $sync4_r = array();
+                if ($result[$i]['sync4_2']) {
+                    $result_sync4_r = $this->sync4_list_model->getSync4($result[$i]['sync4_2']);
+                    if(count($result_sync4_r)>0)
+                    {
+                        $sync4_r['success'] = 0;
+                        $sync4_r['description'] = $result_sync4_r[0]['description'];
+                        $sync4_r['is_free'] = $result_sync4_r[0]['is_free'];
+                        $sync4_r['price'] = $result_sync4_r[0]['price'];
+                        $sync4_r['thumb'] = $result_sync4_r[0]['thumb'] == ""? base_url()."assets/thumbimages/no_img.png":base_url().'assets/thumbimages/'.$result[0]['thumb'];
+                        $sync4_r['music_1'] = $result_sync4_r[0]['music_1'] == ""? "":base_url().'assets/sync4-musicfiles/'.$result_sync4_r[0]['music_1'];
+                        $sync4_r['music_2'] = $result_sync4_r[0]['music_2'] == ""? "":base_url().'assets/sync4-musicfiles/'.$result_sync4_r[0]['music_2'];
+                        $sync4_r['music_3'] = $result_sync4_r[0]['music_3'] == ""? "":base_url().'assets/sync4-musicfiles/'.$result_sync4_r[0]['music_3'];
+                        $sync4_r['music_4'] = $result_sync4_r[0]['music_4'] == ""? "":base_url().'assets/sync4-musicfiles/'.$result_sync4_r[0]['music_4'];
+                        $sync4_r['music_5'] = $result_sync4_r[0]['music_5'] == ""? "":base_url().'assets/sync4-musicfiles/'.$result_sync4_r[0]['music_5'];
+
+                        $sync4_r['music_title_1'] = $result_sync4_r[0]['music_title_1'] == ""? "":$result_sync4_r[0]['music_title_1'];
+                        $sync4_r['music_title_2'] = $result_sync4_r[0]['music_title_2'] == ""? "":$result_sync4_r[0]['music_title_2'];
+                        $sync4_r['music_title_3'] = $result_sync4_r[0]['music_title_3'] == ""? "":$result_sync4_r[0]['music_title_3'];
+                        $sync4_r['music_title_4'] = $result_sync4_r[0]['music_title_4'] == ""? "":$result_sync4_r[0]['music_title_4'];
+                        $sync4_r['music_title_5'] = $result_sync4_r[0]['music_title_5'] == ""? "":$result_sync4_r[0]['music_title_5'];
+
+                        $sync4_r['bpm'] = $result_sync4_r[0]['bpm'];
+                    }
+                }
+                $temp['sync4_right']['id'] = $result[$i]['sync4'];
+                $temp['sync4_right']['data'] = $sync4_r;
+
                 $temp['set_type'] = "1";
     			$items[] = $temp;
     		}
@@ -314,6 +370,7 @@ $this->output->set_header("Expires: Mon, 26 Jul 1997 05:00:00 GMT");
                 $temp['price'] = $result[$i]['price'];
                 $temp['thumb'] = $result[$i]['thumb'] == ""? base_url()."assets/thumbimages/no_img.png":base_url().'assets/thumbimages/'.$result[$i]['thumb'];
                 $temp['bpm'] = $result[$i]['bpm'];
+                $temp['sync4'] = "0";
                 $temp['sync4_left'] = "0";
                 $temp['sync4_right'] = "0";
                 $temp['set_type'] = "2";
