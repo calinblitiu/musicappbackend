@@ -345,7 +345,7 @@ class SampleSets extends BaseController
                         $sync4_r['bpm'] = $result_sync4_r[0]['bpm'];
                     }
                 }
-                $temp['sync4_right']['id'] = $result[$i]['sync4'];
+                $temp['sync4_right']['id'] = $result[$i]['sync4_2'];
                 $temp['sync4_right']['data'] = $sync4_r;
 
                 $temp['set_type'] = "1";
