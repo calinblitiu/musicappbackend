@@ -359,15 +359,15 @@ class SampleSets extends BaseController
         if(count($result8)>0)
         {
             for ($i=0; $i < count($result8); $i++) {
-                $temp['id'] = $result8[$i]['id'];
-                $temp['name'] = $result8[$i]['name'];
-                $temp['description'] = $result8[$i]['description'];
-                $temp['is_free'] = $result8[$i]['is_free'];
-                $temp['price'] = $result8[$i]['price'];
-                $temp['thumb'] = $result8[$i]['thumb'] == ""? base_url()."assets/thumbimages/no_img.png":base_url().'assets/thumbimages/'.$result8[$i]['thumb'];
-                $temp['bpm'] = $result8[$i]['bpm'];
-                $temp['sync4'] = "0";
-                $temp['set_type'] = "2";
+                $temp8['id'] = $result8[$i]['id'];
+                $temp8['name'] = $result8[$i]['name'];
+                $temp8['description'] = $result8[$i]['description'];
+                $temp8['is_free'] = $result8[$i]['is_free'];
+                $temp8['price'] = $result8[$i]['price'];
+                $temp8['thumb'] = $result8[$i]['thumb'] == ""? base_url()."assets/thumbimages/no_img.png":base_url().'assets/thumbimages/'.$result8[$i]['thumb'];
+                $temp8['bpm'] = $result8[$i]['bpm'];
+                $temp8['sync4'] = "0";
+                $temp8['set_type'] = "2";
 
                 $cell_list = array();
                 for($j = 1; $j <=9; $j++ )
@@ -398,9 +398,9 @@ class SampleSets extends BaseController
                     }
                 }
 
-                $temp['cells'] = $cell_list;
+                $temp8['cells'] = $cell_list;
 
-                $items[] = $temp;
+                $items[] = $temp8;
             }
         }
 
