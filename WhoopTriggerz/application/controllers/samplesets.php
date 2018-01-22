@@ -355,73 +355,53 @@ class SampleSets extends BaseController
     	}
     
 
-        $result = $this->sync8_list_model->getAllSync8List();
-        
-        if(count($result)>0)
+        $result8 = $this->sync8_list_model->getAllSync8List();
+        if(count($result8)>0)
         {
-            $data['success'] = 0;
-           
-            //$data['items'] = $result;
-            for ($i=0; $i < count($result) ; $i++) { 
-                $temp['id'] = $result[$i]['id'];
-                $temp['name'] = $result[$i]['name'];
-                $temp['description'] = $result[$i]['description'];
-                $temp['is_free'] = $result[$i]['is_free'];
-                $temp['price'] = $result[$i]['price'];
-                $temp['thumb'] = $result[$i]['thumb'] == ""? base_url()."assets/thumbimages/no_img.png":base_url().'assets/thumbimages/'.$result[$i]['thumb'];
-                $temp['bpm'] = $result[$i]['bpm'];
+            for ($i=0; $i < count($result8); $i++) {
+                $temp['id'] = $result8[$i]['id'];
+                $temp['name'] = $result8[$i]['name'];
+                $temp['description'] = $result8[$i]['description'];
+                $temp['is_free'] = $result8[$i]['is_free'];
+                $temp['price'] = $result8[$i]['price'];
+                $temp['thumb'] = $result8[$i]['thumb'] == ""? base_url()."assets/thumbimages/no_img.png":base_url().'assets/thumbimages/'.$result8[$i]['thumb'];
+                $temp['bpm'] = $result8[$i]['bpm'];
                 $temp['sync4'] = "0";
                 $temp['set_type'] = "2";
 
-                $sync8_list = $this->sync8_list_model->getSync8($temp['id']);
-
-                $sync8 = array();
-                if(count($sync8_list)>0)
+                $cell_list = array();
+                for($j = 1; $j <=9; $j++ )
                 {
-                    $sync8['success'] = 0;
-                    $sync8['id'] = $sync8_list[0]['id'];
-                    $sync8['name'] = $sync8_list[0]['name'];
-                    $sync8['description'] = $sync8_list[0]['description'];
-                    $sync8['is_free'] = $sync8_list[0]['is_free'];
-                    $sync8['price'] = $sync8_list[0]['price'];
-                    $sync8['thumb'] = $sync8_list[0]['thumb'] == ""? base_url()."assets/thumbimages/no_img.png":base_url().'assets/thumbimages/'.$sync8_list[0]['thumb'];
-                    $sync8['bpm'] = $sync8_list[0]['bpm'];
-
-                    $cell_list = array();
-                    for($i = 1; $i <=9; $i++ )
+                    if($result8[$i]['cell_'.$j] == "" || $result8[$i]['cell_'.$j] == null)
                     {
-                        if($sync8_list[0]['cell_'.$i] == "" || $sync8_list[0]['cell_'.$i] == null)
+                        $cell_list['cell_'.$j] = "";
+                    }
+                    else
+                    {
+                        $temp_item = $this->sync8_item_model->getCell($result8[$i]['cell_'.$j]);
+                        if(count($temp_item) == 0 )
                         {
-                            $cell_list['cell_'.$i] = "";
+                            $cell_list['cell_'.$j] = "";
                         }
                         else
                         {
-                            $temp_item = $this->sync8_item_model->getCell($sync8_list[0]['cell_'.$i]);
-                            if(count($temp_item) == 0 )
+                            $temp_cell['id'] = $temp_item[0]['id'];
+                            $temp_cell['name'] = $temp_item[0]['name'];
+                            for($k = 1; $k <= 7; $k++)
                             {
-                                $cell_list['cell_'.$i] = "";
+                                $temp_cell[$this->player_kinds_array[$k-1]] = $temp_item[0]['player_'.$k] == ""?
+                                    "":base_url().'assets/sync8-musicfiles/'.$temp_item[0]['player_'.$k];
                             }
-                            else
-                            {
-                                $temp['id'] = $temp_item[0]['id'];
-                                $temp['name'] = $temp_item[0]['name'];
-                                for($j = 1; $j <= 7; $j++)
-                                {
-                                    $temp[$this->player_kinds_array[$j-1]] = $temp_item[0]['player_'.$j] == ""? "":base_url().'assets/sync8-musicfiles/'.$temp_item[0]['player_'.$j];
-                                }
 
-                                $cell_list['cell_'.$i] = $temp;
-                            }
+                            $cell_list['cell_'.$j] = $temp_cell;
                         }
                     }
-
-                    $sync8['cells'] = $cell_list;
                 }
-                $temp['sync8'] = $sync8;
+
+                $temp['cells'] = $cell_list;
 
                 $items[] = $temp;
             }
-           
         }
 
         if(count($items)>0)
