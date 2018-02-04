@@ -135,6 +135,7 @@ class Sync4 extends BaseController
     {
         $sync4_id = $this->input->post('sync4-id');
         $sync4_music_no = $this->input->post('sync4-music-no');
+        $sync4_drum_no = $this->input->post('sync4-drum-no');
         $upload_file_name = "";
 
         if($_FILES['sync4-music-file']['name']){
@@ -153,9 +154,29 @@ class Sync4 extends BaseController
                 redirect('index.php/editsync4/'.$sync4_id);
             }
 
+            $this->sync4_list_model->updateMusicFile($sync4_id,$sync4_music_no,$upload_file_name);
         }
 
-        $this->sync4_list_model->updateMusicFile($sync4_id,$sync4_music_no,$upload_file_name);
+        if($_FILES['sync4-drum-file']['name']){
+
+            $uploadDrumDir = './assets/sync4-drumfiles/';
+            $path = $_FILES['sync4-drum-file']['name'];
+            $ext = pathinfo($path, PATHINFO_EXTENSION);
+            $drum_dest_filename = "sync4_". $sync4_id."_" . $sync4_drum_no . '.' . $ext;
+            $uploadDrumFile = $uploadDrumDir . $drum_dest_filename;
+            $drum_file_name = $drum_dest_filename;
+            if (move_uploaded_file($_FILES['sync4-drum-file']['tmp_name'], $uploadDrumFile)) {
+                //$this->sample_item_model->editItemField($item_no,$field,$file_name);
+                $upload_drum_file_name = $drum_file_name;
+            } else {
+                // echo "Possible file upload attack!\n";
+                redirect('index.php/editsync4/'.$sync4_id);
+            }
+
+            $this->sync4_list_model->updateMusicDrumFile($sync4_id, $sync4_drum_no, $upload_drum_file_name);
+        }
+
+
         redirect('index.php/editsync4/'.$sync4_id);
     }
 
@@ -189,6 +210,12 @@ class Sync4 extends BaseController
                 $temp['music_title_3'] = $result[$i]['music_title_3'] == ""? "":$result[$i]['music_title_3'];
                 $temp['music_title_4'] = $result[$i]['music_title_4'] == ""? "":$result[$i]['music_title_4'];
                 $temp['music_title_5'] = $result[$i]['music_title_5'] == ""? "":$result[$i]['music_title_5'];
+
+                $temp['drum_1'] = $result[$i]['drum_1'] == ""? "":$result[$i]['drum_1'];
+                $temp['drum_2'] = $result[$i]['drum_2'] == ""? "":$result[$i]['drum_2'];
+                $temp['drum_3'] = $result[$i]['drum_3'] == ""? "":$result[$i]['drum_3'];
+                $temp['drum_4'] = $result[$i]['drum_4'] == ""? "":$result[$i]['drum_4'];
+                $temp['drum_5'] = $result[$i]['drum_5'] == ""? "":$result[$i]['drum_5'];
                 $temp['bpm'] = $result[$i]['bpm'];
                 $items[] = $temp;
             }
@@ -226,6 +253,12 @@ class Sync4 extends BaseController
             $data['music_title_3'] = $result[0]['music_title_3'] == ""? "":$result[0]['music_title_3'];
             $data['music_title_4'] = $result[0]['music_title_4'] == ""? "":$result[0]['music_title_4'];
             $data['music_title_5'] = $result[0]['music_title_5'] == ""? "":$result[0]['music_title_5'];
+
+            $temp['drum_1'] = $result[0]['drum_1'] == ""? "":$result[0]['drum_1'];
+            $temp['drum_2'] = $result[0]['drum_2'] == ""? "":$result[0]['drum_2'];
+            $temp['drum_3'] = $result[0]['drum_3'] == ""? "":$result[0]['drum_3'];
+            $temp['drum_4'] = $result[0]['drum_4'] == ""? "":$result[0]['drum_4'];
+            $temp['drum_5'] = $result[0]['drum_5'] == ""? "":$result[0]['drum_5'];
             $data['bpm'] = $result[0]['bpm'];
 
             echo json_encode($data);
@@ -250,9 +283,19 @@ class Sync4 extends BaseController
     public function deleteMusicFile()
     {
         $this->isLoggedIn();
-        $sync4_no = $this->input->post("sync4-music-no");
         $sync4_id = $this->input->post("sync4-id");
-        $this->sync4_list_model->deleteMusicFile($sync4_id,$sync4_no);
+        $sync4_no = $this->input->post("sync4-music-no");
+
+        if ($sync4_no) {
+            $this->sync4_list_model->deleteMusicFile($sync4_id, $sync4_no);
+        }
+
+        $sync4_drum_no = $this->input->post("sync4-drum-no");
+
+        if ($sync4_drum_no) {
+            $this->sync4_list_model->deleteDrumFile($sync4_id, $sync4_drum_no);
+        }
+
         redirect("index.php/editsync4/".$sync4_id);
     }
 

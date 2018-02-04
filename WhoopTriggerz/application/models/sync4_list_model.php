@@ -46,6 +46,12 @@ class Sync4_list_model extends CI_Model
         $this->db->update($this->table_name,array('music_'.$music_no => $file_name));
     }
 
+    public function updateMusicDrumFile($id, $drum_no,$file_name)
+    {
+        $this->db->where('id',$id);
+        $this->db->update($this->table_name,array('drum_'.$drum_no => $file_name));
+    }
+
     public function deleteSync4($id)
     {
         $this->db->where('id',$id);
@@ -56,6 +62,12 @@ class Sync4_list_model extends CI_Model
     {
         $this->db->where('id',$id);
         $this->db->update($this->table_name,array('music_'.$no => $no));
+    }
+
+    public function deleteDrumFile($id, $no)
+    {
+        $this->db->where('id',$id);
+        $this->db->update($this->table_name,array('drum_'.$no => $no));
     }
 
     public function editMusicName($id, $no, $name)

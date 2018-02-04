@@ -114,33 +114,66 @@ function generateRandomString($length = 5) {
                                 <td class="sync4-cell-name" style="cursor: pointer;text-decoration: underline;"
                                     data-music-no="<?=$i?>"><?php echo $sample[0]['music_title_'.$i]?$sample[0]['music_title_'.$i]:"No Title" ?></td>
                                 <td>
-                                    <?php
-                                    if($sample[0]['music_'.$i] == null || $sample[0]['music_'.$i] == "" || !file_exists(FCPATH.'assets/sync4-musicfiles/'.$sample[0]['music_'.$i]))
-                                    {
-                                        echo "No Music File";
-                                    }
-                                    else{
-                                        ?>
-                                        <audio controls="">
-                                            <source src="<?=base_url()?>assets/sync4-musicfiles/<?=$sample[0]['music_'.$i]?>?<?=generateRandomString()?>" type="audio/ogg">
-                                        </audio>
+                                    <div class="music-file">
+                                        <label><span>Music : </span></label>
                                         <?php
-                                    }
-                                    ?>
+                                        if($sample[0]['music_'.$i] == null || $sample[0]['music_'.$i] == "" || !file_exists(FCPATH.'assets/sync4-musicfiles/'.$sample[0]['music_'.$i]))
+                                        {
+                                            echo "No Music File";
+                                        }
+                                        else{
+                                            ?>
+                                            <audio controls="">
+                                                <source src="<?=base_url()?>assets/sync4-musicfiles/<?=$sample[0]['music_'.$i]?>?<?=generateRandomString()?>" type="audio/ogg">
+                                            </audio>
+                                            <?php
+                                        }
+                                        ?>
+                                    </div>
+                                    <div class="drum-file">
+                                        <label><span>Drum : </span></label>
+                                        <?php
+                                        if($sample[0]['drum_'.$i] == null || $sample[0]['drum_'.$i] == "" || !file_exists(FCPATH.'assets/sync4-drumfiles/'.$sample[0]['drum_'.$i]))
+                                        {
+                                            echo "No Music File";
+                                        }
+                                        else{
+                                            ?>
+                                            <audio controls="">
+                                                <source src="<?=base_url()?>assets/sync4-drumfiles/<?=$sample[0]['drum_'.$i]?>?<?=generateRandomString()?>" type="audio/ogg">
+                                            </audio>
+                                            <?php
+                                        }
+                                        ?>
+                                    </div>
                                 </td>
 
                                 <td>
-                                    <span class="btn btn-sm btn-success edit-music-file" alt="edit sample" data-music-no="<?=$i?>"><i class="fa fa-pencil"></i></span>
-                                    <?php
-                                    if($sample[0]['music_'.$i] == null || $sample[0]['music_'.$i] == "" || !file_exists(FCPATH.'assets/sync4-musicfiles/'.$sample[0]['music_'.$i]))
-                                    {
-                                        echo '<span class="btn btn-sm btn-danger remove-sample-btn" alt="delete sample" disabled><i class="fa fa-trash"></i></span>';
-                                    }
-                                    else{
-                                        echo '<span class="btn btn-sm btn-danger remove-sample-btn" alt="delete sample" data-music-no="'.$i.'"><i class="fa fa-trash"></i></span>';
-                                    }
-                                    ?>
-
+                                    <div class="music-edit">
+                                        <span class="btn btn-sm btn-success edit-music-file" alt="edit sample" data-music-no="<?=$i?>"><i class="fa fa-pencil"></i></span>
+                                        <?php
+                                        if($sample[0]['music_'.$i] == null || $sample[0]['music_'.$i] == "" || !file_exists(FCPATH.'assets/sync4-musicfiles/'.$sample[0]['music_'.$i]))
+                                        {
+                                            echo '<span class="btn btn-sm btn-danger remove-sample-btn" alt="delete sample" disabled><i class="fa fa-trash"></i></span>';
+                                        }
+                                        else{
+                                            echo '<span class="btn btn-sm btn-danger remove-sample-btn" alt="delete sample" data-music-no="'.$i.'"><i class="fa fa-trash"></i></span>';
+                                        }
+                                        ?>
+                                    </div>
+                                    <div class="drum-edit">
+                                        <span class="btn btn-sm btn-success edit-drum-file" alt="edit sample"
+                                              data-drum-no="<?=$i?>"><i class="fa fa-pencil"></i></span>
+                                        <?php
+                                        if($sample[0]['drum_'.$i] == null || $sample[0]['drum_'.$i] == "" || !file_exists(FCPATH.'assets/sync4-drumfiles/'.$sample[0]['drum_'.$i]))
+                                        {
+                                            echo '<span class="btn btn-sm btn-danger remove-drum-btn" alt="delete sample" disabled><i class="fa fa-trash"></i></span>';
+                                        }
+                                        else{
+                                            echo '<span class="btn btn-sm btn-danger remove-drum-btn" alt="delete sample" data-drum-no="'.$i.'"><i class="fa fa-trash"></i></span>';
+                                        }
+                                        ?>
+                                    </div>
                                 </td>
                             </tr>
 
@@ -152,6 +185,9 @@ function generateRandomString($length = 5) {
                         <input type="hidden" name="sync4-id" id="sync4-id" value="<?=$sample[0]['id']?>">
                         <input type="hidden" name="sync4-music-no" id="sync4-music-no">
                         <input type="file" name="sync4-music-file" id="sync4-music-file" accept="audio/*">
+
+                        <input type="hidden" name="sync4-drum-no" id="sync4-drum-no">
+                        <input type="file" name="sync4-drum-file" id="sync4-drum-file" accept="audio/*">
                     </form>
                 </div>
             </div>
@@ -174,6 +210,29 @@ function generateRandomString($length = 5) {
                 </div>
                 <div class="modal-body">
                     <input type="hidden" name="sync4-music-no" id="sample-id-hidden">
+                    <input type="hidden" name="sync4-id" value="<?=$sample[0]['id']?>">
+                    <h2>Confirm Delete</h2>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-danger">Delete</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div id="deleteDrumModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <form action="<?=base_url()?>index.php/deletesync4musicfile" method="post">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Delete Sync4 Drum File</h4>
+                </div>
+                <div class="modal-body">
+                    <input type="hidden" name="sync4-drum-no" id="drum-id-hidden">
                     <input type="hidden" name="sync4-id" value="<?=$sample[0]['id']?>">
                     <h2>Confirm Delete</h2>
                 </div>
@@ -219,6 +278,13 @@ function generateRandomString($length = 5) {
         $("#sync4-music-file").trigger('click');
     });
 
+    $(".edit-drum-file").click(function(){
+        //alert($(this).data("music-no"));
+        $("#sync4-upload-form").closest('form').get(0).reset();
+        $("#sync4-drum-no").val($(this).data("drum-no"));
+        $("#sync4-drum-file").trigger('click');
+    });
+
     $("#sync4-music-file").change(function(){
         if(!this.files[0]){
             //alert("file no selected");
@@ -231,7 +297,24 @@ function generateRandomString($length = 5) {
         reader.readAsDataURL(this.files[0]);
     });
 
+    $("#sync4-drum-file").change(function(){
+        if(!this.files[0]){
+            //alert("file no selected");
+            return;
+        }
+        //alert("file selected");
+        var file = this.files[0];
+        var reader = new FileReader();
+        reader.onload = drumFileLoaded;
+        reader.readAsDataURL(this.files[0]);
+    });
+
     function musicFileLoaded(e)
+    {
+        $("#sync4-upload-form").submit();
+    }
+
+    function drumFileLoaded(e)
     {
         $("#sync4-upload-form").submit();
     }
@@ -241,6 +324,13 @@ function generateRandomString($length = 5) {
         //alert(music_no);
         $("#sample-id-hidden").val(music_no);
         $("#deletemodal").modal('show');
+    });
+
+    $(".remove-drum-btn").click(function(){
+        var drum_no = $(this).data('drum-no');
+        //alert(music_no);
+        $("#drum-id-hidden").val(drum_no);
+        $("#deleteDrumModal").modal('show');
     });
 
     $(".sync4-cell-name").click(function(){
