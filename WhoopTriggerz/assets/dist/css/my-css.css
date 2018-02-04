@@ -20,3 +20,14 @@
 {
 	background: #c3dbf5!important;
 }
+
+.sync4-item-files tr:last-child .music-file {
+	display: none;
+}
+.sync4-item-files td > div {
+	display: table;
+}
+.sync4-item-files td > div label {
+	display: table-cell;
+	vertical-align: middle;
+}

@@ -97,7 +97,7 @@ function generateRandomString($length = 5) {
                     <h3 class="box-title">Update Sync4 Music Files</h3>
                 </div><!-- /.box-header -->
                 <div class="box-body">
-                    <table class="table table-hover">
+                    <table class="table table-hover sync4-item-files">
                         <tr>
                             <th>Id</th>
                             <th>Title</th>
