@@ -135,7 +135,7 @@ function generateRandomString($length = 5) {
                                         <?php
                                         if($sample[0]['drum_'.$i] == null || $sample[0]['drum_'.$i] == "" || !file_exists(FCPATH.'assets/sync4-drumfiles/'.$sample[0]['drum_'.$i]))
                                         {
-                                            echo "No Music File";
+                                            echo "No Drum File";
                                         }
                                         else{
                                             ?>
