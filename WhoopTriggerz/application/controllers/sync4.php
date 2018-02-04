@@ -254,11 +254,11 @@ class Sync4 extends BaseController
             $data['music_title_4'] = $result[0]['music_title_4'] == ""? "":$result[0]['music_title_4'];
             $data['music_title_5'] = $result[0]['music_title_5'] == ""? "":$result[0]['music_title_5'];
 
-            $temp['drum_1'] = $result[0]['drum_1'] == ""? "":$result[0]['drum_1'];
-            $temp['drum_2'] = $result[0]['drum_2'] == ""? "":$result[0]['drum_2'];
-            $temp['drum_3'] = $result[0]['drum_3'] == ""? "":$result[0]['drum_3'];
-            $temp['drum_4'] = $result[0]['drum_4'] == ""? "":$result[0]['drum_4'];
-            $temp['drum_5'] = $result[0]['drum_5'] == ""? "":$result[0]['drum_5'];
+            $data['drum_1'] = $result[0]['drum_1'] == ""? "":$result[0]['drum_1'];
+            $data['drum_2'] = $result[0]['drum_2'] == ""? "":$result[0]['drum_2'];
+            $data['drum_3'] = $result[0]['drum_3'] == ""? "":$result[0]['drum_3'];
+            $data['drum_4'] = $result[0]['drum_4'] == ""? "":$result[0]['drum_4'];
+            $data['drum_5'] = $result[0]['drum_5'] == ""? "":$result[0]['drum_5'];
             $data['bpm'] = $result[0]['bpm'];
 
             echo json_encode($data);
