@@ -314,6 +314,12 @@ class SampleSets extends BaseController
                         $sync4_l['music_title_4'] = $result_sync4_l[0]['music_title_4'] == ""? "":$result_sync4_l[0]['music_title_4'];
                         $sync4_l['music_title_5'] = $result_sync4_l[0]['music_title_5'] == ""? "":$result_sync4_l[0]['music_title_5'];
 
+                        $sync4_l['drum_1'] = $result_sync4_l[0]['drum_1'] == ""? "":base_url().'assets/sync4-drumfiles/'.$result_sync4_l[0]['drum_1'];
+                        $sync4_l['drum_2'] = $result_sync4_l[0]['drum_2'] == ""? "":base_url().'assets/sync4-drumfiles/'.$result_sync4_l[0]['drum_2'];
+                        $sync4_l['drum_3'] = $result_sync4_l[0]['drum_3'] == ""? "":base_url().'assets/sync4-drumfiles/'.$result_sync4_l[0]['drum_3'];
+                        $sync4_l['drum_4'] = $result_sync4_l[0]['drum_4'] == ""? "":base_url().'assets/sync4-drumfiles/'.$result_sync4_l[0]['drum_4'];
+                        $sync4_l['drum_5'] = $result_sync4_l[0]['drum_5'] == ""? "":base_url().'assets/sync4-drumfiles/'.$result_sync4_l[0]['drum_5'];
+
                         $sync4_l['bpm'] = $result_sync4_l[0]['bpm'];
                     }
                 }
@@ -341,6 +347,12 @@ class SampleSets extends BaseController
                         $sync4_r['music_title_3'] = $result_sync4_r[0]['music_title_3'] == ""? "":$result_sync4_r[0]['music_title_3'];
                         $sync4_r['music_title_4'] = $result_sync4_r[0]['music_title_4'] == ""? "":$result_sync4_r[0]['music_title_4'];
                         $sync4_r['music_title_5'] = $result_sync4_r[0]['music_title_5'] == ""? "":$result_sync4_r[0]['music_title_5'];
+
+                        $sync4_r['drum_1'] = $result_sync4_r[0]['drum_1'] == ""? "":base_url().'assets/sync4-drumfiles/'.$result_sync4_r[0]['drum_1'];
+                        $sync4_r['drum_2'] = $result_sync4_r[0]['drum_2'] == ""? "":base_url().'assets/sync4-drumfiles/'.$result_sync4_r[0]['drum_2'];
+                        $sync4_r['drum_3'] = $result_sync4_r[0]['drum_3'] == ""? "":base_url().'assets/sync4-drumfiles/'.$result_sync4_r[0]['drum_3'];
+                        $sync4_r['drum_4'] = $result_sync4_r[0]['drum_4'] == ""? "":base_url().'assets/sync4-drumfiles/'.$result_sync4_r[0]['drum_4'];
+                        $sync4_r['drum_5'] = $result_sync4_r[0]['drum_5'] == ""? "":base_url().'assets/sync4-drumfiles/'.$result_sync4_r[0]['drum_5'];
 
                         $sync4_r['bpm'] = $result_sync4_r[0]['bpm'];
                     }
