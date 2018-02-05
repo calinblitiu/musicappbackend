@@ -162,7 +162,7 @@ class Sync4 extends BaseController
             $uploadDrumDir = './assets/sync4-drumfiles/';
             $path = $_FILES['sync4-drum-file']['name'];
             $ext = pathinfo($path, PATHINFO_EXTENSION);
-            $drum_dest_filename = "sync4_". $sync4_id."_" . $sync4_drum_no . '.' . $ext;
+            $drum_dest_filename = "sync4_drum_". $sync4_id."_" . $sync4_drum_no . '.' . $ext;
             $uploadDrumFile = $uploadDrumDir . $drum_dest_filename;
             $drum_file_name = $drum_dest_filename;
             if (move_uploaded_file($_FILES['sync4-drum-file']['tmp_name'], $uploadDrumFile)) {
