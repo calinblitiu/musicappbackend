@@ -113,27 +113,16 @@ $count = count($new_array);
                                 <div class="options-box">
                                     <label>Options</label><br/>
                                     <div class="">
-                                        <input type="radio" id="dopeness" name="response_option" value="dopeness"
-                                            <?php echo (isset($response[0]) && $response[0]['option'] == "dopeness") ?
-                                            "checked":''; ?> >
-                                        <label for="dopeness">Dopeness! (This closes out the message)</label>
+                                        <input type="radio" id="dopeness" name="response_option" value="dopeness" <?php echo (isset($response[0]) && $response[0]['option'] == "dopeness") ? "checked":''; ?> >
+                                        <label for="dopeness">Dopeness!</label>
                                     </div>
                                     <div class="">
-                                        <input type="radio" id="gotit" name="response_option" value="gotit" <?php echo (isset($response[0]) && $response[0]['option'] == "gotit") ?
-                                            "checked":''; ?> >
-                                        <label for="gotit">Got it 👍🏾 (This closes out the message)</label>
+                                        <input type="radio" id="gotit" name="response_option" value="gotit" <?php echo (isset($response[0]) && $response[0]['option'] == "gotit") ? "checked":''; ?> >
+                                        <label for="gotit">Got it</label>
                                     </div>
                                     <div class="">
-                                        <input type="radio" id="not-right-now" name="response_option" value="not-right-now" <?php echo (isset($response[0]) && $response[0]['option'] == "not-right-now") ?
-                                            "checked":''; ?> >
-                                        <label for="not-right-now">(Left) Not right now (This closes out the message)</label>
-                                    </div>
-                                    <div class="">
-                                        <input type="radio" id="letseeit" name="response_option" value="letsseeit" <?php echo (isset($response[0]) && $response[0]['option'] == "letsseeit") ?
-                                            "checked":''; ?> >
-                                        <label for="letseeit">(Right) Let’s see it! (This takes user to a link specified in
-                                            backend)</label>
-                                        <br>
+                                        <input type="radio" id="not-right-now" name="response_option" value="seeit" <?php echo (isset($response[0]) && $response[0]['option'] == "seeit") ? "checked":''; ?> >
+                                        <label for="not-right-now">Not right now,  Let’s see it!</label>
                                     </div>
                                 </div>
                                 <div class="">
