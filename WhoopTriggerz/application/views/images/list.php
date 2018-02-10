@@ -56,43 +56,96 @@ $count = count($new_array);
             </div>
         </div>
 
-
         <div class="row">
-            <div class="col-xs-12">
-                <div class="box">
-                    <div class="box-header">
-                        <h3 class="box-title">Image List</h3>
-                        <div class="box-tools">
-                            <form action="<?php echo base_url() ?>index.php/searchsample" method="POST" id="searchList">
-                                <div class="input-group">
-                                    <input type="text" name="searchText" value="<?=$search?>" class="form-control input-sm pull-right" style="width: 150px;" placeholder="Search"/>
-                                    <div class="input-group-btn">
-                                        <button class="btn btn-sm btn-default searchList"><i class="fa fa-search"></i></button>
+            <div class="col-xs-12 row">
+                <div class="col-xs-6">
+                    <div class="box">
+                        <div class="box-header">
+                            <h3 class="box-title">Image List</h3>
+                            <div class="box-tools">
+                                <form action="<?php echo base_url() ?>index.php/searchsample" method="POST" id="searchList">
+                                    <div class="input-group">
+                                        <input type="text" name="searchText" value="<?=$search?>" class="form-control input-sm pull-right" style="width: 150px;" placeholder="Search"/>
+                                        <div class="input-group-btn">
+                                            <button class="btn btn-sm btn-default searchList"><i class="fa fa-search"></i></button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div><!-- /.box-header -->
+                        <div class="box-body table-responsive no-padding">
+                            <div id="image-list" class="image-list">
+                                <?php if ($count > 0): ?>
+                                    <ul id="sortable">
+                                        <?php $i = 0; ?>
+                                        <?php foreach($new_array as $row): ?>
+                                            <li class="element ui-state-default" data-image-id="<?php echo $row['id'] ?>" data-index="<?php echo $i+1; ?>">
+                                                <img src="<?php echo base_url('assets') ?>/upload_images/<?php echo $row['path'] ?>">
+                                                <div class="right-box">
+                                                    <label>Link : </label><br/>
+                                                    <input type="text" name="link_<?php echo $row['id'] ?>" value="<?php echo $row['link'] ?> ">
+                                                    <button class="btn save" data-link-id="<?php echo $row['id'] ?>">Save</button>
+                                                    <button class="btn remove" data-image-id="<?php echo $row['id'] ?>">Remove</button>
+                                                </div>
+
+                                                <?php $i++ ?>
+                                            </li>
+                                        <?php endforeach; ?>
+                                    </ul>
+                                <?php endif; ?>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-6">
+                    <div class="box">
+                        <div class="box-header">
+                            <h3 class="box-title">Response Options</h3>
+                        </div>
+                        <div class="box-body">
+                            <form class="form" action="<?php echo base_url("index.php/saveResponse") ?>" method="post">
+                                <div class="">
+                                    <label>Title : </label>
+                                    <input type="text" name="response_title" value="<?php echo (isset($response[0])) ?
+                                    $response[0]['title']:''; ?>">
+                                    <br>
+                                </div>
+                                <div class="options-box">
+                                    <label>Options</label><br/>
+                                    <div class="">
+                                        <input type="radio" id="dopeness" name="response_option" value="dopeness"
+                                            <?php echo (isset($response[0]) && $response[0]['option'] == "dopeness") ?
+                                            "checked":''; ?> >
+                                        <label for="dopeness">Dopeness! (This closes out the message)</label>
+                                    </div>
+                                    <div class="">
+                                        <input type="radio" id="gotit" name="response_option" value="gotit" <?php echo (isset($response[0]) && $response[0]['option'] == "gotit") ?
+                                            "checked":''; ?> >
+                                        <label for="gotit">Got it 👍🏾 (This closes out the message)</label>
+                                    </div>
+                                    <div class="">
+                                        <input type="radio" id="not-right-now" name="response_option" value="not-right-now" <?php echo (isset($response[0]) && $response[0]['option'] == "not-right-now") ?
+                                            "checked":''; ?> >
+                                        <label for="not-right-now">(Left) Not right now (This closes out the message)</label>
+                                    </div>
+                                    <div class="">
+                                        <input type="radio" id="letseeit" name="response_option" value="letsseeit" <?php echo (isset($response[0]) && $response[0]['option'] == "letsseeit") ?
+                                            "checked":''; ?> >
+                                        <label for="letseeit">(Right) Let’s see it! (This takes user to a link specified in
+                                            backend)</label>
+                                        <br>
                                     </div>
                                 </div>
-                            </form>
-                        </div>
-                    </div><!-- /.box-header -->
-                    <div class="box-body table-responsive no-padding">
-                        <div id="image-list" class="image-list">
-                            <?php if ($count > 0): ?>
-                                <ul id="sortable">
-                                    <?php $i = 0; ?>
-                                    <?php foreach($new_array as $row): ?>
-                                        <li class="element ui-state-default" data-image-id="<?php echo $row['id'] ?>" data-index="<?php echo $i+1; ?>">
-                                            <img src="<?php echo base_url('assets') ?>/upload_images/<?php echo $row['path'] ?>">
-                                            <div class="right-box">
-                                                <label>Link : </label><br/>
-                                                <input type="text" name="link_<?php echo $row['id'] ?>" value="<?php echo $row['link'] ?> ">
-                                                <button class="btn save" data-link-id="<?php echo $row['id'] ?>">Save</button>
-                                                <button class="btn remove" data-image-id="<?php echo $row['id'] ?>">Remove</button>
-                                            </div>
+                                <div class="">
+                                    <label>Link : </label>
+                                    <input type="text" name="response_link" value="<?php echo (isset($response[0])) ?
+                                        $response[0]['link']:''; ?>">
+                                </div>
 
-                                            <?php $i++ ?>
-                                        </li>
-                                    <?php endforeach; ?>
-                                </ul>
-                            <?php endif; ?>
+                                <div class="actions">
+                                    <button  class="btn btn-primary save-response-option">Save</button>
+                                </div>
+                            </form>
                         </div>
                     </div>
                 </div>
@@ -213,6 +266,9 @@ $count = count($new_array);
     #sortable li .right-box input { width: 100%; line-height: 1.5em; display: inline-block;}
     #sortable li .right-box .save {background: green; padding: 10px 20px; margin-right: 30px; border: 0; color: #ffffff;}
     #sortable li .right-box .remove {background: red; padding: 10px 20px; border: 0; color: #ffffff;}
+    .options-box {display: inline-block; margin: 20px 0;}
+    .options-box div {padding-left: 20px;}
+    .save-response-option {float: right;}
 </style>
 
 <script type="text/javascript">
@@ -321,5 +377,6 @@ $count = count($new_array);
         $(".add-image").click(function(){
             $("#addmodal").modal('show');
         });
+
     });
 </script>

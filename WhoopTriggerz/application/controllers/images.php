@@ -14,6 +14,7 @@ class Images extends BaseController
     {
         parent::__construct();
         $this->load->model('images_model');
+        $this->load->model('response_model');
 
         $this->output->set_header('Last-Modified: ' . gmdate("D, d M Y H:i:s") . ' GMT');('Cache-Control: no-store, no-cache, must-revalidate, post-check=0, pre-check=0');
         $this->output->set_header('Pragma: no-cache');
@@ -24,10 +25,12 @@ class Images extends BaseController
         $this->isLoggedIn();
 
         $images = $this->images_model->getAllImages();
+        $response = $this->response_model->getAllResponse();
 
         $this->global['images'] = $images;
         $this->global['pageTitle'] = 'Image List';
         $this->global['search']='';
+        $this->global['response'] = $response;
 
         $this->loadViews("images/list", $this->global, NULL , NULL);
     }
@@ -169,6 +172,7 @@ class Images extends BaseController
      */
     public function getImageList() {
         $list = $this->images_model->getAllImages();
+        $response = $this->response_model->getAllResponse();
 
         // store the result in array form
         $result_set = array();
@@ -202,6 +206,6 @@ class Images extends BaseController
             $msg = "Images is not existing.";
         }
 
-        echo json_encode(array('status' => $status, 'msg' => $msg, 'result' => $result_set));
+        echo json_encode(array('status' => $status, 'msg' => $msg, 'result' => $result_set, 'response_option' => $response));
     }
 }

@@ -122,6 +122,8 @@ $route['saveImage'] = "images/saveImage";
 $route['update-index'] = "images/updateIndex";
 $route['update-title'] = "images/updateTitle";
 $route['delete-image'] = "images/deleteImage";
+
+$route['saveResponse'] = "response/saveResponse";
 /**
  *Backend
  */
