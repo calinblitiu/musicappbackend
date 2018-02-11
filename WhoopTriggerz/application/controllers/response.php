@@ -29,7 +29,7 @@ class Response extends BaseController
         $data = array('title' => $title, 'message' => $message, 'option' => $option, 'link' => $link);
 
         if ($lastRow = $this->response_model->getLastRow()) {
-            $id = $lastRow['id'];
+            $id = $lastRow[0]['id'];
             $this->response_model->updateResponse($data, array('id' => $id));
         } else {
             $this->response_model->addNewResponse($data);
