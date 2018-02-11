@@ -119,7 +119,7 @@ $count = count($new_array);
                                     <label>Options</label><br/>
                                     <div class="">
                                         <input type="radio" id="dopeness" name="response_option" value="dopeness"
-                                            <?php echo (!isset($response[0]) && (isset($response[0]) && $response[0]['option'] == "dopeness")) ? "checked":''; ?> >
+                                            <?php echo (!isset($response[0]) || (isset($response[0]) && $response[0]['option'] == "dopeness")) ? "checked":''; ?> >
                                         <label for="dopeness">Dopeness!</label>
                                     </div>
                                     <div class="">
