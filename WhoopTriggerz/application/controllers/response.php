@@ -22,10 +22,11 @@ class Response extends BaseController
 
     public function saveResponse() {
         $title = $_POST['response_title'];
+        $message = $_POST['response_message'];
         $option = $_POST['response_option'];
         $link = $_POST['response_link'];
 
-        $data = array('title' => $title, 'option' => $option, 'link' => $link);
+        $data = array('title' => $title, 'message' => $message, 'option' => $option, 'link' => $link);
 
         if ($lastRow = $this->response_model->getLastRow()) {
             $id = $lastRow['id'];

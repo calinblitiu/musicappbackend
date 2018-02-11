@@ -110,6 +110,11 @@ $count = count($new_array);
                                     $response[0]['title']:''; ?>">
                                     <br>
                                 </div>
+                                <div class="">
+                                    <label>Message : </label>
+                                    <textarea name="response_message"><?php echo (isset($response[0])) ? $response[0]['message']:''; ?></textarea>
+                                    <br>
+                                </div>
                                 <div class="options-box">
                                     <label>Options</label><br/>
                                     <div class="">
