@@ -399,7 +399,7 @@ class SampleSets extends BaseController
                         {
                             $temp_cell['id'] = $temp_item[0]['id'];
                             $temp_cell['name'] = $temp_item[0]['name'];
-                            for($k = 1; $k <= 7; $k++)
+                            for($k = 1; $k <= 4; $k++)
                             {
                                 $temp_cell[$this->player_kinds_array[$k-1]] = $temp_item[0]['player_'.$k] == ""?
                                     "":base_url().'assets/sync8-musicfiles/'.$temp_item[0]['player_'.$k];
