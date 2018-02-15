@@ -50,6 +50,7 @@
                         <span class="btn btn-sm btn-info edit-music-btn"><i class="fa fa-pencil"></i></span>
                         <span class="btn btn-sm btn-danger remove-music-btn"><i class="fa fa-trash"></i></span>
                       </th>
+                          <?php if ($i < 9): ?>
                       <th data-key="2">
                         <span class="btn btn-sm btn-success listen-music-btn" data-music-url="<?=$sample['key_item_'.$i][0]['player_2']?>"><i class="fa fa-headphones"></i></span>
                         <span class="btn btn-sm btn-info edit-music-btn"><i class="fa fa-pencil"></i></span>
@@ -65,6 +66,7 @@
                         <span class="btn btn-sm btn-info edit-music-btn"><i class="fa fa-pencil"></i></span>
                         <span class="btn btn-sm btn-danger remove-music-btn"><i class="fa fa-trash"></i></span>
                       </th>
+                    <?php endif; ?>
                     </tr>
                       <?php
                     }
